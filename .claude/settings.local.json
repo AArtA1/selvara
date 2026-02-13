@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep:*)",
+      "Bash(head:*)",
+      "Bash(wc:*)",
+      "Bash(xargs:*)",
+      "Bash(uv:*)",
+      "Bash(node --version:*)",
+      "Bash(npm --version:*)"
+    ]
+  },
+  "enabledPlugins": {
+    "frontend-design@claude-plugins-official": true
+  }
+}

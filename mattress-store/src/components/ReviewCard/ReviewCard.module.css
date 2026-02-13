@@ -1,0 +1,32 @@
+.card {
+  background: var(--color-white);
+  padding: var(--space-xl);
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
+}
+
+.stars {
+  color: var(--color-gold);
+  font-size: 1.25rem;
+  margin-bottom: var(--space-md);
+  letter-spacing: 2px;
+}
+
+.card blockquote {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--color-gray-dark);
+  margin-bottom: var(--space-lg);
+  font-style: italic;
+}
+
+.author {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--color-brand-dark);
+}
+
+.product {
+  font-size: 0.8125rem;
+  color: var(--color-gray);
+}

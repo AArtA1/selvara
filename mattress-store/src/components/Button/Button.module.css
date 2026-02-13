@@ -1,0 +1,41 @@
+.btn {
+  display: inline-block;
+  padding: 0.875rem 2rem;
+  border-radius: 5px;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.primary {
+  background: var(--color-white);
+  color: var(--color-brand-dark);
+}
+.primary:hover {
+  background: var(--color-bg-warm);
+  color: var(--color-brand-dark);
+}
+
+.outline {
+  background: transparent;
+  color: var(--color-white);
+  border-color: var(--color-white);
+  margin-left: var(--space-md);
+}
+.outline:hover {
+  background: var(--color-white);
+  color: var(--color-brand-dark);
+}
+
+.brand {
+  background: var(--color-brand);
+  color: var(--color-white);
+}
+.brand:hover {
+  background: var(--color-brand-dark);
+  color: var(--color-white);
+}
