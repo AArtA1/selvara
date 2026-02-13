@@ -1,0 +1,33 @@
+.breadcrumb {
+  padding: var(--space-md) 0;
+  background: var(--color-bg-warm);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  list-style: none;
+  font-size: 0.8125rem;
+  color: var(--color-gray);
+}
+
+.list a {
+  color: var(--color-brand);
+  font-weight: 500;
+}
+
+.list a:hover {
+  color: var(--color-brand-dark);
+}
+
+.separator {
+  margin: 0 var(--space-xs);
+  color: var(--color-gray-light);
+}
+
+.current {
+  color: var(--color-brand-dark);
+  font-weight: 600;
+}

@@ -1,0 +1,81 @@
+.summary {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-3xl);
+  max-width: 640px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.rating {
+  text-align: center;
+}
+
+.number {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-brand-dark);
+  line-height: 1;
+}
+
+.stars {
+  font-size: 1.25rem;
+  color: var(--color-gold);
+  letter-spacing: 2px;
+  margin: var(--space-xs) 0;
+}
+
+.count {
+  font-size: 0.8125rem;
+  color: var(--color-gray);
+}
+
+.bars {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.barRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.starLabel {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-gray-dark);
+  width: 36px;
+  text-align: right;
+}
+
+.barTrack {
+  flex: 1;
+  height: 8px;
+  background: var(--color-bg-warm);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.barFill {
+  height: 100%;
+  background: var(--color-gold);
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.barCount {
+  font-size: 0.8125rem;
+  color: var(--color-gray);
+  width: 24px;
+}
+
+@media (max-width: 768px) {
+  .summary {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+}

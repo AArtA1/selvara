@@ -1,5 +1,6 @@
 import { Container } from "@/components/Container/Container";
-import { ReviewCard, type Review } from "@/components/ReviewCard/ReviewCard";
+import { ReviewCard } from "@/components/ReviewCard/ReviewCard";
+import type { Review } from "@/data/types";
 import styles from "./ReviewsSection.module.css";
 
 const reviews: Review[] = [
@@ -7,7 +8,7 @@ const reviews: Review[] = [
     quote:
       "\u201CBest mattress I\u2019ve ever owned. The support is incredible and I wake up without any back pain. Worth every penny.\u201D",
     author: "Sarah M.",
-    product: "Saatva Classic \u2014 Verified Buyer",
+    product: "Selvara Classic \u2014 Verified Buyer",
   },
   {
     quote:

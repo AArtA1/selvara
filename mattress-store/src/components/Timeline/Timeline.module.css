@@ -1,0 +1,53 @@
+.timeline {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.step {
+  display: flex;
+  gap: var(--space-lg);
+}
+
+.marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dot {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-brand-dark);
+  color: var(--color-white);
+  font-size: 0.875rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.line {
+  width: 2px;
+  flex: 1;
+  background: var(--color-gray-light);
+  min-height: 24px;
+}
+
+.content {
+  padding-bottom: var(--space-xl);
+}
+
+.content h3 {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--color-brand-dark);
+  margin-bottom: var(--space-xs);
+}
+
+.content p {
+  font-size: 0.875rem;
+  color: var(--color-gray);
+  line-height: 1.5;
+}

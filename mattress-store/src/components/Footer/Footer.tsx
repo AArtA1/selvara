@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Container } from "@/components/Container/Container";
 import styles from "./Footer.module.css";
 
@@ -7,50 +8,38 @@ export function Footer() {
       <Container>
         <div className={styles.grid}>
           <div className={styles.brand}>
-            <a href="#" className={styles.logo}>
-              Saatva
-            </a>
+            <Link href="/" className={styles.logo}>
+              Selvara
+            </Link>
             <p>
-              Smarter luxury sleep. The highest quality handcrafted mattresses at
+              Thoughtful luxury sleep. The highest quality handcrafted mattresses at
               the most comfortable prices.
             </p>
           </div>
           <div>
             <h4>Shop</h4>
             <ul>
-              <li><a href="#">Mattresses</a></li>
-              <li><a href="#">Bedding</a></li>
-              <li><a href="#">Furniture</a></li>
-              <li><a href="#">Bases</a></li>
-              <li><a href="#">Bundles</a></li>
-              <li><a href="#">Sale</a></li>
+              <li><Link href="/mattresses">Mattresses</Link></li>
+              <li><Link href="/sale">Sale</Link></li>
             </ul>
           </div>
           <div>
             <h4>Support</h4>
             <ul>
-              <li><a href="#">Help Center</a></li>
-              <li><a href="#">Delivery &amp; Shipping</a></li>
-              <li><a href="#">Trial, Returns &amp; Exchanges</a></li>
-              <li><a href="#">Warranty</a></li>
-              <li><a href="#">Track My Order</a></li>
-              <li><a href="#">Financing</a></li>
+              <li><Link href="/contact">Contact Us</Link></li>
+              <li><Link href="/delivery-returns">Delivery &amp; Returns</Link></li>
             </ul>
           </div>
           <div>
             <h4>Company</h4>
             <ul>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Reviews</a></li>
-              <li><a href="#">Viewing Rooms</a></li>
-              <li><a href="#">Careers</a></li>
-              <li><a href="#">Press</a></li>
-              <li><a href="#">Blog</a></li>
+              <li><Link href="/about">About Us</Link></li>
+              <li><Link href="/reviews">Reviews</Link></li>
             </ul>
           </div>
         </div>
         <div className={styles.bottom}>
-          <span>&copy; 2026 Saatva. All rights reserved.</span>
+          <span>&copy; 2026 Selvara. All rights reserved.</span>
           <span>Privacy Policy &middot; Terms of Service &middot; Accessibility</span>
         </div>
       </Container>

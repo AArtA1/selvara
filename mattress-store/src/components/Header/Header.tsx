@@ -1,26 +1,27 @@
+import Link from "next/link";
 import styles from "./Header.module.css";
 
 export function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.promoBanner}>
-        <strong>Presidents Day Sale</strong> — Save up to $600 on select
+        <strong>Seasonal Offer</strong> — Save up to $300 on select
         mattresses. Limited time.
       </div>
       <nav className={styles.nav}>
-        <a href="#" className={styles.logo}>
-          Saatva
-        </a>
+        <Link href="/" className={styles.logo}>
+          Selvara
+        </Link>
         <ul className={styles.navLinks}>
-          <li><a href="#">Mattresses</a></li>
-          <li><a href="#">Furniture &amp; Decor</a></li>
-          <li><a href="#">Bedding</a></li>
-          <li><a href="#">Bundles</a></li>
-          <li><a href="#">Sale</a></li>
+          <li><Link href="/mattresses">Mattresses</Link></li>
+          <li><Link href="/about">About</Link></li>
+          <li><Link href="/reviews">Reviews</Link></li>
+          <li><Link href="/delivery-returns">Delivery</Link></li>
+          <li><Link href="/sale">Sale</Link></li>
         </ul>
         <div className={styles.navActions}>
-          <a href="#">Account</a>
-          <a href="#">Cart (0)</a>
+          <Link href="/contact">Contact</Link>
+          <Link href="#">Cart (0)</Link>
         </div>
       </nav>
     </header>

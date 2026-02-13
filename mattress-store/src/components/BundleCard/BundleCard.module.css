@@ -1,0 +1,71 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xl);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.card {
+  padding: var(--space-xl);
+  background: var(--color-bg-warm);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: var(--color-brand-dark);
+  margin-bottom: var(--space-md);
+}
+
+.items {
+  list-style: none;
+  margin-bottom: var(--space-lg);
+}
+
+.items li {
+  font-size: 0.875rem;
+  color: var(--color-gray-dark);
+  padding: var(--space-xs) 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.items li:last-child {
+  border-bottom: none;
+}
+
+.pricing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xs);
+}
+
+.original {
+  text-decoration: line-through;
+  color: var(--color-gray);
+  font-size: 1rem;
+}
+
+.bundlePrice {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-brand-dark);
+}
+
+.savings {
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-gold);
+  margin-bottom: var(--space-lg);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

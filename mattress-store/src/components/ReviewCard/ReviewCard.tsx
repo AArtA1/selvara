@@ -1,10 +1,5 @@
+import type { Review } from "@/data/types";
 import styles from "./ReviewCard.module.css";
-
-export interface Review {
-  quote: string;
-  author: string;
-  product: string;
-}
 
 export function ReviewCard({ review }: { review: Review }) {
   return (

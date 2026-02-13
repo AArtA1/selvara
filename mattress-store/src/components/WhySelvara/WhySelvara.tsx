@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Container } from "@/components/Container/Container";
-import styles from "./WhySaatva.module.css";
+import styles from "./WhySelvara.module.css";
 
 const cards = [
   {
@@ -13,9 +13,9 @@ const cards = [
   {
     image:
       "https://saatva.imgix.net/homepage/why-saatva/crafted-in-america/d-crafted-in-america.jpg?dpr=1&auto=format&w=1440",
-    alt: "Crafted in America",
-    title: "Crafted in America",
-    text: "Made to order in one of our 19 factories across the U.S.",
+    alt: "Crafted with Care",
+    title: "Crafted with Care",
+    text: "Made to order with attention to every detail, ensuring lasting quality.",
   },
   {
     image:
@@ -26,11 +26,11 @@ const cards = [
   },
 ];
 
-export function WhySaatva() {
+export function WhySelvara() {
   return (
     <section className="section">
       <Container>
-        <h2 className="section-title">Why Saatva</h2>
+        <h2 className="section-title">Why Selvara</h2>
         <div className={styles.grid}>
           {cards.map((card) => (
             <div key={card.title} className={styles.card}>

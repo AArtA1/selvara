@@ -19,9 +19,12 @@ const sourceSans = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
-  title: "Smarter Luxury Sleep",
+  title: {
+    default: "Selvara — Thoughtful Luxury Sleep",
+    template: "%s — Selvara",
+  },
   description:
-    "The highest quality handcrafted mattresses, bedding & furniture at the most comfortable prices.",
+    "The highest quality handcrafted mattresses at the most comfortable prices. 365-night trial, free delivery.",
 };
 
 export default function RootLayout({

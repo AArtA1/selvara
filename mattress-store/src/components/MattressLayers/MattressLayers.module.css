@@ -1,0 +1,42 @@
+.layers {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.layer {
+  display: flex;
+  gap: var(--space-lg);
+  padding: var(--space-lg) 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.layer:last-child {
+  border-bottom: none;
+}
+
+.number {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-brand-dark);
+  color: var(--color-white);
+  font-size: 0.875rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content h3 {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--color-brand-dark);
+  margin-bottom: var(--space-xs);
+}
+
+.content p {
+  font-size: 0.875rem;
+  color: var(--color-gray);
+  line-height: 1.5;
+}

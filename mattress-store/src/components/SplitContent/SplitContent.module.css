@@ -1,0 +1,50 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3xl);
+  align-items: center;
+}
+
+.reversed {
+  direction: rtl;
+}
+
+.reversed > * {
+  direction: ltr;
+}
+
+.imageWrap {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 7/5;
+  object-fit: cover;
+}
+
+.content h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  color: var(--color-brand-dark);
+  margin-bottom: var(--space-md);
+}
+
+.content p {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--color-gray-dark);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .reversed {
+    direction: ltr;
+  }
+}

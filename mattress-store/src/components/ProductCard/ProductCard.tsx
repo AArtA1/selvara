@@ -1,18 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
+import type { Product } from "@/data/types";
 import styles from "./ProductCard.module.css";
-
-export interface Product {
-  slug: string;
-  name: string;
-  image: string;
-  alt: string;
-  description: string;
-  price: string;
-}
 
 export function ProductCard({ product }: { product: Product }) {
   return (
-    <a href="#" className={styles.card}>
+    <Link href={`/mattresses/${product.slug}`} className={styles.card}>
       <Image
         src={product.image}
         alt={product.alt}
@@ -24,9 +17,20 @@ export function ProductCard({ product }: { product: Product }) {
         <h3>{product.name}</h3>
         <p>{product.description}</p>
         <div className={styles.price}>
-          From {product.price} <span className={styles.priceNote}>/ Queen</span>
+          {product.onSale && product.salePrice ? (
+            <>
+              <span className={styles.oldPrice}>{product.price}</span>{" "}
+              <span className={styles.salePrice}>{product.salePrice}</span>
+            </>
+          ) : (
+            <>From {product.price}</>
+          )}
+          <span className={styles.priceNote}> / Queen</span>
         </div>
+        {product.saleLabel && (
+          <span className={styles.saleBadge}>{product.saleLabel}</span>
+        )}
       </div>
-    </a>
+    </Link>
   );
 }

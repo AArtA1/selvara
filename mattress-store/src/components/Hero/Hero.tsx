@@ -12,9 +12,9 @@ export function Hero() {
           the most comfortable prices.
         </p>
         <div>
-          <Button href="#">Shop All Mattresses</Button>
-          <Button href="#" variant="outline">
-            Take Our Mattress Quiz
+          <Button href="/mattresses">Shop All Mattresses</Button>
+          <Button href="/about" variant="outline">
+            Our Story
           </Button>
         </div>
       </div>

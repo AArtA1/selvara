@@ -1,0 +1,39 @@
+.tableWrap {
+  max-width: 640px;
+  margin: 0 auto;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  font-family: var(--font-serif);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-gray);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: left;
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 2px solid var(--color-gray-light);
+}
+
+.table td {
+  padding: var(--space-md);
+  font-size: 0.9375rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  color: var(--color-gray-dark);
+}
+
+.sizeName {
+  font-weight: 600;
+  color: var(--color-brand-dark);
+}
+
+.price {
+  font-weight: 700;
+  color: var(--color-brand-dark);
+}
