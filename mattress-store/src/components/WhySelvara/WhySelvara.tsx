@@ -1,28 +1,32 @@
 import Image from "next/image";
 import { Container } from "@/components/Container/Container";
+import { FadeIn } from "@/components/FadeIn/FadeIn";
 import styles from "./WhySelvara.module.css";
 
-const cards = [
+const blocks = [
   {
     image:
-      "https://saatva.imgix.net/homepage/why-saatva/premium-quality/d-premium-quality.jpg?dpr=1&auto=format&w=1440",
-    alt: "Premium Quality",
+      "https://saatva.imgix.net/homepage/why-saatva/premium-quality/d-premium-quality.jpg?dpr=1&auto=format&w=720",
+    alt: "Premium quality materials",
     title: "Premium Quality",
-    text: "Handcrafted with the finest materials for exceptional comfort and durability.",
+    text: "Every mattress is handcrafted with the finest materials — from organic cotton to tempered steel coils. We never cut corners, because your comfort depends on every detail.",
+    position: "left" as const,
   },
   {
     image:
-      "https://saatva.imgix.net/homepage/why-saatva/crafted-in-america/d-crafted-in-america.jpg?dpr=1&auto=format&w=1440",
-    alt: "Crafted with Care",
+      "https://saatva.imgix.net/homepage/why-saatva/crafted-in-america/d-crafted-in-america.jpg?dpr=1&auto=format&w=720",
+    alt: "Crafted with care",
     title: "Crafted with Care",
-    text: "Made to order with attention to every detail, ensuring lasting quality.",
+    text: "Made to order with attention to every stitch and seam. No mass production, no shortcuts — just thoughtful manufacturing that results in a mattress you can feel the difference in.",
+    position: "right" as const,
   },
   {
     image:
-      "https://saatva.imgix.net/homepage/why-saatva/sustainability/d-sustainability.jpg?dpr=1&auto=format&w=1440",
-    alt: "Sustainability",
-    title: "Sustainability",
-    text: "Committed to eco-friendly practices and responsible manufacturing.",
+      "https://saatva.imgix.net/homepage/why-saatva/sustainability/d-sustainability.jpg?dpr=1&auto=format&w=720",
+    alt: "Sustainable practices",
+    title: "Better for the Planet",
+    text: "From organic materials to eco-friendly manufacturing, we minimize our footprint. CertiPUR-US certified, responsibly sourced — a mattress that's better for you and the environment.",
+    position: "left" as const,
   },
 ];
 
@@ -30,22 +34,30 @@ export function WhySelvara() {
   return (
     <section className="section">
       <Container>
-        <h2 className="section-title">Why Selvara</h2>
-        <div className={styles.grid}>
-          {cards.map((card) => (
-            <div key={card.title} className={styles.card}>
-              <Image
-                src={card.image}
-                alt={card.alt}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className={styles.cardImage}
-              />
-              <div className={styles.cardContent}>
-                <h3>{card.title}</h3>
-                <p>{card.text}</p>
+        <FadeIn>
+          <h2 className="section-title">Why Selvara</h2>
+        </FadeIn>
+        <div className={styles.blocks}>
+          {blocks.map((block, i) => (
+            <FadeIn key={block.title} delay={i * 100}>
+              <div
+                className={`${styles.block} ${block.position === "right" ? styles.reversed : ""}`}
+              >
+                <div className={styles.imageWrap}>
+                  <Image
+                    src={block.image}
+                    alt={block.alt}
+                    width={560}
+                    height={400}
+                    className={styles.image}
+                  />
+                </div>
+                <div className={styles.content}>
+                  <h3>{block.title}</h3>
+                  <p>{block.text}</p>
+                </div>
               </div>
-            </div>
+            </FadeIn>
           ))}
         </div>
       </Container>

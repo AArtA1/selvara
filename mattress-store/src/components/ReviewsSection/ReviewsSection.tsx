@@ -1,38 +1,85 @@
+"use client";
+
+import { useState, useEffect, useCallback } from "react";
 import { Container } from "@/components/Container/Container";
-import { ReviewCard } from "@/components/ReviewCard/ReviewCard";
 import type { Review } from "@/data/types";
 import styles from "./ReviewsSection.module.css";
 
 const reviews: Review[] = [
   {
     quote:
-      "\u201CBest mattress I\u2019ve ever owned. The support is incredible and I wake up without any back pain. Worth every penny.\u201D",
+      "Best mattress I\u2019ve ever owned. The support is incredible and I wake up without any back pain. Worth every penny.",
     author: "Sarah M.",
-    product: "Selvara Classic \u2014 Verified Buyer",
+    product: "Selvara Classic",
   },
   {
     quote:
-      "\u201CThe delivery and setup was seamless. They even took away our old mattress. Customer service was outstanding.\u201D",
+      "The delivery and setup was seamless. They even took away our old mattress. Customer service was outstanding.",
     author: "James R.",
-    product: "Latex Hybrid \u2014 Verified Buyer",
+    product: "Selvara Latex Hybrid",
   },
   {
     quote:
-      "\u201CI was skeptical about buying a mattress online, but the 365-night trial sold me. Three months in and I\u2019m sleeping better than ever.\u201D",
+      "I was skeptical about buying a mattress online, but the 365-night trial sold me. Three months in and I\u2019m sleeping better than ever.",
     author: "Michelle T.",
-    product: "Memory Foam Hybrid \u2014 Verified Buyer",
+    product: "Memory Foam Hybrid",
+  },
+  {
+    quote:
+      "After years of chronic lower back pain, the Selvara Rx has been transformative. I wake up feeling refreshed instead of stiff.",
+    author: "David K.",
+    product: "Selvara Rx",
   },
 ];
 
 export function ReviewsSection() {
+  const [current, setCurrent] = useState(0);
+  const [fading, setFading] = useState(false);
+
+  const goTo = useCallback(
+    (index: number) => {
+      if (index === current) return;
+      setFading(true);
+      setTimeout(() => {
+        setCurrent(index);
+        setFading(false);
+      }, 300);
+    },
+    [current]
+  );
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      goTo((current + 1) % reviews.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [current, goTo]);
+
+  const review = reviews[current];
+
   return (
     <section className="section section-cool">
       <Container>
-        <h2 className="section-title">What Happy Sleepers Are Saying</h2>
-        <div className={styles.grid}>
-          {reviews.map((review) => (
-            <ReviewCard key={review.author} review={review} />
-          ))}
+        <div className={styles.slider}>
+          <div className={styles.stars}>&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote className={`${styles.quote} ${fading ? styles.fading : ""}`}>
+            &ldquo;{review.quote}&rdquo;
+          </blockquote>
+          <div className={`${styles.attribution} ${fading ? styles.fading : ""}`}>
+            <span className={styles.author}>{review.author}</span>
+            <span className={styles.divider}>&mdash;</span>
+            <span className={styles.product}>{review.product} &middot; Verified Buyer</span>
+          </div>
+          <div className={styles.dots}>
+            {reviews.map((_, i) => (
+              <button
+                key={i}
+                className={`${styles.dot} ${i === current ? styles.dotActive : ""}`}
+                onClick={() => goTo(i)}
+                aria-label={`Review ${i + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </Container>
     </section>

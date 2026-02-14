@@ -4,17 +4,26 @@ import { ProductGrid } from "@/components/ProductGrid/ProductGrid";
 import { WhySelvara } from "@/components/WhySelvara/WhySelvara";
 import { ReviewsSection } from "@/components/ReviewsSection/ReviewsSection";
 import { CtaBanner } from "@/components/CtaBanner/CtaBanner";
+import { FadeIn } from "@/components/FadeIn/FadeIn";
 import { products } from "@/data/products";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <ValueProps />
-      <ProductGrid products={products} />
+      <FadeIn>
+        <ValueProps />
+      </FadeIn>
+      <FadeIn>
+        <ProductGrid products={products} />
+      </FadeIn>
       <WhySelvara />
-      <ReviewsSection />
-      <CtaBanner />
+      <FadeIn>
+        <ReviewsSection />
+      </FadeIn>
+      <FadeIn>
+        <CtaBanner />
+      </FadeIn>
     </>
   );
 }

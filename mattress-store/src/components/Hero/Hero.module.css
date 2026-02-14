@@ -1,6 +1,6 @@
 .hero {
   position: relative;
-  min-height: 85vh;
+  min-height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,43 +9,69 @@
   overflow: hidden;
 }
 
+/* Static background image (swap with .heroVideo when video is ready) */
 .heroBg {
   position: absolute;
   inset: 0;
   background: url('https://saatva.imgix.net/homepage/hero-v1/d-hero-v1.jpg?dpr=2&auto=format&w=1440') center/cover no-repeat;
 }
 
-.heroBg::after {
-  content: '';
+/* Video background — uncomment when ready */
+.heroVideo {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0.4) 60%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
 }
 
 .heroContent {
   position: relative;
   z-index: 1;
-  max-width: 700px;
+  max-width: 640px;
   padding: var(--space-xl);
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: var(--space-md);
 }
 
 .hero h1 {
   font-family: var(--font-serif);
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(2.5rem, 6vw, 4rem);
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.1;
   margin-bottom: var(--space-lg);
+  letter-spacing: -0.5px;
 }
 
-.hero p {
+.subtitle {
   font-size: clamp(1rem, 2vw, 1.25rem);
   line-height: 1.6;
-  margin-bottom: var(--space-xl);
-  opacity: 0.95;
+  margin-bottom: var(--space-2xl);
+  opacity: 0.85;
+  font-weight: 300;
 }
 
 @media (max-width: 768px) {
   .hero {
-    min-height: 70vh;
+    min-height: 75vh;
   }
 }
