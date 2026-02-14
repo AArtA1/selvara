@@ -6,6 +6,77 @@
   border-bottom: 1px solid #e3e3e3;
 }
 
+/* ── Transparent mode (homepage) ── */
+.header.transparent {
+  position: fixed;
+  left: 0;
+  right: 0;
+  background: transparent;
+  border-bottom-color: transparent;
+}
+
+.header.transparent .logo,
+.header.transparent .navLinks a,
+.header.transparent .iconLink {
+  color: var(--color-white);
+}
+
+.header.transparent .navLinks a:hover {
+  color: rgba(255, 255, 255, 0.7);
+  border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+
+.header.transparent .navLinks a.active {
+  color: var(--color-white);
+  border-bottom-color: var(--color-white);
+}
+
+.header.transparent .iconLink:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.header.transparent .burger span {
+  background: var(--color-white);
+}
+
+/* ── Scrolled state: return to solid ── */
+.header.transparent.scrolled {
+  background: var(--color-white);
+  border-bottom-color: #e3e3e3;
+  transition: background 0.35s ease, border-bottom-color 0.35s ease;
+}
+
+.header.transparent.scrolled .logo {
+  color: var(--color-brand-dark);
+}
+
+.header.transparent.scrolled .navLinks a {
+  color: var(--color-black);
+}
+
+.header.transparent.scrolled .navLinks a:hover {
+  color: var(--color-brand);
+  border-bottom-color: var(--color-brand);
+}
+
+.header.transparent.scrolled .navLinks a.active {
+  color: var(--color-brand-dark);
+  border-bottom-color: var(--color-brand-dark);
+}
+
+.header.transparent.scrolled .iconLink {
+  color: var(--color-brand-dark);
+}
+
+.header.transparent.scrolled .iconLink:hover {
+  color: var(--color-brand);
+}
+
+.header.transparent.scrolled .burger span {
+  background: var(--color-brand-dark);
+}
+
+/* ── Promo Banner ── */
 .promoBanner {
   background: var(--color-brand-dark);
   color: var(--color-white);
@@ -19,13 +90,23 @@
   color: var(--color-gold);
 }
 
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--space-md) var(--space-lg);
+/* ── Nav wrapper (two rows) ── */
+.navWrapper {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+/* ── Top row: logo center, icons right ── */
+.topRow {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: var(--space-md) 0 var(--space-xs);
+}
+
+.topRowSide {
+  /* empty spacer to balance grid */
 }
 
 .logo {
@@ -35,12 +116,36 @@
   color: var(--color-brand-dark);
   letter-spacing: 2px;
   text-transform: uppercase;
+  transition: color 0.35s ease;
+  text-align: center;
 }
 
+.navIcons {
+  display: flex;
+  gap: var(--space-lg);
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.iconLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-brand-dark);
+  transition: color 0.25s ease;
+}
+
+.iconLink:hover {
+  color: var(--color-brand);
+}
+
+/* ── Bottom row: nav links centered ── */
 .navLinks {
   display: flex;
+  justify-content: center;
   gap: var(--space-xl);
   list-style: none;
+  padding-bottom: var(--space-md);
 }
 
 .navLinks a {
@@ -62,19 +167,7 @@
   border-bottom-color: var(--color-brand-dark);
 }
 
-.navActions {
-  display: flex;
-  gap: var(--space-lg);
-  align-items: center;
-  font-size: 0.875rem;
-}
-
-.navActions a.active {
-  font-weight: 700;
-  color: var(--color-brand-dark);
-}
-
-/* Burger */
+/* ── Burger ── */
 .burger {
   display: none;
   flex-direction: column;
@@ -84,6 +177,7 @@
   cursor: pointer;
   padding: 4px;
   z-index: 110;
+  justify-self: end;
 }
 
 .burger span {
@@ -105,7 +199,7 @@
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* Mobile Menu */
+/* ── Mobile Menu ── */
 .mobileMenu {
   display: none;
   position: fixed;
@@ -155,7 +249,7 @@
     display: none;
   }
 
-  .navActions {
+  .navIcons {
     display: none;
   }
 
