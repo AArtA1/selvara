@@ -15,7 +15,7 @@ export default function Home() {
         <ValueProps />
       </FadeIn>
       <FadeIn>
-        <ProductGrid products={products} />
+        <ProductGrid products={products.slice(0, 3)} title="Our Collections" />
       </FadeIn>
       <WhySelvara />
       <FadeIn>

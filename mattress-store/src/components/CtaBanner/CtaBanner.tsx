@@ -1,24 +1,60 @@
-import { Button } from "@/components/Button/Button";
+import Image from "next/image";
+import Link from "next/link";
+import { Container } from "@/components/Container/Container";
 import styles from "./CtaBanner.module.css";
 
-interface CtaBannerProps {
-  title?: string;
-  subtitle?: string;
-  buttonText?: string;
-  buttonHref?: string;
-}
+const categories = [
+  {
+    image:
+      "https://saatva.imgix.net/products/saatva-classic/lifestyle1-plush-soft/saatva-classic-lifestyle1-plush-soft-3-2.jpg?w=400&auto=format",
+    label: "Bed Linen",
+    href: "/mattresses",
+  },
+  {
+    image:
+      "https://saatva.imgix.net/products/memory-foam-hybrid/sweep/memory-foam-hybrid-sweep-3-2.jpg?w=400&auto=format",
+    label: "Bedding",
+    href: "/mattresses",
+  },
+  {
+    image:
+      "https://saatva.imgix.net/products/saatva-latex-hybrid/lifestyle/standard/saatva-latex-hybrid-lifestyle-standard-3-2.jpg?w=400&auto=format",
+    label: "Mattresses",
+    href: "/mattresses",
+  },
+  {
+    image:
+      "https://saatva.imgix.net/products/zenhaven/angle/standard/zenhaven-angle-standard-3-2.jpg?w=400&auto=format",
+    label: "Toppers",
+    href: "/mattresses",
+  },
+];
 
-export function CtaBanner({
-  title = "Experience the Difference",
-  subtitle = "Try any Selvara mattress risk-free with our 365-night home trial.",
-  buttonText = "Shop Mattresses",
-  buttonHref = "/mattresses",
-}: CtaBannerProps) {
+export function CtaBanner() {
   return (
-    <section className={styles.ctaBanner}>
-      <h2>{title}</h2>
-      <p>{subtitle}</p>
-      <Button href={buttonHref}>{buttonText}</Button>
+    <section className={styles.section}>
+      <Container>
+        <p className={styles.headline}>
+          Discover the finest mattresses, bedding and toppers. A marriage of
+          refined materials and impeccable craftsmanship.
+        </p>
+        <div className={styles.grid}>
+          {categories.map((cat) => (
+            <Link key={cat.label} href={cat.href} className={styles.card}>
+              <div className={styles.imageWrap}>
+                <Image
+                  src={cat.image}
+                  alt={cat.label}
+                  width={400}
+                  height={500}
+                  className={styles.image}
+                />
+              </div>
+              <span className={styles.label}>{cat.label}</span>
+            </Link>
+          ))}
+        </div>
+      </Container>
     </section>
   );
 }

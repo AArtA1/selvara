@@ -42,13 +42,15 @@ const props = [
 
 export function ValueProps() {
   return (
-    <div className={styles.valueProps}>
-      {props.map((prop) => (
-        <div key={prop.label} className={styles.valueProp}>
-          <div className={styles.icon}>{prop.icon}</div>
-          <span>{prop.label}</span>
-        </div>
-      ))}
+    <div className={styles.wrapper}>
+      <div className={styles.valueProps}>
+        {props.map((prop) => (
+          <div key={prop.label} className={styles.valueProp}>
+            <div className={styles.icon}>{prop.icon}</div>
+            <span>{prop.label}</span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

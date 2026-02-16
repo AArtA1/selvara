@@ -1,69 +1,165 @@
-.blocks {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4xl);
-}
-
-.block {
+/* ── Two side-by-side full-bleed cards ── */
+.duo {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-3xl);
-  align-items: center;
+  gap: 4px;
+  margin-bottom: var(--space-4xl);
 }
 
-.reversed {
-  direction: rtl;
-}
-
-.reversed > * {
-  direction: ltr;
-}
-
-.imageWrap {
-  border-radius: 8px;
+.card {
+  position: relative;
   overflow: hidden;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--color-white);
 }
 
-.image {
+.cardImage {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
-  aspect-ratio: 7/5;
+  height: 100%;
   object-fit: cover;
   transition: transform 0.6s ease;
 }
 
-.block:hover .image {
+.card:hover .cardImage {
+  transform: scale(1.04);
+}
+
+.cardOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  transition: background 0.4s ease;
+}
+
+.card:hover .cardOverlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.cardContent {
+  position: relative;
+  z-index: 1;
+  max-width: 360px;
+  padding: var(--space-xl);
+}
+
+.cardContent h3 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+}
+
+.cardContent p {
+  font-size: 1rem;
+  line-height: 1.6;
+  opacity: 0.9;
+  margin-bottom: var(--space-xl);
+}
+
+.cardLink {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background: var(--color-bg-warm);
+  color: var(--color-brand-dark);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: background 0.3s ease;
+}
+
+.cardLink:hover {
+  background: var(--color-white);
+  color: var(--color-brand-dark);
+}
+
+/* ── Split feature block ── */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3xl);
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.splitImageWrap {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.splitImage {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.splitImageWrap:hover .splitImage {
   transform: scale(1.03);
 }
 
-.content {
+.splitContent {
   padding: var(--space-lg) 0;
 }
 
-.content h3 {
+.splitContent h3 {
   font-family: var(--font-serif);
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
   color: var(--color-brand-dark);
   margin-bottom: var(--space-md);
 }
 
-.content p {
+.splitContent p {
   font-size: 0.9375rem;
   line-height: 1.8;
   color: var(--color-gray-dark);
+  margin-bottom: var(--space-xl);
+}
+
+.splitLink {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-brand-dark);
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--color-brand-dark);
+  padding-bottom: 2px;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.splitLink:hover {
+  color: var(--color-brand);
+  border-color: var(--color-brand);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .card {
+    min-height: 400px;
+  }
 }
 
 @media (max-width: 768px) {
-  .block {
+  .duo {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .card {
+    min-height: 350px;
+  }
+
+  .split {
     grid-template-columns: 1fr;
     gap: var(--space-xl);
-  }
-
-  .reversed {
-    direction: ltr;
-  }
-
-  .blocks {
-    gap: var(--space-3xl);
+    padding: 0 var(--space-lg);
   }
 }

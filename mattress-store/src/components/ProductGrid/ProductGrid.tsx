@@ -23,14 +23,12 @@ export function ProductGrid({
 
   return (
     <section className={`section ${bgClass}`}>
-      <Container>
-        {title && <h2 className="section-title">{title}</h2>}
-        <div className={styles.grid}>
-          {products.map((product) => (
-            <ProductCard key={product.slug} product={product} />
-          ))}
-        </div>
-      </Container>
+      {title && <Container><h2 className="section-title">{title}</h2></Container>}
+      <div className={styles.grid}>
+        {products.map((product) => (
+          <ProductCard key={product.slug} product={product} />
+        ))}
+      </div>
     </section>
   );
 }

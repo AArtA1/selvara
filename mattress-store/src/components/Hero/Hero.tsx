@@ -6,11 +6,9 @@ export function Hero() {
       <div className={styles.heroBg} />
       <div className={styles.overlay} />
       <div className={styles.heroContent}>
-        <p className={styles.eyebrow}>Selvara</p>
-        <h1>Sleep, Elevated</h1>
-        <p className={styles.subtitle}>
+        <h1 className={styles.subtitle}>
           Handcrafted mattresses designed for the way you rest.
-        </p>
+        </h1>
         <div className={styles.heroActions}>
           <a href="/mattresses" className={styles.heroBtn}>
             Explore Collection

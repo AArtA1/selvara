@@ -9,27 +9,14 @@ export function ProductCard({ product }: { product: Product }) {
       <Image
         src={product.image}
         alt={product.alt}
-        width={348}
-        height={232}
+        width={600}
+        height={400}
         className={styles.image}
       />
-      <div className={styles.body}>
+      <div className={styles.overlay} />
+      <div className={styles.content}>
         <h3>{product.name}</h3>
-        <p>{product.description}</p>
-        <div className={styles.price}>
-          {product.onSale && product.salePrice ? (
-            <>
-              <span className={styles.oldPrice}>{product.price}</span>{" "}
-              <span className={styles.salePrice}>{product.salePrice}</span>
-            </>
-          ) : (
-            <>From {product.price}</>
-          )}
-          <span className={styles.priceNote}> / Queen</span>
-        </div>
-        {product.saleLabel && (
-          <span className={styles.saleBadge}>{product.saleLabel}</span>
-        )}
+        <span className={styles.discoverBtn}>Discover</span>
       </div>
     </Link>
   );
