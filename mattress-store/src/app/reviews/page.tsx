@@ -20,11 +20,7 @@ export default function ReviewsPage() {
       />
       <ReviewSummary reviews={detailedReviews} />
       <ReviewFilters reviews={detailedReviews} />
-      <CtaBanner
-        title="Join Thousands of Happy Sleepers"
-        subtitle="Experience the mattress our customers can't stop talking about."
-        buttonText="Find Your Mattress"
-      />
+      <CtaBanner />
     </>
   );
 }

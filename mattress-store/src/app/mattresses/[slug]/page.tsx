@@ -57,10 +57,7 @@ export default async function ProductPage({ params }: PageProps) {
       <SizeTable sizes={detail.sizes} />
       <Accordion items={detail.faqs} />
       <RelatedProducts products={relatedProducts} />
-      <CtaBanner
-        title="Sleep on it. For a full year."
-        subtitle="Every Selvara mattress comes with a 365-night home trial. If you don't love it, we'll pick it up for free."
-      />
+      <CtaBanner />
     </>
   );
 }

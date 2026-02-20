@@ -1,150 +1,86 @@
 import type { ProductDetail } from "@/data/types";
 
+const valueProps = [
+  { label: "100 ночей", detail: "Пробный период без условий" },
+  { label: "Доставка и установка", detail: "Бесплатно, с подъёмом на этаж" },
+  { label: "Гарантия 10 лет", detail: "На конструкцию и материалы" },
+];
+
 export const productDetails: Record<string, ProductDetail> = {
-  "selvara-classic": {
-    slug: "selvara-classic",
-    name: "Selvara Classic",
-    tagline: "Our signature luxury innerspring mattress",
+  "selvara-linen": {
+    slug: "selvara-linen",
+    name: "Linen",
+    tagline: "Льняной войлок и кокос. Твёрдая поддержка из натуральных материалов.",
     description:
-      "The Selvara Classic combines premium Euro pillow top comfort with a durable dual steel coil support system. Designed for every sleep position, it delivers exceptional back support and lasting quality night after night.",
+      "Linen построен на льняном волокне и латексированной кокосовой койре — материалах, которые не теряют форму со временем. Независимые пружины распределяют нагрузку точечно. Подходит тем, кто предпочитает твёрдую поверхность и ценит происхождение каждого слоя.",
     images: [
-      "https://saatva.imgix.net/products/saatva-classic/lifestyle1-plush-soft/saatva-classic-lifestyle1-plush-soft-3-2.jpg?w=600&auto=format",
       "https://saatva.imgix.net/products/saatva-classic/room/standard/saatva-classic-room-standard-3-2.jpg?w=600&auto=format",
+      "https://saatva.imgix.net/products/saatva-classic/lifestyle1-plush-soft/saatva-classic-lifestyle1-plush-soft-3-2.jpg?w=600&auto=format",
     ],
     features: [
       {
         icon: "support",
-        title: "Dual Coil Support",
+        title: "Льняной войлок",
         description:
-          "Individually wrapped coils paired with a durable steel coil base for responsive, full-body support.",
+          "Натуральное льняное волокно — плотная, упругая прослойка с хорошей воздухопроницаемостью. Не слёживается.",
       },
       {
         icon: "comfort",
-        title: "Euro Pillow Top",
+        title: "Кокосовая койра",
         description:
-          "A luxurious pillow top layer sewn flush into the mattress for a smooth, plush sleeping surface.",
+          "Латексированная кокосовая койра обеспечивает жёсткую, равномерную основу. Натуральный материал с длительным ресурсом.",
       },
       {
         icon: "cooling",
-        title: "Breathable Design",
+        title: "Независимые пружины",
         description:
-          "Natural cotton cover and open coil design promote airflow, keeping you cool throughout the night.",
+          "Каждая пружина работает отдельно — матрас реагирует на движение точечно, не передавая его на партнёра.",
       },
     ],
     layers: [
-      { name: "Organic Cotton Cover", description: "Soft, breathable top layer made from certified organic cotton." },
-      { name: "Euro Pillow Top", description: "High-density comfort foam sewn into the cover for plush support." },
-      { name: "Lumbar Support Pad", description: "Targeted lumbar zone for enhanced lower back support." },
-      { name: "Individually Wrapped Coils", description: "Responsive coils that contour to your body and minimize motion transfer." },
-      { name: "Durable Steel Coil Base", description: "Sturdy base layer providing foundational support and durability." },
+      { name: "Хлопковый жаккард", description: "Верхний слой из натурального хлопка. Мягкий на ощупь, дышащий." },
+      { name: "Льняной войлок", description: "Плотная натуральная прослойка из льняного волокна. Формирует твёрдую поверхность." },
+      { name: "Латексированная кокосовая койра", description: "Жёсткий несущий слой из натурального кокоса, пропитанного латексом для долговечности." },
+      { name: "Независимые пружины", description: "Точечная поддержка по всей поверхности. Минимальная передача движения." },
+      { name: "Льняной войлок", description: "Нижний слой — симметричная конструкция, матрас двусторонний." },
     ],
     sizes: [
-      { size: "Twin", dimensions: "99 x 190 cm", price: "$795" },
-      { size: "Twin XL", dimensions: "99 x 203 cm", price: "$895" },
-      { size: "Full", dimensions: "137 x 190 cm", price: "$995" },
-      { size: "Queen", dimensions: "152 x 203 cm", price: "$1,095" },
-      { size: "King", dimensions: "193 x 203 cm", price: "$1,395" },
-      { size: "Cal King", dimensions: "183 x 213 cm", price: "$1,395" },
+      { size: "80×190", dimensions: "80 × 190 см", price: "32 000 ₽" },
+      { size: "90×200", dimensions: "90 × 200 см", price: "35 000 ₽" },
+      { size: "120×200", dimensions: "120 × 200 см", price: "45 000 ₽" },
+      { size: "140×200", dimensions: "140 × 200 см", price: "52 000 ₽" },
+      { size: "160×200", dimensions: "160 × 200 см", price: "60 000 ₽" },
+      { size: "180×200", dimensions: "180 × 200 см", price: "68 000 ₽" },
+      { size: "200×200", dimensions: "200 × 200 см", price: "74 000 ₽" },
     ],
     faqs: [
       {
-        question: "What firmness levels are available?",
-        answer: "The Selvara Classic comes in three comfort levels: Plush Soft, Luxury Firm, and Firm. Luxury Firm is our most popular choice.",
+        question: "Кому подойдёт Linen?",
+        answer: "Тем, кто привык спать на твёрдой поверхности, спит на спине или животе, или предпочитает ощущение надёжной опоры без эффекта погружения.",
       },
       {
-        question: "How long does the mattress last?",
-        answer: "With proper care, the Selvara Classic is designed to maintain its comfort and support for 10-15 years. It comes with a lifetime warranty.",
+        question: "Почему лён, а не синтетика?",
+        answer: "Льняное волокно сохраняет форму в течение всего срока службы, не слёживается и хорошо дышит. Синтетические аналоги дешевле, но теряют упругость за 2–3 года.",
       },
       {
-        question: "Is this mattress good for back pain?",
-        answer: "Yes. The dual coil system with targeted lumbar support is designed to promote proper spinal alignment, which can help alleviate back pain.",
+        question: "Матрас двусторонний?",
+        answer: "Да. Обе стороны одинаковые по жёсткости. Рекомендуем переворачивать раз в 6 месяцев для равномерного износа.",
       },
       {
-        question: "Do I need a specific foundation?",
-        answer: "The Selvara Classic works with any solid, flat surface including platform beds, adjustable bases, box springs, and slatted frames with slats no more than 7 cm apart.",
+        question: "На какое основание ставить?",
+        answer: "Подходит для реечного основания (расстояние между рейками не более 6 см), сплошного настила и регулируемых оснований.",
       },
     ],
-    relatedSlugs: ["memory-foam-hybrid", "latex-hybrid", "selvara-rx"],
-    valueProps: [
-      { label: "365-Night Trial", detail: "Sleep on it for a full year" },
-      { label: "Free Delivery", detail: "White-glove setup included" },
-      { label: "Lifetime Warranty", detail: "We stand behind our craft" },
-    ],
+    relatedSlugs: ["selvara-coconut", "selvara-origin", "selvara-latex"],
+    valueProps,
   },
 
-  "memory-foam-hybrid": {
-    slug: "memory-foam-hybrid",
-    name: "Memory Foam Hybrid",
-    tagline: "The best of both worlds",
+  "selvara-coconut": {
+    slug: "selvara-coconut",
+    name: "Coconut",
+    tagline: "Натуральный латекс и кокос. Средняя жёсткость, равномерная поддержка.",
     description:
-      "Our Memory Foam Hybrid pairs gel-infused memory foam with a premium innerspring system. The result is a mattress that hugs your body while providing the responsive support of traditional coils.",
-    images: [
-      "https://saatva.imgix.net/products/memory-foam-hybrid/sweep/memory-foam-hybrid-sweep-3-2.jpg?w=600&auto=format",
-      "https://saatva.imgix.net/products/memory-foam-hybrid/room-corner/standard/memory-foam-hybrid-room-corner-standard-3-2.jpg?w=600&auto=format",
-    ],
-    features: [
-      {
-        icon: "support",
-        title: "Gel-Infused Memory Foam",
-        description:
-          "Premium memory foam with cooling gel infusion that contours to your body and relieves pressure points.",
-      },
-      {
-        icon: "comfort",
-        title: "Hybrid Construction",
-        description:
-          "Individually wrapped coils provide responsive support while the foam layers deliver plush comfort.",
-      },
-      {
-        icon: "cooling",
-        title: "Cool Sleep Surface",
-        description:
-          "Phase-change cooling cover and gel memory foam work together to regulate temperature all night.",
-      },
-    ],
-    layers: [
-      { name: "Cooling Cover", description: "Phase-change fabric that absorbs and releases heat to maintain a comfortable temperature." },
-      { name: "Gel Memory Foam", description: "3 inches of gel-infused memory foam for pressure relief and body contouring." },
-      { name: "Transition Foam", description: "Responsive foam layer that prevents you from sinking too deep." },
-      { name: "Wrapped Coil System", description: "Individually pocketed coils for targeted support and motion isolation." },
-      { name: "Foam Base", description: "High-density base foam for durability and edge support." },
-    ],
-    sizes: [
-      { size: "Twin", dimensions: "99 x 190 cm", price: "$795" },
-      { size: "Twin XL", dimensions: "99 x 203 cm", price: "$895" },
-      { size: "Full", dimensions: "137 x 190 cm", price: "$995" },
-      { size: "Queen", dimensions: "152 x 203 cm", price: "$1,095" },
-      { size: "King", dimensions: "193 x 203 cm", price: "$1,395" },
-      { size: "Cal King", dimensions: "183 x 213 cm", price: "$1,395" },
-    ],
-    faqs: [
-      {
-        question: "Does memory foam sleep hot?",
-        answer: "Our gel-infused memory foam and phase-change cover are specifically designed to prevent heat retention. Most sleepers report a noticeably cooler experience compared to traditional memory foam.",
-      },
-      {
-        question: "How firm is this mattress?",
-        answer: "The Memory Foam Hybrid offers a medium feel — firm enough for proper support but soft enough to relieve pressure points. It's ideal for side and back sleepers.",
-      },
-      {
-        question: "Will I feel my partner move?",
-        answer: "The individually wrapped coils and memory foam layers provide excellent motion isolation, so you're unlikely to be disturbed by your partner's movements.",
-      },
-    ],
-    relatedSlugs: ["selvara-classic", "contour5", "latex-hybrid"],
-    valueProps: [
-      { label: "365-Night Trial", detail: "Sleep on it for a full year" },
-      { label: "Free Delivery", detail: "White-glove setup included" },
-      { label: "Lifetime Warranty", detail: "We stand behind our craft" },
-    ],
-  },
-
-  "latex-hybrid": {
-    slug: "latex-hybrid",
-    name: "Selvara Latex Hybrid",
-    tagline: "Natural comfort, responsive support",
-    description:
-      "The Selvara Latex Hybrid combines natural Talalay latex with individually wrapped coils for a buoyant, responsive feel. Naturally hypoallergenic and eco-friendly, it's the choice for health-conscious sleepers.",
+      "Coconut сочетает упругость натурального латекса с плотностью кокосовой койры. Независимые пружины работают точечно — матрас реагирует на тело, не проваливаясь. Средняя жёсткость подходит большинству поз сна.",
     images: [
       "https://saatva.imgix.net/products/saatva-latex-hybrid/lifestyle/standard/saatva-latex-hybrid-lifestyle-standard-3-2.jpg?w=600&auto=format",
       "https://saatva.imgix.net/products/saatva-latex-hybrid/angle/standard/saatva-latex-hybrid-angle-standard-3-2.jpg?w=600&auto=format",
@@ -152,133 +88,67 @@ export const productDetails: Record<string, ProductDetail> = {
     features: [
       {
         icon: "support",
-        title: "Natural Talalay Latex",
+        title: "Натуральный латекс",
         description:
-          "Sustainably sourced latex that's naturally responsive, durable, and resistant to dust mites and mold.",
+          "Латекс упруго реагирует на движение и быстро восстанавливает форму. В отличие от мемори-пены — не задерживает тепло.",
       },
       {
         icon: "comfort",
-        title: "Buoyant Feel",
+        title: "Кокосовая койра",
         description:
-          "Unlike memory foam, latex responds instantly to your movements for an energizing, floating sensation.",
+          "Латексированная кокосовая койра под латексным слоем формирует стабильную, не проседающую основу.",
       },
       {
         icon: "cooling",
-        title: "Naturally Cool",
+        title: "Независимые пружины",
         description:
-          "Latex's open-cell structure and pin-hole design allow maximum airflow for a consistently cool sleep.",
+          "Точечная нагрузка без передачи движения. Хорошо работает для двух спящих с разным весом.",
       },
     ],
     layers: [
-      { name: "Organic Cotton Cover", description: "GOTS-certified organic cotton for a soft, chemical-free sleep surface." },
-      { name: "Natural Talalay Latex", description: "3 inches of naturally responsive latex for pressure relief and bounce." },
-      { name: "Transition Poly Foam", description: "Supportive foam layer that works with the coils for ergonomic support." },
-      { name: "Individually Wrapped Coils", description: "Recycled steel coils that respond independently for precise support." },
-      { name: "Recycled Steel Base Coils", description: "Durable foundation using recycled materials for eco-conscious construction." },
+      { name: "Хлопковый жаккард", description: "Верхний слой из натурального хлопка." },
+      { name: "Натуральный латекс", description: "Упругий, быстро восстанавливающийся слой. Естественная терморегуляция." },
+      { name: "Латексированная кокосовая койра", description: "Несущий слой с высокой плотностью и долговечностью." },
+      { name: "Независимые пружины", description: "Точечная поддержка, изолированная от движений партнёра." },
+      { name: "Латексированная кокосовая койра", description: "Нижний несущий слой." },
     ],
     sizes: [
-      { size: "Twin", dimensions: "99 x 190 cm", price: "$995" },
-      { size: "Twin XL", dimensions: "99 x 203 cm", price: "$1,095" },
-      { size: "Full", dimensions: "137 x 190 cm", price: "$1,195" },
-      { size: "Queen", dimensions: "152 x 203 cm", price: "$1,295" },
-      { size: "King", dimensions: "193 x 203 cm", price: "$1,595" },
-      { size: "Cal King", dimensions: "183 x 213 cm", price: "$1,595" },
+      { size: "80×190", dimensions: "80 × 190 см", price: "33 000 ₽" },
+      { size: "90×200", dimensions: "90 × 200 см", price: "37 000 ₽" },
+      { size: "120×200", dimensions: "120 × 200 см", price: "47 000 ₽" },
+      { size: "140×200", dimensions: "140 × 200 см", price: "54 000 ₽" },
+      { size: "160×200", dimensions: "160 × 200 см", price: "62 000 ₽" },
+      { size: "180×200", dimensions: "180 × 200 см", price: "70 000 ₽" },
+      { size: "200×200", dimensions: "200 × 200 см", price: "76 000 ₽" },
     ],
     faqs: [
       {
-        question: "Is the latex natural or synthetic?",
-        answer: "We use 100% natural Talalay latex harvested from rubber trees. No synthetic fillers or blends.",
+        question: "Кому подойдёт Coconut?",
+        answer: "Тем, кто спит на спине или в смешанных позах и хочет средний по жёсткости матрас с натуральными материалами. Хорошо подходит парам — пружины изолируют движение.",
       },
       {
-        question: "Is this mattress good for allergies?",
-        answer: "Yes. Natural latex is naturally hypoallergenic, antimicrobial, and resistant to dust mites. The organic cotton cover adds another layer of purity.",
+        question: "Чем отличается от Linen?",
+        answer: "Linen жёстче — за счёт льняного войлока в верхнем слое. Coconut мягче за счёт латексного слоя, но сохраняет надёжную поддержку от кокосовой основы.",
       },
       {
-        question: "What does latex feel like compared to memory foam?",
-        answer: "Latex has a more buoyant, responsive feel. Rather than sinking in like memory foam, you float on top with gentle contouring. Most people describe it as 'sleeping on, not in' the mattress.",
+        question: "Латекс натуральный?",
+        answer: "Да. Используется натуральный латекс без синтетических добавок.",
+      },
+      {
+        question: "Как долго прослужит матрас?",
+        answer: "При правильном уходе — 15–20 лет. Рекомендуем переворачивать раз в 6 месяцев.",
       },
     ],
-    relatedSlugs: ["zenhaven", "selvara-classic", "memory-foam-hybrid"],
-    valueProps: [
-      { label: "365-Night Trial", detail: "Sleep on it for a full year" },
-      { label: "Free Delivery", detail: "White-glove setup included" },
-      { label: "Lifetime Warranty", detail: "We stand behind our craft" },
-    ],
+    relatedSlugs: ["selvara-linen", "selvara-aero", "selvara-origin"],
+    valueProps,
   },
 
-  contour5: {
-    slug: "contour5",
-    name: "Contour5",
-    tagline: "Deep, pressure-free comfort",
+  "selvara-aero": {
+    slug: "selvara-aero",
+    name: "Aero",
+    tagline: "Перфорированный латекс. Мягкая посадка с естественной вентиляцией.",
     description:
-      "The Contour5 is our most advanced body-conforming mattress. Five layers of premium foam create a truly cradling experience that relieves pressure from head to toe. Ideal for side sleepers and those seeking maximum pressure relief.",
-    images: [
-      "https://saatva.imgix.net/products/saatva-contour5/room-above/standard/saatva-contour5-room-above-standard-3-2.jpg?w=600&auto=format",
-      "https://saatva.imgix.net/products/saatva-contour5/angle/standard/saatva-contour5-angle-standard-3-2.jpg?w=600&auto=format",
-    ],
-    features: [
-      {
-        icon: "support",
-        title: "5-Layer Foam System",
-        description:
-          "Five specialized foam layers work in harmony to deliver targeted support and body-conforming comfort.",
-      },
-      {
-        icon: "comfort",
-        title: "Pressure Relief",
-        description:
-          "AirCradle memory foam adapts to your body shape, eliminating pressure points at hips and shoulders.",
-      },
-      {
-        icon: "cooling",
-        title: "Heat-Managed Comfort",
-        description:
-          "Gel-infused and phase-change materials actively manage temperature for cooler sleep.",
-      },
-    ],
-    layers: [
-      { name: "Phase-Change Cover", description: "Temperature-regulating fabric that feels cool to the touch." },
-      { name: "AirCradle Memory Foam", description: "Proprietary foam that provides deep contouring without the 'stuck' feeling." },
-      { name: "Gel Memory Foam", description: "Cooling gel-infused layer for additional pressure relief." },
-      { name: "Transition Foam", description: "Prevents excessive sinking while maintaining body-conforming feel." },
-      { name: "High-Density Support Base", description: "Dense foam foundation for lasting durability and support." },
-    ],
-    sizes: [
-      { size: "Twin", dimensions: "99 x 190 cm", price: "$995" },
-      { size: "Twin XL", dimensions: "99 x 203 cm", price: "$1,095" },
-      { size: "Full", dimensions: "137 x 190 cm", price: "$1,195" },
-      { size: "Queen", dimensions: "152 x 203 cm", price: "$1,295" },
-      { size: "King", dimensions: "193 x 203 cm", price: "$1,595" },
-      { size: "Cal King", dimensions: "183 x 213 cm", price: "$1,595" },
-    ],
-    faqs: [
-      {
-        question: "Is the Contour5 right for side sleepers?",
-        answer: "The Contour5 is our top recommendation for side sleepers. Its deep contouring relieves pressure at the shoulders and hips, the two areas where side sleepers need it most.",
-      },
-      {
-        question: "Will I feel stuck in this mattress?",
-        answer: "No. Our AirCradle memory foam is designed to be more responsive than traditional memory foam. It contours deeply but releases quickly when you move.",
-      },
-      {
-        question: "How does it compare to the Memory Foam Hybrid?",
-        answer: "The Contour5 offers a deeper, more enveloping feel since it's an all-foam mattress. The Memory Foam Hybrid has more bounce from its coil layer. Choose the Contour5 if you prefer a cradling sensation.",
-      },
-    ],
-    relatedSlugs: ["memory-foam-hybrid", "selvara-rx", "selvara-classic"],
-    valueProps: [
-      { label: "365-Night Trial", detail: "Sleep on it for a full year" },
-      { label: "Free Delivery", detail: "White-glove setup included" },
-      { label: "Lifetime Warranty", detail: "We stand behind our craft" },
-    ],
-  },
-
-  zenhaven: {
-    slug: "zenhaven",
-    name: "Zenhaven",
-    tagline: "Two comfort levels in one bed",
-    description:
-      "The Zenhaven is a flippable mattress crafted from 100% natural Talalay latex. Flip to one side for a Luxury Plush feel, or the other for Gentle Firm. It's the ultimate in natural sleep comfort and versatility.",
+      "Aero использует перфорированный латекс — отверстия по всей поверхности обеспечивают постоянный воздухообмен. Независимые пружины дают мягкое, обволакивающее ощущение без эффекта «ямы». Подходит тем, кто любит мягкую поверхность, но не хочет перегреваться.",
     images: [
       "https://saatva.imgix.net/products/zenhaven/angle/standard/zenhaven-angle-standard-3-2.jpg?w=600&auto=format",
       "https://saatva.imgix.net/products/zenhaven/room/standard/zenhaven-room-standard-3-2.jpg?w=600&auto=format",
@@ -286,124 +156,319 @@ export const productDetails: Record<string, ProductDetail> = {
     features: [
       {
         icon: "support",
-        title: "100% Natural Latex",
+        title: "Перфорированный латекс",
         description:
-          "Four layers of American Talalay latex — no polyurethane foam, no synthetic blends. Pure natural comfort.",
+          "Отверстия по всей площади латексного слоя обеспечивают постоянную циркуляцию воздуха — матрас не накапливает тепло.",
       },
       {
         icon: "comfort",
-        title: "Flippable Design",
+        title: "Мягкая посадка",
         description:
-          "Two firmness options in one mattress. Luxury Plush on one side, Gentle Firm on the other.",
+          "Латекс мягко обхватывает тело, снимая давление с плеч и бёдер. Без ощущения погружения, характерного для мемори-пены.",
       },
       {
         icon: "cooling",
-        title: "Organic Materials",
+        title: "Независимые пружины",
         description:
-          "GOTS-certified organic New Zealand wool and organic cotton create a naturally breathable, chemical-free sleep surface.",
+          "Пружинная база обеспечивает поддержку позвоночника даже при мягком верхнем слое. Матрас не проседает под весом.",
       },
     ],
     layers: [
-      { name: "Organic Cotton Cover", description: "Soft, breathable organic cotton on both sides." },
-      { name: "Organic Wool Layer", description: "Natural temperature regulation and moisture wicking." },
-      { name: "Soft Talalay Latex", description: "Plush comfort layer (Luxury Plush side)." },
-      { name: "Firm Talalay Latex Core", description: "Supportive center that provides the foundation." },
-      { name: "Medium Talalay Latex", description: "Gently firm comfort layer (Gentle Firm side)." },
+      { name: "Хлопковый жаккард", description: "Дышащий верхний слой из натурального хлопка." },
+      { name: "Перфорированный натуральный латекс", description: "Мягкий латекс с отверстиями по всей поверхности для вентиляции." },
+      { name: "Жёсткий войлок", description: "Переходный слой между мягким латексом и пружинами." },
+      { name: "Независимые пружины", description: "Точечная поддержка. Компенсирует мягкость верхнего слоя." },
     ],
     sizes: [
-      { size: "Twin", dimensions: "99 x 190 cm", price: "$1,395" },
-      { size: "Twin XL", dimensions: "99 x 203 cm", price: "$1,495" },
-      { size: "Full", dimensions: "137 x 190 cm", price: "$1,595" },
-      { size: "Queen", dimensions: "152 x 203 cm", price: "$1,695" },
-      { size: "King", dimensions: "193 x 203 cm", price: "$2,095" },
-      { size: "Cal King", dimensions: "183 x 213 cm", price: "$2,095" },
+      { size: "80×190", dimensions: "80 × 190 см", price: "32 500 ₽" },
+      { size: "90×200", dimensions: "90 × 200 см", price: "36 000 ₽" },
+      { size: "120×200", dimensions: "120 × 200 см", price: "46 000 ₽" },
+      { size: "140×200", dimensions: "140 × 200 см", price: "53 000 ₽" },
+      { size: "160×200", dimensions: "160 × 200 см", price: "61 000 ₽" },
+      { size: "180×200", dimensions: "180 × 200 см", price: "69 000 ₽" },
+      { size: "200×200", dimensions: "200 × 200 см", price: "75 000 ₽" },
     ],
     faqs: [
       {
-        question: "How do I know which side to sleep on?",
-        answer: "We recommend trying the Luxury Plush side first. If you prefer a firmer feel, simply flip the mattress. Most sleepers find their ideal side within the first week.",
+        question: "Кому подойдёт Aero?",
+        answer: "Тем, кто спит на боку и хочет мягкую поверхность — или тем, кто привык перегреваться ночью. Перфорация латекса обеспечивает заметно лучший воздухообмен по сравнению с монолитным латексом или пеной.",
       },
       {
-        question: "Is all the latex truly natural?",
-        answer: "Yes. The Zenhaven uses 100% American Talalay latex. No synthetic latex, no polyurethane foam. It's one of the purest mattresses available.",
+        question: "Матрас мягкий — не будет проседать?",
+        answer: "Нет. Независимые пружины держат форму под нагрузкой. Мягкость создаётся только верхним слоем, основа остаётся стабильной.",
       },
       {
-        question: "How heavy is this mattress?",
-        answer: "A Queen Zenhaven weighs approximately 45 kg. We recommend having two people flip it. Our white-glove delivery team will set it up on your preferred side.",
+        question: "Чем отличается от Signature?",
+        answer: "Aero — более доступная модель с чистым латексным составом. Signature добавляет мемори-пену и пружины 1024/м² — более сложная конструкция и ещё более деликатная посадка.",
       },
     ],
-    relatedSlugs: ["latex-hybrid", "selvara-classic", "selvara-rx"],
-    valueProps: [
-      { label: "365-Night Trial", detail: "Sleep on it for a full year" },
-      { label: "Free Delivery", detail: "White-glove setup included" },
-      { label: "Lifetime Warranty", detail: "We stand behind our craft" },
-    ],
+    relatedSlugs: ["selvara-coconut", "selvara-signature", "selvara-origin"],
+    valueProps,
   },
 
-  "selvara-rx": {
-    slug: "selvara-rx",
-    name: "Selvara Rx",
-    tagline: "Therapeutic support for chronic pain",
+  "selvara-origin": {
+    slug: "selvara-origin",
+    name: "Origin",
+    tagline: "Латекс и войлок на пружинах 1024/м². Средняя жёсткость, повышенная точность поддержки.",
     description:
-      "The Selvara Rx is specifically engineered for people who suffer from chronic back, joint, or muscle pain. Its prescription-strength support system was developed in collaboration with orthopedic specialists to deliver targeted relief where you need it most.",
+      "Origin — первая модель с пружинным блоком 1024 пружины на м². Большее количество пружин означает более точное следование контурам тела. Натуральный латекс в верхнем слое и жёсткий войлок создают баланс между мягкостью поверхности и надёжностью опоры.",
     images: [
-      "https://saatva.imgix.net/products/saatva-rx/lifestyle/saatva-rx-lifestyle-3-2.jpg?w=600&auto=format",
-      "https://saatva.imgix.net/products/saatva-rx/angle/standard/saatva-rx-angle-standard-3-2.jpg?w=600&auto=format",
+      "https://saatva.imgix.net/products/saatva-classic/lifestyle1-plush-soft/saatva-classic-lifestyle1-plush-soft-3-2.jpg?w=600&auto=format",
+      "https://saatva.imgix.net/products/saatva-classic/room/standard/saatva-classic-room-standard-3-2.jpg?w=600&auto=format",
     ],
     features: [
       {
         icon: "support",
-        title: "Therapeutic Support",
+        title: "1024 пружины на м²",
         description:
-          "Zoned support system with firmer support at the lumbar and softer cushioning at the shoulders for optimal spinal alignment.",
+          "Вдвое больше точек опоры по сравнению с базовыми моделями. Матрас точнее распределяет нагрузку и лучше следует изгибам тела.",
       },
       {
         icon: "comfort",
-        title: "Pressure-Free Comfort",
+        title: "Натуральный латекс",
         description:
-          "High-density memory foam and responsive latex work together to eliminate pressure points without sacrificing support.",
+          "Упругий верхний слой снимает давление с плеч и бёдер. Быстро восстанавливает форму при смене позы.",
       },
       {
         icon: "cooling",
-        title: "Pain-Relieving Design",
+        title: "Жёсткий войлок",
         description:
-          "Developed with orthopedic specialists to address the specific needs of chronic pain sufferers.",
+          "Натуральный войлок между латексом и пружинами — переходный слой, который регулирует ощущение жёсткости поверхности.",
       },
     ],
     layers: [
-      { name: "Cooling Euro Top", description: "Breathable cover with built-in cooling technology." },
-      { name: "Responsive Latex Layer", description: "Natural latex provides buoyant pressure relief." },
-      { name: "High-Density Memory Foam", description: "Targeted support that adapts to your body's contours." },
-      { name: "Zoned Lumbar Support", description: "Reinforced midsection for enhanced lower back support." },
-      { name: "Wrapped Coil System", description: "Individually pocketed coils for responsive, motion-isolated support." },
+      { name: "Хлопковый жаккард", description: "Верхний слой из натурального хлопка." },
+      { name: "Натуральный латекс", description: "Упругий слой с хорошей терморегуляцией." },
+      { name: "Жёсткий войлок", description: "Натуральный войлок — формирует ощущение средней жёсткости." },
+      { name: "Независимые пружины 1024/м²", description: "Высокая плотность пружин для точечной, детализированной поддержки." },
+      { name: "Натуральный латекс", description: "Нижний слой — симметричная конструкция." },
     ],
     sizes: [
-      { size: "Twin", dimensions: "99 x 190 cm", price: "$1,395" },
-      { size: "Twin XL", dimensions: "99 x 203 cm", price: "$1,495" },
-      { size: "Full", dimensions: "137 x 190 cm", price: "$1,595" },
-      { size: "Queen", dimensions: "152 x 203 cm", price: "$1,695" },
-      { size: "King", dimensions: "193 x 203 cm", price: "$2,095" },
-      { size: "Cal King", dimensions: "183 x 213 cm", price: "$2,095" },
+      { size: "80×190", dimensions: "80 × 190 см", price: "38 000 ₽" },
+      { size: "90×200", dimensions: "90 × 200 см", price: "42 000 ₽" },
+      { size: "120×200", dimensions: "120 × 200 см", price: "54 000 ₽" },
+      { size: "140×200", dimensions: "140 × 200 см", price: "64 000 ₽" },
+      { size: "160×200", dimensions: "160 × 200 см", price: "72 000 ₽" },
+      { size: "180×200", dimensions: "180 × 200 см", price: "81 000 ₽" },
+      { size: "200×200", dimensions: "200 × 200 см", price: "89 000 ₽" },
     ],
     faqs: [
       {
-        question: "Do I need a doctor's recommendation?",
-        answer: "No prescription or referral is needed. The 'Rx' in the name reflects its therapeutic-grade design, not a medical requirement. However, we always recommend consulting your healthcare provider about sleep-related pain.",
+        question: "Что даёт 1024 пружины на м²?",
+        answer: "Большее количество точек опоры означает, что матрас точнее следует контурам тела. Плечи и бёдра получают именно ту степень поддержки, которая нужна в этой зоне — без компромисса между разными участками тела.",
       },
       {
-        question: "What conditions does the Rx help with?",
-        answer: "The Selvara Rx is designed to help with chronic lower back pain, sciatica, joint pain, fibromyalgia, and general muscle soreness. Its zoned support promotes healthy spinal alignment.",
+        question: "Чем Origin отличается от Coconut?",
+        answer: "Origin использует блок с 1024 пружинами/м² вместо базового, а также жёсткий войлок вместо кокосовой койры в качестве переходного слоя. Это более сложная и точная конструкция.",
       },
       {
-        question: "Is this mattress very firm?",
-        answer: "The Selvara Rx offers a supportive-medium feel. It's firmer where you need structural support (lumbar) and softer where you need pressure relief (shoulders, hips). It's not uncomfortably firm.",
+        question: "Подходит ли Origin для пар?",
+        answer: "Да. Высокая плотность независимых пружин хорошо изолирует движение — смена позы одним партнёром практически не ощущается другим.",
       },
     ],
-    relatedSlugs: ["selvara-classic", "contour5", "memory-foam-hybrid"],
-    valueProps: [
-      { label: "365-Night Trial", detail: "Sleep on it for a full year" },
-      { label: "Free Delivery", detail: "White-glove setup included" },
-      { label: "Lifetime Warranty", detail: "We stand behind our craft" },
+    relatedSlugs: ["selvara-coconut", "selvara-latex", "selvara-signature"],
+    valueProps,
+  },
+
+  "selvara-latex": {
+    slug: "selvara-latex",
+    name: "Latex",
+    tagline: "Беспружинный. Десять чередующихся слоёв натурального латекса и кокоса.",
+    description:
+      "Latex — единственная беспружинная модель в линейке. Конструкция из десяти слоёв: натуральный латекс и латексированная кокосовая койра чередуются, создавая монолитную, плотную опору. Двусторонний: средняя жёсткость с одной стороны, твёрдая с другой.",
+    images: [
+      "https://saatva.imgix.net/products/saatva-contour5/room-above/standard/saatva-contour5-room-above-standard-3-2.jpg?w=600&auto=format",
+      "https://saatva.imgix.net/products/saatva-contour5/angle/standard/saatva-contour5-angle-standard-3-2.jpg?w=600&auto=format",
     ],
+    features: [
+      {
+        icon: "support",
+        title: "10 слоёв",
+        description:
+          "Чередование латекса и кокосовой койры создаёт плотную, монолитную структуру без пружин. Матрас не скрипит и не передаёт вибрацию.",
+      },
+      {
+        icon: "comfort",
+        title: "Двусторонний",
+        description:
+          "Средняя жёсткость с одной стороны, твёрдая с другой. Можно менять в зависимости от предпочтений или сезона.",
+      },
+      {
+        icon: "cooling",
+        title: "Только натуральные материалы",
+        description:
+          "Натуральный латекс и кокосовая койра — без пены, без синтетики, без клея между слоями.",
+      },
+    ],
+    layers: [
+      { name: "Хлопковый жаккард", description: "Верхний слой. Съёмный чехол — по запросу." },
+      { name: "Натуральный латекс", description: "Первый слой — мягкий, упругий." },
+      { name: "Латексированная кокосовая койра", description: "Плотный несущий слой." },
+      { name: "Натуральный латекс", description: "Второй латексный слой." },
+      { name: "Латексированная кокосовая койра", description: "Второй слой койры." },
+      { name: "Чередование × 10 слоёв", description: "Полная конструкция — 10 чередующихся слоёв латекса и кокоса." },
+    ],
+    sizes: [
+      { size: "80×190", dimensions: "80 × 190 см", price: "41 000 ₽" },
+      { size: "90×200", dimensions: "90 × 200 см", price: "45 000 ₽" },
+      { size: "120×200", dimensions: "120 × 200 см", price: "58 000 ₽" },
+      { size: "140×200", dimensions: "140 × 200 см", price: "69 000 ₽" },
+      { size: "160×200", dimensions: "160 × 200 см", price: "78 000 ₽" },
+      { size: "180×200", dimensions: "180 × 200 см", price: "88 000 ₽" },
+      { size: "200×200", dimensions: "200 × 200 см", price: "97 000 ₽" },
+    ],
+    faqs: [
+      {
+        question: "Кому подойдёт Latex?",
+        answer: "Тем, кто предпочитает беспружинный матрас — без вибрации, без скрипа — и хочет выбирать жёсткость в зависимости от предпочтений. Хорошо подходит людям, которым нужна плотная, монолитная поддержка.",
+      },
+      {
+        question: "Почему 10 слоёв, а не просто один толстый блок латекса?",
+        answer: "Чередование латекса и кокосовой койры создаёт разные зоны упругости в толще матраса. Это точнее, чем монолитный блок из одного материала.",
+      },
+      {
+        question: "Как использовать двустороннюю конструкцию?",
+        answer: "Просто переверните матрас. Рекомендуем начать с средней стороны, а через несколько недель попробовать твёрдую. Переворот раз в 6 месяцев продлит срок службы.",
+      },
+      {
+        question: "Можно ли использовать на мягком основании?",
+        answer: "Беспружинные матрасы лучше работают на жёстком сплошном основании или реечном с частым шагом. На мягком основании матрас будет прогибаться.",
+      },
+    ],
+    relatedSlugs: ["selvara-origin", "selvara-linen", "selvara-signature"],
+    valueProps,
+  },
+
+  "selvara-signature": {
+    slug: "selvara-signature",
+    name: "Signature",
+    tagline: "Кокос, латекс и мемори-пена. Мягкая и средняя сторона на пружинах 1024/м².",
+    description:
+      "Signature объединяет три натуральных слоя — кокос, латекс и мемори-пену — на базе из 1024 независимых пружин. Мемори-пена деликатно подстраивается под форму тела, латекс держит упругость, кокосовая основа сохраняет форму. Двусторонний: мягкая и средняя жёсткость.",
+    images: [
+      "https://saatva.imgix.net/products/memory-foam-hybrid/room-corner/standard/memory-foam-hybrid-room-corner-standard-3-2.jpg?w=600&auto=format",
+      "https://saatva.imgix.net/products/memory-foam-hybrid/sweep/memory-foam-hybrid-sweep-3-2.jpg?w=600&auto=format",
+    ],
+    features: [
+      {
+        icon: "support",
+        title: "Три слоя наполнителя",
+        description:
+          "Кокос, натуральный латекс и мемори-пена работают вместе: каждый выполняет свою функцию, не заменяя другой.",
+      },
+      {
+        icon: "comfort",
+        title: "Мемори-пена",
+        description:
+          "Медленно реагирует на давление, распределяя нагрузку по всей поверхности контакта. Снимает давление с плеч и бёдер.",
+      },
+      {
+        icon: "cooling",
+        title: "Пружины 1024/м²",
+        description:
+          "Высокая плотность пружин обеспечивает точечную поддержку по всему телу и хорошую изоляцию движения.",
+      },
+    ],
+    layers: [
+      { name: "Хлопковый жаккард", description: "Верхний слой из натурального хлопка." },
+      { name: "Мемори-пена", description: "Медленно адаптируется к форме тела, снимая точечное давление." },
+      { name: "Натуральный латекс", description: "Упругий слой — обеспечивает отклик и восстановление формы." },
+      { name: "Латексированная кокосовая койра", description: "Несущий слой с высокой плотностью." },
+      { name: "Независимые пружины 1024/м²", description: "Точечная поддержка, изоляция движения." },
+      { name: "Латексированная кокосовая койра", description: "Нижний несущий слой — вторая сторона средней жёсткости." },
+    ],
+    sizes: [
+      { size: "80×190", dimensions: "80 × 190 см", price: "50 000 ₽" },
+      { size: "90×200", dimensions: "90 × 200 см", price: "55 000 ₽" },
+      { size: "120×200", dimensions: "120 × 200 см", price: "70 000 ₽" },
+      { size: "140×200", dimensions: "140 × 200 см", price: "84 000 ₽" },
+      { size: "160×200", dimensions: "160 × 200 см", price: "95 000 ₽" },
+      { size: "180×200", dimensions: "180 × 200 см", price: "108 000 ₽" },
+      { size: "200×200", dimensions: "200 × 200 см", price: "118 000 ₽" },
+    ],
+    faqs: [
+      {
+        question: "Кому подойдёт Signature?",
+        answer: "Тем, кто хочет мягкую или средне-мягкую поверхность с хорошей поддержкой. Хорошо подходит тем, кто спит на боку — мемори-пена снимает нагрузку с плеч и бёдер.",
+      },
+      {
+        question: "Мемори-пена не перегревает?",
+        answer: "В Signature мемори-пена находится в верхнем слое, а латекс под ней обеспечивает вентиляцию. Это значительно снижает теплонакопление по сравнению с полностью пенными моделями.",
+      },
+      {
+        question: "Чем Signature отличается от Reserve?",
+        answer: "Reserve использует бельгийский натуральный латекс — более качественное сырьё с более высокой упругостью и длительным ресурсом. Это флагманская модель с наиболее деликатной посадкой.",
+      },
+    ],
+    relatedSlugs: ["selvara-reserve", "selvara-origin", "selvara-aero"],
+    valueProps,
+  },
+
+  "selvara-reserve": {
+    slug: "selvara-reserve",
+    name: "Reserve",
+    tagline: "Бельгийский латекс и мемори-пена на пружинах 1024/м². Флагманская модель.",
+    description:
+      "Reserve создан из бельгийского натурального латекса — материала с более высокой упругостью и долговечностью по сравнению со стандартным. В сочетании с мемори-пеной и блоком из 1024 независимых пружин это наиболее деликатная и долгосрочная модель в линейке. Мягкая посадка без ощущения погружения.",
+    images: [
+      "https://saatva.imgix.net/products/zenhaven/room/standard/zenhaven-room-standard-3-2.jpg?w=600&auto=format",
+      "https://saatva.imgix.net/products/zenhaven/angle/standard/zenhaven-angle-standard-3-2.jpg?w=600&auto=format",
+    ],
+    features: [
+      {
+        icon: "support",
+        title: "Бельгийский латекс",
+        description:
+          "Натуральный латекс бельгийского производства отличается более высокой плотностью и равномерностью структуры. Сохраняет форму дольше стандартного.",
+      },
+      {
+        icon: "comfort",
+        title: "Мемори-пена",
+        description:
+          "Точечно снимает давление, мягко обхватывая тело. В Reserve работает в паре с латексом — без излишнего погружения.",
+      },
+      {
+        icon: "cooling",
+        title: "1024 независимые пружины на м²",
+        description:
+          "Высокая плотность пружинного блока обеспечивает максимальную точность поддержки и полную изоляцию движения.",
+      },
+    ],
+    layers: [
+      { name: "Хлопковый жаккард", description: "Верхний слой из натурального хлопка." },
+      { name: "Бельгийский натуральный латекс", description: "Высокоплотный латекс с длительным ресурсом. Упругий, не задерживает тепло." },
+      { name: "Мемори-пена", description: "Адаптируется к форме тела, устраняет точечное давление." },
+      { name: "Независимые пружины 1024/м²", description: "Максимальная точность поддержки. Полная изоляция движения партнёра." },
+      { name: "Натуральный латекс", description: "Нижний слой — завершает конструкцию." },
+    ],
+    sizes: [
+      { size: "80×190", dimensions: "80 × 190 см", price: "62 000 ₽" },
+      { size: "90×200", dimensions: "90 × 200 см", price: "68 000 ₽" },
+      { size: "120×200", dimensions: "120 × 200 см", price: "87 000 ₽" },
+      { size: "140×200", dimensions: "140 × 200 см", price: "105 000 ₽" },
+      { size: "160×200", dimensions: "160 × 200 см", price: "118 000 ₽" },
+      { size: "180×200", dimensions: "180 × 200 см", price: "133 000 ₽" },
+      { size: "200×200", dimensions: "200 × 200 см", price: "146 000 ₽" },
+    ],
+    faqs: [
+      {
+        question: "Почему бельгийский латекс лучше?",
+        answer: "Бельгийские производители латекса работают по более жёстким стандартам вулканизации — это даёт более равномерную структуру, выше упругость и дольший срок службы. Разница становится заметна через 5–7 лет эксплуатации.",
+      },
+      {
+        question: "Кому подойдёт Reserve?",
+        answer: "Тем, кто хочет лучшее из доступного — мягкую, деликатную поверхность с долгосрочным качеством материалов. Хорошо подходит тем, кто спит на боку или ищет максимальный комфорт без компромисса.",
+      },
+      {
+        question: "Это действительно стоит разницы в цене по сравнению с Signature?",
+        answer: "Если для вас важен долгосрочный ресурс — да. Бельгийский латекс сохраняет свойства заметно дольше стандартного. На горизонте 10–15 лет разница в материале становится ощутимой.",
+      },
+      {
+        question: "Какой пробный период?",
+        answer: "100 ночей. Если матрас вам не подошёл — заберём и вернём деньги без дополнительных вопросов.",
+      },
+    ],
+    relatedSlugs: ["selvara-signature", "selvara-latex", "selvara-origin"],
+    valueProps,
   },
 };

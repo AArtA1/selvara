@@ -2,72 +2,73 @@ import type { Product } from "@/data/types";
 
 export const products: Product[] = [
   {
-    slug: "selvara-classic",
-    name: "Selvara Classic",
+    slug: "selvara-linen",
+    name: "Linen",
     image:
-      "https://saatva.imgix.net/products/saatva-classic/lifestyle1-plush-soft/saatva-classic-lifestyle1-plush-soft-3-2.jpg?w=348&auto=format",
-    alt: "Selvara Classic mattress in a bedroom setting",
+      "https://saatva.imgix.net/products/saatva-classic/room/standard/saatva-classic-room-standard-3-2.jpg?w=348&auto=format",
+    alt: "Матрас Selvara Linen в интерьере спальни",
     description:
-      "Our signature luxury innerspring. Exceptional back support with premium comfort for every sleeper.",
-    price: "$1,095",
-    salePrice: "$895",
-    saleLabel: "Save $200",
-    onSale: true,
+      "Льняной войлок и латексированная кокосовая койра. Твёрдый матрас с естественной упругостью — без синтетических наполнителей.",
+    price: "от 32 000 ₽",
   },
   {
-    slug: "memory-foam-hybrid",
-    name: "Memory Foam Hybrid",
-    image:
-      "https://saatva.imgix.net/products/memory-foam-hybrid/sweep/memory-foam-hybrid-sweep-3-2.jpg?w=348&auto=format",
-    alt: "Memory Foam Hybrid mattress",
-    description:
-      "Gel-infused memory foam meets the buoyancy of a premium innerspring for the best of both worlds.",
-    price: "$1,095",
-  },
-  {
-    slug: "latex-hybrid",
-    name: "Selvara Latex Hybrid",
+    slug: "selvara-coconut",
+    name: "Coconut",
     image:
       "https://saatva.imgix.net/products/saatva-latex-hybrid/lifestyle/standard/saatva-latex-hybrid-lifestyle-standard-3-2.jpg?w=348&auto=format",
-    alt: "Selvara Latex Hybrid mattress",
+    alt: "Матрас Selvara Coconut в интерьере спальни",
     description:
-      "Natural latex and individually wrapped coils for responsive, buoyant, eco-friendly comfort.",
-    price: "$1,295",
-    salePrice: "$995",
-    saleLabel: "Save $300",
-    onSale: true,
+      "Натуральный латекс и кокосовая койра на независимых пружинах. Средняя жёсткость, равномерная поддержка.",
+    price: "от 33 000 ₽",
   },
   {
-    slug: "contour5",
-    name: "Contour5",
-    image:
-      "https://saatva.imgix.net/products/saatva-contour5/room-above/standard/saatva-contour5-room-above-standard-3-2.jpg?w=348&auto=format",
-    alt: "Contour5 mattress",
-    description:
-      "Advanced body-hugging memory foam for a deeper, more pressure-free sleep experience.",
-    price: "$1,295",
-  },
-  {
-    slug: "zenhaven",
-    name: "Zenhaven",
+    slug: "selvara-aero",
+    name: "Aero",
     image:
       "https://saatva.imgix.net/products/zenhaven/angle/standard/zenhaven-angle-standard-3-2.jpg?w=348&auto=format",
-    alt: "Zenhaven mattress",
+    alt: "Матрас Selvara Aero в интерьере спальни",
     description:
-      "Flippable 100% natural Talalay latex mattress with two comfort options in one bed.",
-    price: "$1,695",
+      "Перфорированный латекс с независимыми пружинами. Мягкая посадка, естественная вентиляция по всей поверхности.",
+    price: "от 32 500 ₽",
   },
   {
-    slug: "selvara-rx",
-    name: "Selvara Rx",
+    slug: "selvara-origin",
+    name: "Origin",
     image:
-      "https://saatva.imgix.net/products/saatva-rx/lifestyle/saatva-rx-lifestyle-3-2.jpg?w=348&auto=format",
-    alt: "Selvara Rx therapeutic mattress",
+      "https://saatva.imgix.net/products/saatva-classic/lifestyle1-plush-soft/saatva-classic-lifestyle1-plush-soft-3-2.jpg?w=348&auto=format",
+    alt: "Матрас Selvara Origin в интерьере спальни",
     description:
-      "Therapeutic support specifically designed for people with chronic back and joint conditions.",
-    price: "$1,695",
-    salePrice: "$1,395",
-    saleLabel: "Save $300",
-    onSale: true,
+      "Натуральный латекс и жёсткий войлок на пружинах 1024/м². Средняя жёсткость с более сложной конструкцией.",
+    price: "от 38 000 ₽",
+  },
+  {
+    slug: "selvara-latex",
+    name: "Latex",
+    image:
+      "https://saatva.imgix.net/products/saatva-contour5/room-above/standard/saatva-contour5-room-above-standard-3-2.jpg?w=348&auto=format",
+    alt: "Матрас Selvara Latex в интерьере спальни",
+    description:
+      "Беспружинный матрас из десяти чередующихся слоёв натурального латекса и кокоса. Средняя и твёрдая сторона.",
+    price: "от 41 000 ₽",
+  },
+  {
+    slug: "selvara-signature",
+    name: "Signature",
+    image:
+      "https://saatva.imgix.net/products/memory-foam-hybrid/room-corner/standard/memory-foam-hybrid-room-corner-standard-3-2.jpg?w=348&auto=format",
+    alt: "Матрас Selvara Signature в интерьере спальни",
+    description:
+      "Кокос, натуральный латекс и мемори-пена на независимых пружинах 1024/м². Мягкая и средняя сторона.",
+    price: "от 50 000 ₽",
+  },
+  {
+    slug: "selvara-reserve",
+    name: "Reserve",
+    image:
+      "https://saatva.imgix.net/products/zenhaven/room/standard/zenhaven-room-standard-3-2.jpg?w=348&auto=format",
+    alt: "Матрас Selvara Reserve в интерьере спальни",
+    description:
+      "Бельгийский натуральный латекс и мемори-пена на независимых пружинах 1024/м². Флагманская модель.",
+    price: "от 62 000 ₽",
   },
 ];

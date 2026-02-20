@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Source_Sans_3 } from "next/font/google";
-import { Header } from "@/components/Header/Header";
-import { Footer } from "@/components/Footer/Footer";
+import { Cormorant_Garamond, Source_Sans_3, Jost } from "next/font/google";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -18,13 +16,20 @@ const sourceSans = Source_Sans_3({
   display: "swap",
 });
 
+const jost = Jost({
+  subsets: ["latin"],
+  weight: ["200", "300", "400"],
+  variable: "--font-nav",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: {
-    default: "Selvara — Thoughtful Luxury Sleep",
+    default: "Selvara — Только то, что важно",
     template: "%s — Selvara",
   },
   description:
-    "The highest quality handcrafted mattresses at the most comfortable prices. 365-night trial, free delivery.",
+    "Матрасы из натуральных материалов. Собственное производство, Подмосковье. 100 ночей пробного периода, бесплатная доставка.",
 };
 
 export default function RootLayout({
@@ -33,11 +38,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${cormorant.variable} ${sourceSans.variable}`}>
-        <Header />
+    <html lang="ru">
+      <body className={`${cormorant.variable} ${sourceSans.variable} ${jost.variable}`}>
         {children}
-        <Footer />
       </body>
     </html>
   );

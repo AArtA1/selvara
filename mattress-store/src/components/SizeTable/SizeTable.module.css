@@ -1,7 +1,6 @@
 .tableWrap {
-  max-width: 640px;
+  max-width: 680px;
   margin: 0 auto;
-  overflow-x: auto;
 }
 
 .table {
@@ -9,31 +8,61 @@
   border-collapse: collapse;
 }
 
+.table thead tr {
+  border-bottom: 1px solid rgba(70, 63, 56, 0.15);
+}
+
 .table th {
-  font-family: var(--font-serif);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--color-gray);
+  font-family: var(--font-nav);
+  font-size: 0.625rem;
+  font-weight: 300;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  color: var(--color-gray);
   text-align: left;
-  padding: var(--space-sm) var(--space-md);
-  border-bottom: 2px solid var(--color-gray-light);
+  padding: 0 var(--space-md) var(--space-md);
+}
+
+.table th:last-child {
+  text-align: right;
+}
+
+.row {
+  border-bottom: 1px solid rgba(70, 63, 56, 0.08);
+  transition: background 0.2s ease;
+}
+
+.row:hover {
+  background: rgba(70, 63, 56, 0.03);
+}
+
+.row:last-child {
+  border-bottom: none;
 }
 
 .table td {
   padding: var(--space-md);
   font-size: 0.9375rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-  color: var(--color-gray-dark);
 }
 
 .sizeName {
-  font-weight: 600;
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  font-weight: 400;
   color: var(--color-brand-dark);
+  letter-spacing: -0.01em;
+}
+
+.dims {
+  color: var(--color-gray);
+  font-size: 0.875rem;
 }
 
 .price {
-  font-weight: 700;
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  font-weight: 400;
   color: var(--color-brand-dark);
+  text-align: right;
+  letter-spacing: -0.01em;
 }

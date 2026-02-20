@@ -2,35 +2,40 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Button } from "@/components/Button/Button";
 import { Container } from "@/components/Container/Container";
 import type { ProductDetail } from "@/data/types";
+import { useLanguage } from "@/contexts/LanguageContext";
 import styles from "./ProductHero.module.css";
 
-interface ProductHeroProps {
-  detail: ProductDetail;
-  price: string;
-}
+const copy = {
+  badge:      { ru: "Матрас · Selvara",  en: "Mattress · Selvara" },
+  from:       { ru: "от",               en: "from" },
+  selectSize: { ru: "Выбрать размер",   en: "Select size" },
+  cta:        { ru: "Заказать",         en: "Order" },
+};
 
-export function ProductHero({ detail, price }: ProductHeroProps) {
+export function ProductHero({ detail, price }: { detail: ProductDetail; price: string }) {
+  const { lang } = useLanguage();
+
+  const defaultIdx = detail.sizes.findIndex((s) => s.size === "160×200");
   const [selectedImage, setSelectedImage] = useState(0);
-  const [selectedSize, setSelectedSize] = useState(
-    detail.sizes.findIndex((s) => s.size === "Queen")
-  );
+  const [selectedSize, setSelectedSize] = useState(defaultIdx >= 0 ? defaultIdx : 0);
 
-  const currentSize = detail.sizes[selectedSize >= 0 ? selectedSize : 0];
+  const currentSize = detail.sizes[selectedSize];
 
   return (
     <section className={styles.hero}>
       <Container>
         <div className={styles.grid}>
+
+          {/* ── Gallery ── */}
           <div className={styles.gallery}>
             <div className={styles.mainImage}>
               <Image
                 src={detail.images[selectedImage]}
                 alt={detail.name}
-                width={600}
-                height={400}
+                width={700}
+                height={525}
                 className={styles.image}
                 priority
               />
@@ -42,26 +47,33 @@ export function ProductHero({ detail, price }: ProductHeroProps) {
                     key={i}
                     className={`${styles.thumb} ${i === selectedImage ? styles.thumbActive : ""}`}
                     onClick={() => setSelectedImage(i)}
+                    aria-label={`Photo ${i + 1}`}
                   >
-                    <Image src={img} alt="" width={80} height={53} className={styles.thumbImg} />
+                    <Image src={img} alt="" width={88} height={66} className={styles.thumbImg} />
                   </button>
                 ))}
               </div>
             )}
           </div>
 
+          {/* ── Info ── */}
           <div className={styles.info}>
-            <h1>{detail.name}</h1>
+            <span className={styles.badge}>{copy.badge[lang]}</span>
+            <h1 className={styles.name}>{detail.name}</h1>
             <p className={styles.tagline}>{detail.tagline}</p>
-            <div className={styles.price}>
-              From {currentSize?.price || price}
-              <span className={styles.sizeLabel}> / {currentSize?.size || "Queen"}</span>
+
+            <div className={styles.priceRow}>
+              <span className={styles.priceFrom}>{copy.from[lang]}</span>
+              <span className={styles.priceValue}>{currentSize?.price || price}</span>
+              {currentSize?.dimensions && (
+                <span className={styles.priceDims}>{currentSize.dimensions}</span>
+              )}
             </div>
 
             <p className={styles.description}>{detail.description}</p>
 
             <div className={styles.sizeSelector}>
-              <span className={styles.sizeTitle}>Select size:</span>
+              <span className={styles.sizeLabel}>{copy.selectSize[lang]}</span>
               <div className={styles.sizes}>
                 {detail.sizes.map((s, i) => (
                   <button
@@ -75,9 +87,9 @@ export function ProductHero({ detail, price }: ProductHeroProps) {
               </div>
             </div>
 
-            <Button href="#" variant="brand">
-              Add to Cart
-            </Button>
+            <button className={styles.ctaBtn} data-text={copy.cta[lang]}>
+              <span className={styles.ctaBtnText}>{copy.cta[lang]}</span>
+            </button>
 
             <div className={styles.miniProps}>
               {detail.valueProps.map((vp) => (
@@ -88,6 +100,7 @@ export function ProductHero({ detail, price }: ProductHeroProps) {
               ))}
             </div>
           </div>
+
         </div>
       </Container>
     </section>

@@ -39,11 +39,7 @@ export default function AboutPage() {
         imagePosition="left"
       />
       <ValuesGrid />
-      <CtaBanner
-        title="Feel the Difference"
-        subtitle="Experience Selvara with our 365-night risk-free trial."
-        buttonText="Browse Mattresses"
-      />
+      <CtaBanner />
     </>
   );
 }

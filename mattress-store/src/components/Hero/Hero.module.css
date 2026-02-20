@@ -60,22 +60,24 @@
 .heroContent {
   position: relative;
   z-index: 1;
-  max-width: 640px;
+  max-width: 700px;
   padding: var(--space-xl);
-  padding-top: 100px; /* offset for fixed header */
+  padding-top: 100px;
 }
 
+/* ── Hero headline — thin elegant serif, inspired by goldenbook ── */
 .subtitle {
   font-family: var(--font-serif);
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-  font-weight: 400;
+  font-size: clamp(2.75rem, 5.5vw, 4.5rem);
+  font-weight: 300;
   font-style: italic;
-  line-height: 1.35;
+  line-height: 1.15;
   margin-bottom: var(--space-2xl);
-  opacity: 0.95;
-  max-width: 520px;
+  opacity: 0.97;
+  max-width: 620px;
   margin-left: auto;
   margin-right: auto;
+  letter-spacing: -0.01em;
 }
 
 /* ── Hero buttons ── */
@@ -86,52 +88,134 @@
   align-items: center;
 }
 
+/* ── Liquid glass button ── */
 .heroBtn {
-  display: inline-block;
-  padding: 0.75rem 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  border-radius: 0;
-  color: var(--color-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 2.75rem;
+  position: relative;
+  overflow: hidden;
+
+  /* Glass effect */
+  background: rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06),
+    0 8px 32px rgba(0, 0, 0, 0.14);
+
+  color: rgba(255, 255, 255, 0.95);
   font-family: var(--font-sans);
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 1.5px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  background: transparent;
+  text-decoration: none;
   cursor: pointer;
-  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  border-radius: 0;
+  transition:
+    background 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
 }
 
 .heroBtn:hover {
-  background: var(--color-white);
-  color: var(--color-brand-dark);
-  border-color: var(--color-white);
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    0 12px 40px rgba(0, 0, 0, 0.18);
 }
 
-.heroBtnSecondary {
-  display: inline-block;
-  padding: 0.75rem 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: 0;
-  color: rgba(255, 255, 255, 0.8);
+/* ── Text slide animation ── */
+.heroBtnText {
+  display: block;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.heroBtn::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(110%);
   font-family: var(--font-sans);
-  font-size: 0.875rem;
-  font-weight: 400;
-  letter-spacing: 1.5px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  background: transparent;
-  cursor: pointer;
-  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  color: rgba(255, 255, 255, 0.95);
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.heroBtnSecondary:hover {
-  border-color: rgba(255, 255, 255, 0.8);
+.heroBtn:hover .heroBtnText {
+  transform: translateY(-300%);
+}
+
+.heroBtn:hover::after {
+  transform: translateY(0);
+}
+
+/* ── Language toggle ── */
+.langToggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-2xl);
+  justify-content: center;
+}
+
+.langBtn,
+.langActive {
+  background: none;
+  border: none;
+  border-bottom: 1px solid transparent;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 0.2rem 0.35rem;
+  transition: color 0.2s ease, border-bottom-color 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.langBtn {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.langBtn:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.langActive {
   color: var(--color-white);
+  border-bottom-color: rgba(255, 255, 255, 0.55);
+}
+
+.langDivider {
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 0.6875rem;
+  user-select: none;
 }
 
 @media (max-width: 768px) {
   .hero {
-    min-height: 85vh;
+    min-height: 90vh;
+  }
+
+  .subtitle {
+    font-size: clamp(2.25rem, 8vw, 3rem);
   }
 
   .heroActions {
@@ -139,10 +223,9 @@
     gap: var(--space-md);
   }
 
-  .heroBtn,
-  .heroBtnSecondary {
+  .heroBtn {
     width: 100%;
-    max-width: 260px;
+    max-width: 280px;
     text-align: center;
   }
 }

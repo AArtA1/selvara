@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { Container } from "@/components/Container/Container";
+import { useLanguage } from "@/contexts/LanguageContext";
 import styles from "./Breadcrumb.module.css";
 
 interface BreadcrumbItem {
@@ -12,12 +15,14 @@ interface BreadcrumbProps {
 }
 
 export function Breadcrumb({ items }: BreadcrumbProps) {
+  const { lang } = useLanguage();
+
   return (
     <nav className={styles.breadcrumb} aria-label="Breadcrumb">
       <Container>
         <ol className={styles.list}>
           <li>
-            <Link href="/">Home</Link>
+            <Link href={`/${lang}`}>{lang === "ru" ? "Главная" : "Home"}</Link>
           </li>
           {items.map((item, i) => (
             <li key={item.label}>

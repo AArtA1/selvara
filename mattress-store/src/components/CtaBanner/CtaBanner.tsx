@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/Container/Container";
+import { useLanguage } from "@/contexts/LanguageContext";
 import styles from "./CtaBanner.module.css";
 
 const categories = [
@@ -8,29 +11,27 @@ const categories = [
     image:
       "https://saatva.imgix.net/products/saatva-classic/lifestyle1-plush-soft/saatva-classic-lifestyle1-plush-soft-3-2.jpg?w=400&auto=format",
     label: "Bed Linen",
-    href: "/mattresses",
   },
   {
     image:
       "https://saatva.imgix.net/products/memory-foam-hybrid/sweep/memory-foam-hybrid-sweep-3-2.jpg?w=400&auto=format",
     label: "Bedding",
-    href: "/mattresses",
   },
   {
     image:
       "https://saatva.imgix.net/products/saatva-latex-hybrid/lifestyle/standard/saatva-latex-hybrid-lifestyle-standard-3-2.jpg?w=400&auto=format",
     label: "Mattresses",
-    href: "/mattresses",
   },
   {
     image:
       "https://saatva.imgix.net/products/zenhaven/angle/standard/zenhaven-angle-standard-3-2.jpg?w=400&auto=format",
     label: "Toppers",
-    href: "/mattresses",
   },
 ];
 
 export function CtaBanner() {
+  const { lang } = useLanguage();
+
   return (
     <section className={styles.section}>
       <Container>
@@ -40,7 +41,7 @@ export function CtaBanner() {
         </p>
         <div className={styles.grid}>
           {categories.map((cat) => (
-            <Link key={cat.label} href={cat.href} className={styles.card}>
+            <Link key={cat.label} href={`/${lang}/mattresses`} className={styles.card}>
               <div className={styles.imageWrap}>
                 <Image
                   src={cat.image}

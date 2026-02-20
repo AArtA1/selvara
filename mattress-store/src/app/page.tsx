@@ -1,8 +1,9 @@
 import { Hero } from "@/components/Hero/Hero";
 import { ValueProps } from "@/components/ValueProps/ValueProps";
 import { ProductGrid } from "@/components/ProductGrid/ProductGrid";
-import { WhySelvara } from "@/components/WhySelvara/WhySelvara";
-import { ReviewsSection } from "@/components/ReviewsSection/ReviewsSection";
+import { MaterialsSection } from "@/components/MaterialsSection/MaterialsSection";
+import { FirmnessFinder } from "@/components/FirmnessFinder/FirmnessFinder";
+import { ProductionSection } from "@/components/ProductionSection/ProductionSection";
 import { CtaBanner } from "@/components/CtaBanner/CtaBanner";
 import { FadeIn } from "@/components/FadeIn/FadeIn";
 import { products } from "@/data/products";
@@ -15,11 +16,16 @@ export default function Home() {
         <ValueProps />
       </FadeIn>
       <FadeIn>
-        <ProductGrid products={products.slice(0, 3)} title="Our Collections" />
+        <ProductGrid products={products} title="Линейка" />
       </FadeIn>
-      <WhySelvara />
       <FadeIn>
-        <ReviewsSection />
+        <MaterialsSection />
+      </FadeIn>
+      <FadeIn>
+        <FirmnessFinder />
+      </FadeIn>
+      <FadeIn>
+        <ProductionSection />
       </FadeIn>
       <FadeIn>
         <CtaBanner />

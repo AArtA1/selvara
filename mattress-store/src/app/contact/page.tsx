@@ -23,12 +23,7 @@ export default function ContactPage() {
       <ContactGrid />
       <HelpTopicsGrid topics={helpTopics} />
       <Accordion items={generalFaqs} />
-      <CtaBanner
-        title="Still have questions?"
-        subtitle="Our team is just a call or click away. We're here to help."
-        buttonText="Call Us"
-        buttonHref="#"
-      />
+      <CtaBanner />
     </>
   );
 }

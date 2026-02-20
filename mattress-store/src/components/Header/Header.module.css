@@ -21,12 +21,18 @@
   color: var(--color-white);
 }
 
+.header.transparent .navLinks a {
+  opacity: 0.65;
+}
+
 .header.transparent .navLinks a:hover {
-  color: rgba(255, 255, 255, 0.7);
-  border-bottom-color: rgba(255, 255, 255, 0.5);
+  opacity: 1;
+  color: var(--color-white);
+  border-bottom-color: rgba(255, 255, 255, 0.6);
 }
 
 .header.transparent .navLinks a.active {
+  opacity: 1;
   color: var(--color-white);
   border-bottom-color: var(--color-white);
 }
@@ -76,18 +82,86 @@
   background: var(--color-brand-dark);
 }
 
-/* ── Promo Banner ── */
-.promoBanner {
-  background: var(--color-brand-dark);
-  color: var(--color-white);
-  text-align: center;
-  padding: var(--space-sm) var(--space-md);
-  font-size: 0.875rem;
-  letter-spacing: 0.5px;
+/* ── Language switch (header) ── */
+.langSwitch {
+  display: flex;
+  align-items: center;
+  gap: 2px;
 }
 
-.promoBanner strong {
-  color: var(--color-gold);
+.langBtn,
+.langActive {
+  background: none;
+  border: none;
+  border-bottom: 1px solid transparent;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 0.15rem 0.3rem;
+  transition: color 0.2s ease, border-bottom-color 0.2s ease;
+  color: inherit;
+}
+
+.langBtn {
+  opacity: 0.4;
+}
+
+.langBtn:hover {
+  opacity: 0.7;
+}
+
+.langActive {
+  opacity: 1;
+  border-bottom-color: currentColor;
+}
+
+.langDivider {
+  font-size: 0.6875rem;
+  opacity: 0.25;
+  user-select: none;
+  padding: 0 1px;
+}
+
+/* ── Mobile lang switch ── */
+.mobileLangSwitch {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.mobileLangBtn,
+.mobileLangActive {
+  background: none;
+  border: none;
+  border-bottom: 1px solid transparent;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 0.2rem 0.4rem;
+  color: var(--color-brand-dark);
+  transition: opacity 0.2s ease, border-bottom-color 0.2s ease;
+}
+
+.mobileLangBtn {
+  opacity: 0.35;
+}
+
+.mobileLangBtn:hover {
+  opacity: 0.65;
+}
+
+.mobileLangActive {
+  opacity: 1;
+  border-bottom-color: var(--color-brand-dark);
 }
 
 /* ── Nav wrapper (two rows) ── */
@@ -149,20 +223,26 @@
 }
 
 .navLinks a {
-  font-size: 0.9375rem;
-  font-weight: 600;
+  font-family: var(--font-nav);
+  font-size: 0.6875rem;
+  font-weight: 300;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
   color: var(--color-black);
   padding: var(--space-xs) 0;
-  border-bottom: 2px solid transparent;
-  transition: border-color 0.3s ease, color 0.3s ease;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+  opacity: 0.75;
 }
 
 .navLinks a:hover {
-  color: var(--color-brand);
-  border-bottom-color: var(--color-brand);
+  opacity: 1;
+  color: var(--color-brand-dark);
+  border-bottom-color: var(--color-brand-dark);
 }
 
 .navLinks a.active {
+  opacity: 1;
   color: var(--color-brand-dark);
   border-bottom-color: var(--color-brand-dark);
 }
@@ -229,15 +309,20 @@
 .mobileMenu a {
   display: block;
   padding: var(--space-md) 0;
-  font-size: 1.125rem;
-  font-weight: 600;
+  font-family: var(--font-nav);
+  font-size: 0.875rem;
+  font-weight: 300;
+  letter-spacing: 3px;
+  text-transform: uppercase;
   color: var(--color-brand-dark);
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-  transition: color 0.25s ease;
+  transition: opacity 0.25s ease;
+  opacity: 0.7;
 }
 
 .mobileMenu a:hover {
-  color: var(--color-brand);
+  opacity: 1;
+  color: var(--color-brand-dark);
 }
 
 .mobileMenu a.active {

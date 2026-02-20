@@ -3,27 +3,30 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useLanguage, t } from "@/contexts/LanguageContext";
 import styles from "./Header.module.css";
 
 const navItems = [
-  { href: "/mattresses", label: "Mattresses" },
-  { href: "/about", label: "About" },
-  { href: "/reviews", label: "Reviews" },
-  { href: "/delivery-returns", label: "Delivery" },
-  { href: "/sale", label: "Sale" },
+  { path: "/mattresses", label: { ru: "Матрасы", en: "Mattresses" } },
+  { path: "/about", label: { ru: "О бренде", en: "About" } },
+  { path: "/delivery-returns", label: { ru: "Доставка", en: "Delivery" } },
+  { path: "/contact", label: { ru: "Контакты", en: "Contact" } },
 ];
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const pathname = usePathname();
-  const isHome = pathname === "/";
+  const isHome = pathname === "/ru" || pathname === "/en";
+  const { lang } = useLanguage();
+
+  // pathWithoutLocale e.g. "/mattresses" or ""
+  const pathWithoutLocale = pathname.replace(/^\/(ru|en)/, "") || "";
 
   useEffect(() => {
     if (!isHome) return;
 
     const onScroll = () => {
-      // 0 at top, 1 at 300px scroll
       const progress = Math.min(window.scrollY / 300, 1);
       setScrollProgress(progress);
     };
@@ -43,7 +46,6 @@ export function Header() {
     .filter(Boolean)
     .join(" ");
 
-  // Inline style for gradual background on homepage
   const headerStyle = isHome
     ? {
         backgroundColor: `rgba(255, 255, 255, ${scrollProgress})`,
@@ -56,31 +58,29 @@ export function Header() {
 
   return (
     <header className={headerClass} style={headerStyle}>
-      <div className={styles.promoBanner}>
-        <strong>Seasonal Offer</strong> — Save up to $300 on select
-        mattresses. Limited time.
-      </div>
-
       <div className={styles.navWrapper}>
-        {/* Top row: logo centered, icons right */}
         <div className={styles.topRow}>
           <div className={styles.topRowSide} />
-          <Link href="/" className={styles.logo} onClick={() => setMenuOpen(false)}>
+          <Link href={`/${lang}`} className={styles.logo} onClick={() => setMenuOpen(false)}>
             Selvara
           </Link>
           <div className={styles.navIcons}>
-            <Link href="#" className={styles.iconLink} aria-label="Search">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="11" cy="11" r="8" />
-                <path d="M21 21l-4.35-4.35" />
-              </svg>
-            </Link>
-            <Link href="#" className={styles.iconLink} aria-label="Saved">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
-              </svg>
-            </Link>
-            <Link href="/contact" className={styles.iconLink} aria-label="Account">
+            <div className={styles.langSwitch}>
+              <Link
+                href={`/ru${pathWithoutLocale}`}
+                className={lang === "ru" ? styles.langActive : styles.langBtn}
+              >
+                RU
+              </Link>
+              <span className={styles.langDivider}>|</span>
+              <Link
+                href={`/en${pathWithoutLocale}`}
+                className={lang === "en" ? styles.langActive : styles.langBtn}
+              >
+                EN
+              </Link>
+            </div>
+            <Link href={`/${lang}/contact`} className={styles.iconLink} aria-label="Account">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
                 <circle cx="12" cy="7" r="4" />
@@ -106,15 +106,14 @@ export function Header() {
           </button>
         </div>
 
-        {/* Bottom row: nav links centered */}
         <ul className={styles.navLinks}>
           {navItems.map((item) => (
-            <li key={item.href}>
+            <li key={item.path}>
               <Link
-                href={item.href}
-                className={pathname.startsWith(item.href) ? styles.active : ""}
+                href={`/${lang}${item.path}`}
+                className={pathWithoutLocale.startsWith(item.path) ? styles.active : ""}
               >
-                {item.label}
+                {t(item.label, lang)}
               </Link>
             </li>
           ))}
@@ -124,26 +123,34 @@ export function Header() {
       <div className={`${styles.mobileMenu} ${menuOpen ? styles.mobileMenuOpen : ""}`}>
         <ul>
           {navItems.map((item) => (
-            <li key={item.href}>
+            <li key={item.path}>
               <Link
-                href={item.href}
-                className={pathname.startsWith(item.href) ? styles.active : ""}
+                href={`/${lang}${item.path}`}
+                className={pathWithoutLocale.startsWith(item.path) ? styles.active : ""}
                 onClick={() => setMenuOpen(false)}
               >
-                {item.label}
+                {t(item.label, lang)}
               </Link>
             </li>
           ))}
-          <li>
-            <Link
-              href="/contact"
-              className={pathname === "/contact" ? styles.active : ""}
-              onClick={() => setMenuOpen(false)}
-            >
-              Contact
-            </Link>
-          </li>
         </ul>
+        <div className={styles.mobileLangSwitch}>
+          <Link
+            href={`/ru${pathWithoutLocale}`}
+            className={lang === "ru" ? styles.mobileLangActive : styles.mobileLangBtn}
+            onClick={() => setMenuOpen(false)}
+          >
+            RU
+          </Link>
+          <span className={styles.langDivider}>|</span>
+          <Link
+            href={`/en${pathWithoutLocale}`}
+            className={lang === "en" ? styles.mobileLangActive : styles.mobileLangBtn}
+            onClick={() => setMenuOpen(false)}
+          >
+            EN
+          </Link>
+        </div>
       </div>
     </header>
   );

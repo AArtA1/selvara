@@ -63,10 +63,7 @@ export default function DeliveryReturnsPage() {
       />
       <PolicyCard />
       <Accordion items={deliveryFaqs} title="Delivery & Returns FAQ" />
-      <CtaBanner
-        title="Sleep on it. For a full year."
-        subtitle="Not convinced? Try any Selvara mattress risk-free. We'll refund you if you don't love it."
-      />
+      <CtaBanner />
     </>
   );
 }

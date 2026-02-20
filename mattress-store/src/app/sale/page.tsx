@@ -28,10 +28,7 @@ export default function SalePage() {
       />
       <BundleCard />
       <ValueProps />
-      <CtaBanner
-        title="Premium Comfort, Considered Price"
-        subtitle="Every Selvara mattress includes free delivery, setup, and a 365-night trial."
-      />
+      <CtaBanner />
     </>
   );
 }

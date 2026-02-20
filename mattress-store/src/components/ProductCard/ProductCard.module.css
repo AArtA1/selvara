@@ -63,7 +63,11 @@
 }
 
 .discoverBtn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
   padding: 0.5rem 2rem;
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 100px;
@@ -81,6 +85,38 @@
 .card:hover .discoverBtn {
   background: rgba(255, 255, 255, 0.18);
   border-color: rgba(255, 255, 255, 0.8);
+}
+
+/* ── Text slide animation ── */
+.discoverBtnText {
+  display: block;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.discoverBtn::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(110%);
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  color: var(--color-white);
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card:hover .discoverBtnText {
+  transform: translateY(-300%);
+}
+
+.card:hover .discoverBtn::after {
+  transform: translateY(0);
 }
 
 .price {
