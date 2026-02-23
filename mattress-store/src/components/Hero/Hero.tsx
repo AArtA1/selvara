@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useLanguage, t } from "@/contexts/LanguageContext";
 import styles from "./Hero.module.css";
 
@@ -12,8 +10,6 @@ const copy = {
 
 export function Hero() {
   const { lang } = useLanguage();
-  const pathname = usePathname();
-  const pathWithoutLocale = pathname.replace(/^\/(ru|en)/, "") || "";
 
   return (
     <section className={styles.hero}>
@@ -36,21 +32,6 @@ export function Hero() {
           >
             <span className={styles.heroBtnText}>{t(copy.cta, lang)}</span>
           </a>
-        </div>
-        <div className={styles.langToggle}>
-          <Link
-            href={`/ru${pathWithoutLocale}`}
-            className={lang === "ru" ? styles.langActive : styles.langBtn}
-          >
-            RU
-          </Link>
-          <span className={styles.langDivider}>|</span>
-          <Link
-            href={`/en${pathWithoutLocale}`}
-            className={lang === "en" ? styles.langActive : styles.langBtn}
-          >
-            EN
-          </Link>
         </div>
       </div>
     </section>

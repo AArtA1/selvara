@@ -4,6 +4,7 @@ export interface Product {
   image: string;
   alt: string;
   description: string;
+  tagline?: string;
   price: string;
   salePrice?: string;
   saleLabel?: string;

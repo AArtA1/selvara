@@ -1,87 +1,62 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import { Container } from "@/components/Container/Container";
-import type { Review } from "@/data/types";
+import { useLanguage } from "@/contexts/LanguageContext";
 import styles from "./ReviewsSection.module.css";
 
-const reviews: Review[] = [
+type Lang = "ru" | "en";
+
+const copy = {
+  eyebrow: { ru: "Отзывы", en: "Reviews" },
+};
+
+const reviews = [
   {
-    quote:
-      "Best mattress I\u2019ve ever owned. The support is incredible and I wake up without any back pain. Worth every penny.",
-    author: "Sarah M.",
-    product: "Selvara Classic",
+    quote: {
+      ru: "Покупал Origin после долгих сомнений. Через неделю понял — это именно то, что нужно. Никакой синтетики, нет запаха, держит форму. Жена тоже довольна.",
+      en: "I bought the Origin after long deliberation. After a week I realised — this is exactly what I needed. No synthetics, no smell, holds its shape. My wife is pleased too.",
+    },
+    author: "Артём К.",
+    model:  { ru: "Origin · 8 месяцев",    en: "Origin · 8 months" },
   },
   {
-    quote:
-      "The delivery and setup was seamless. They even took away our old mattress. Customer service was outstanding.",
-    author: "James R.",
-    product: "Selvara Latex Hybrid",
+    quote: {
+      ru: "Спала на Aero три года в другой квартире, теперь взяла Reserve для нового дома. Разница ощутимая, но оба хороши. Сервис — доставка, установка, вывоз старого — всё без единого вопроса.",
+      en: "I slept on the Aero for three years in another flat, now I got the Reserve for a new home. The difference is noticeable, but both are excellent. Service — delivery, setup, removal of the old mattress — all without a single issue.",
+    },
+    author: "Екатерина Л.",
+    model:  { ru: "Reserve · первый месяц", en: "Reserve · first month" },
   },
   {
-    quote:
-      "I was skeptical about buying a mattress online, but the 365-night trial sold me. Three months in and I\u2019m sleeping better than ever.",
-    author: "Michelle T.",
-    product: "Memory Foam Hybrid",
-  },
-  {
-    quote:
-      "After years of chronic lower back pain, the Selvara Rx has been transformative. I wake up feeling refreshed instead of stiff.",
-    author: "David K.",
-    product: "Selvara Rx",
+    quote: {
+      ru: "Брал Signature — мягкий вариант. Никаких компромиссов по материалам, это сразу чувствуется. Сто ночей прошли, возвращать не стал.",
+      en: "I got the Signature — the soft version. No compromises on materials, you feel it immediately. The hundred nights passed — I kept it.",
+    },
+    author: "Дмитрий В.",
+    model:  { ru: "Signature · 4 месяца",  en: "Signature · 4 months" },
   },
 ];
 
 export function ReviewsSection() {
-  const [current, setCurrent] = useState(0);
-  const [fading, setFading] = useState(false);
-
-  const goTo = useCallback(
-    (index: number) => {
-      if (index === current) return;
-      setFading(true);
-      setTimeout(() => {
-        setCurrent(index);
-        setFading(false);
-      }, 300);
-    },
-    [current]
-  );
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      goTo((current + 1) % reviews.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, [current, goTo]);
-
-  const review = reviews[current];
+  const { lang } = useLanguage();
 
   return (
-    <section className="section section-cool">
-      <Container>
-        <div className={styles.slider}>
-          <div className={styles.stars}>&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <blockquote className={`${styles.quote} ${fading ? styles.fading : ""}`}>
-            &ldquo;{review.quote}&rdquo;
-          </blockquote>
-          <div className={`${styles.attribution} ${fading ? styles.fading : ""}`}>
-            <span className={styles.author}>{review.author}</span>
-            <span className={styles.divider}>&mdash;</span>
-            <span className={styles.product}>{review.product} &middot; Verified Buyer</span>
-          </div>
-          <div className={styles.dots}>
-            {reviews.map((_, i) => (
-              <button
-                key={i}
-                className={`${styles.dot} ${i === current ? styles.dotActive : ""}`}
-                onClick={() => goTo(i)}
-                aria-label={`Review ${i + 1}`}
-              />
-            ))}
-          </div>
+    <section className={styles.section}>
+      <div className={styles.inner}>
+        <span className={styles.eyebrow}>{copy.eyebrow[lang as Lang]}</span>
+        <div className={styles.grid}>
+          {reviews.map((r, i) => (
+            <article key={i} className={styles.card}>
+              <blockquote className={styles.quote}>
+                {r.quote[lang as Lang]}
+              </blockquote>
+              <footer className={styles.footer}>
+                <span className={styles.author}>{r.author}</span>
+                <span className={styles.model}>{r.model[lang as Lang]}</span>
+              </footer>
+            </article>
+          ))}
         </div>
-      </Container>
+      </div>
     </section>
   );
 }

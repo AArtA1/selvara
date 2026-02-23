@@ -17,8 +17,15 @@
 
 .header.transparent .logo,
 .header.transparent .navLinks a,
-.header.transparent .iconLink {
+.header.transparent .iconLink,
+.header.transparent .langBtn,
+.header.transparent .langActive {
   color: var(--color-white);
+}
+
+.header.transparent .langDivider {
+  color: rgba(255, 255, 255, 0.25);
+  opacity: 1;
 }
 
 .header.transparent .navLinks a {
@@ -76,6 +83,16 @@
 
 .header.transparent.scrolled .iconLink:hover {
   color: var(--color-brand);
+}
+
+.header.transparent.scrolled .langBtn,
+.header.transparent.scrolled .langActive {
+  color: var(--color-brand-dark);
+}
+
+.header.transparent.scrolled .langDivider {
+  color: rgba(70, 63, 56, 0.25);
+  opacity: 1;
 }
 
 .header.transparent.scrolled .burger span {
