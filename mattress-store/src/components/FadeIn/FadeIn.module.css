@@ -1,25 +1,32 @@
 .fadeIn {
   opacity: 0;
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition: opacity 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94), clip-path 1.3s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 .up {
-  transform: translateY(32px);
+  transform: translateY(40px);
 }
 
 .left {
-  transform: translateX(-32px);
+  transform: translateX(-40px);
 }
 
 .right {
-  transform: translateX(32px);
+  transform: translateX(40px);
 }
 
 .none {
   transform: none;
 }
 
+/* Clip-path reveal variant — content unveiled from left to right */
+.reveal {
+  transform: none;
+  clip-path: inset(0 100% 0 0);
+}
+
 .visible {
   opacity: 1;
   transform: translateY(0) translateX(0);
+  clip-path: inset(0 0 0 0);
 }

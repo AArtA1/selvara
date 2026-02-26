@@ -61,17 +61,45 @@ npm run lint     # ESLint
 
 No test framework is currently configured.
 
-## Screenshot Workflow
+## Design Verification Loop (mandatory)
 
-Screenshots are a WAT tool — use them to verify visual changes after every front-end edit.
+**IMMEDIATELY** after implementing any front-end change, run this verification loop. Do not consider the task complete until the loop passes.
 
-- **Always screenshot from localhost:** `node screenshot.mjs http://localhost:3000`
-- Screenshots saved to `./temporary screenshots/screenshot-N.png` (auto-incremented, never overwritten)
-- Optional label: `node screenshot.mjs http://localhost:3000 label` → `screenshot-N-label.png`
-- `screenshot.mjs` lives in the project root. Use it as-is.
-- After screenshotting, read the PNG with the Read tool — Claude can see and analyze the image directly.
-- When comparing, be specific: "heading is 32px but reference shows ~24px", "card gap is 16px but should be 24px"
-- Check: spacing/padding, font size/weight/line-height, colors (exact hex), alignment, border-radius, shadows, image sizing
+### Step 1 — Navigate to affected pages
+Use `mcp__playwright__browser_navigate` to open `http://localhost:3000/<path>` for every view affected by the change. Set viewport to desktop (1440×900) with `mcp__playwright__browser_resize`.
+
+### Step 2 — Take a screenshot and visually verify
+Use `mcp__playwright__browser_take_screenshot` (full page) to capture the current state. Read the screenshot with the Read tool and compare against:
+- The reference image or design mockup (if provided by the user)
+- Brand guidelines in `BRAND.md` and the Brand Guidelines section below
+- The user's specific request
+
+Be precise when comparing: "heading is 32px but reference shows ~24px", "card gap is 16px but should be 24px", "color is #555 but should be #463f38".
+
+Check: spacing/padding, font size/weight/line-height, colors (exact hex), alignment, border-radius, shadows, image sizing, responsive behavior.
+
+### Step 3 — Check for console errors
+Run `mcp__playwright__browser_console_messages` with level `error`. Fix any errors before proceeding.
+
+### Step 4 — Fix and repeat
+If anything doesn't match — fix the code, then go back to Step 1. Repeat until the result matches the reference/requirements.
+
+### Step 5 — Mobile check (if layout changed)
+Resize to mobile (375×812) with `mcp__playwright__browser_resize`, take another screenshot, verify responsive behavior. Fix and repeat if needed.
+
+### Quick reference — MCP Playwright tools
+| Action | Tool |
+|--------|------|
+| Open page | `mcp__playwright__browser_navigate` |
+| Resize viewport | `mcp__playwright__browser_resize` |
+| Full-page screenshot | `mcp__playwright__browser_take_screenshot` (set `fullPage: true`) |
+| Accessibility snapshot | `mcp__playwright__browser_snapshot` |
+| Console errors | `mcp__playwright__browser_console_messages` |
+| Click / interact | `mcp__playwright__browser_click` |
+
+### Legacy screenshot tool (still available)
+- `node screenshot.mjs http://localhost:3000 label` — saves to `./temporary screenshots/`
+- Useful for quick captures outside the verification loop
 
 ---
 
@@ -164,19 +192,6 @@ No collections — flat hierarchy with three tiers (Linen/Coconut/Aero → Origi
 - Fake crossed-out prices or countdown timers
 - "Рекомендовано врачами", "Ортопедический эффект" as marketing claims
 
-### Colors
-
-- Primary: warm brown `#463f38`
-- Accent: muted gold `#d5aa63` (use sparingly)
-- Background: warm light beige `#f6f5f3`
-- No bright or neon colors, ever
-
-### Typography
-
-- Headings — serif (Source Serif 4)
-- Body — clean sans-serif (Source Sans 3)
-- Generous line-height, airy spacing
-
 ### Photography & Visual Style
 
 - Bedroom as a space of quiet and light — not a product on white background
@@ -193,9 +208,7 @@ Confident quality without ostentatious luxury.
 ## Visual Development
 
 ### Design Principles
-- Comprehensive design checklist in `/context/design-principles.md`
 - Brand guidelines in the Brand Guidelines section above and in `BRAND.md`
 - When making visual (front-end, UI/UX) changes, always refer to these files for guidance
 
 This verification ensures changes meet design standards and user requirements.
-

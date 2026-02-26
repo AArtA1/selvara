@@ -129,3 +129,235 @@
   font-size: 0.75rem;
   opacity: 0.7;
 }
+
+/* ── Editorial variant (Savoir-style: text below image) ── */
+.editorialCard {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.editorialCard:hover {
+  color: var(--color-brand-dark);
+}
+
+.editorialImageWrapper {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: #e8e5e0;
+}
+
+.editorialImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.editorialCard:hover .editorialImage {
+  transform: scale(1.05);
+}
+
+.editorialInfo {
+  padding: 1.25rem 0.25rem 1.75rem;
+}
+
+.editorialName {
+  font-family: var(--font-serif);
+  font-size: 1.375rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: var(--color-brand-dark);
+  margin-bottom: 0.5rem;
+}
+
+.editorialTagline {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--color-gray);
+  margin-bottom: 0.75rem;
+}
+
+.editorialPrice {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-brand-dark);
+  letter-spacing: 0.02em;
+}
+
+/* ══════════════════════════════════════════
+   Minimal variant — "Carte blanche"
+   White card on warm beige. Considered stillness.
+   ══════════════════════════════════════════ */
+
+.minimalCard {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: var(--color-white);
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 1px 3px rgba(70, 63, 56, 0.06), 0 4px 16px rgba(70, 63, 56, 0.04);
+  transition: box-shadow 0.5s ease, transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden;
+}
+
+.minimalCard:hover {
+  box-shadow: 0 2px 8px rgba(70, 63, 56, 0.08), 0 12px 32px rgba(70, 63, 56, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Image */
+.minimalImageWrapper {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #ede9e3;
+  flex-shrink: 0;
+}
+
+.minimalImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.minimalCard:hover .minimalImage {
+  transform: scale(1.04);
+}
+
+/* Divider between image and body */
+.minimalDivider {
+  height: 1px;
+  background: linear-gradient(to right, transparent 0%, #e0dbd4 15%, #e0dbd4 85%, transparent 100%);
+  flex-shrink: 0;
+}
+
+/* Body */
+.minimalBody {
+  padding: var(--space-lg) var(--space-lg) var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Brand mark + firmness row */
+.minimalMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.875rem;
+}
+
+.minimalBrand {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-gray);
+}
+
+/* Firmness dots */
+.minimalFirmness {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.minimalDot {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-gold);
+  background: transparent;
+  transition: background 0.3s ease;
+}
+
+.minimalDotFilled {
+  background: var(--color-gold);
+}
+
+/* Name */
+.minimalName {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.15;
+  color: var(--color-brand-dark);
+  margin-bottom: 0.5rem;
+}
+
+/* Tagline */
+.minimalTagline {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--color-gray);
+  flex: 1;
+}
+
+/* Footer area */
+.minimalFooter {
+  margin-top: var(--space-lg);
+}
+
+.minimalFooterDivider {
+  height: 1px;
+  background: #e8e3dc;
+  margin-bottom: var(--space-md);
+}
+
+.minimalFooterRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.minimalPrice {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-brand-dark);
+  letter-spacing: 0.02em;
+}
+
+.minimalArrow {
+  font-size: 1.125rem;
+  color: var(--color-gold);
+  display: inline-block;
+  transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  line-height: 1;
+}
+
+.minimalCard:hover .minimalArrow {
+  transform: translateX(5px);
+}
+
+/* Gold signature line — draws across the bottom on hover */
+.minimalGoldLine {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: var(--color-gold);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.minimalCard:hover .minimalGoldLine {
+  transform: scaleX(1);
+}

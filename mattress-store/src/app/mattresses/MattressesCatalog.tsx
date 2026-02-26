@@ -24,16 +24,25 @@ export function MattressesCatalog({ products }: { products: Product[] }) {
 
   return (
     <>
+      <section className={styles.collectionHeader}>
+        <Container>
+          <h1 className={styles.collectionTitle}>Линейка матрасов</h1>
+          <p className={styles.collectionSubtitle}>
+            Натуральные материалы, собственное производство. Каждый матрас изготавливается
+            по&nbsp;заказу — выберите размер и&nbsp;жёсткость.
+          </p>
+        </Container>
+      </section>
       <FilterBar onFilter={setFilter} />
-      <section className="section section-warm">
+      <section className={`section section-warm ${styles.catalogSection}`}>
         <Container>
           <div className={styles.grid}>
             {filtered.map((product) => (
-              <ProductCard key={product.slug} product={product} />
+              <ProductCard key={product.slug} product={product} variant="editorial" />
             ))}
           </div>
           {filtered.length === 0 && (
-            <p className={styles.empty}>No mattresses match the selected filter.</p>
+            <p className={styles.empty}>Нет матрасов, подходящих под выбранный фильтр.</p>
           )}
         </Container>
       </section>

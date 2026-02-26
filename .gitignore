@@ -6,7 +6,10 @@ dist/
 wheels/
 *.egg-info
 
-CLAUDE.md
+
+*-review/
+
+.claude
 
 # Virtual environments
 .venv

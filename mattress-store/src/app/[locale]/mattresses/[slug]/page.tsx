@@ -54,7 +54,7 @@ export default async function ProductPage({ params }: PageProps) {
         ]}
       />
       <ProductHero detail={detail} price={product?.price || ""} />
-      <FeatureGrid features={detail.features} />
+      <FeatureGrid features={detail.features} images={detail.images} />
       <MattressLayers layers={detail.layers} />
       <SizeTable sizes={detail.sizes} />
       <Accordion items={detail.faqs} />

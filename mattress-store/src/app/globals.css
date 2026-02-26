@@ -23,7 +23,7 @@
 
   /* Typography */
   --font-serif: var(--font-source-serif), 'Times New Roman', Georgia, serif;
-  --font-sans: var(--font-source-sans), 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-sans: 'Optima', 'Optima LT Std', var(--font-source-sans), Candara, Calibri, 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Spacing */
   --space-xs: 0.25rem;

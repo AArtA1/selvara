@@ -14,7 +14,7 @@ export const productDetails: Record<string, ProductDetail> = {
     description:
       "Linen построен на льняном волокне и латексированной кокосовой койре — материалах, которые не теряют форму со временем. Независимые пружины распределяют нагрузку точечно. Подходит тем, кто предпочитает твёрдую поверхность и ценит происхождение каждого слоя.",
     images: [
-      "https://saatva.imgix.net/products/saatva-classic/room/standard/saatva-classic-room-standard-3-2.jpg?w=600&auto=format",
+      "https://saatva.imgix.net/products/saatva-classic/room-above/standard/saatva-classic-room-above-standard-3-2.jpg?w=600&auto=format",
       "https://saatva.imgix.net/products/saatva-classic/lifestyle1-plush-soft/saatva-classic-lifestyle1-plush-soft-3-2.jpg?w=600&auto=format",
     ],
     features: [
@@ -151,7 +151,7 @@ export const productDetails: Record<string, ProductDetail> = {
       "Aero использует перфорированный латекс — отверстия по всей поверхности обеспечивают постоянный воздухообмен. Независимые пружины дают мягкое, обволакивающее ощущение без эффекта «ямы». Подходит тем, кто любит мягкую поверхность, но не хочет перегреваться.",
     images: [
       "https://saatva.imgix.net/products/zenhaven/angle/standard/zenhaven-angle-standard-3-2.jpg?w=600&auto=format",
-      "https://saatva.imgix.net/products/zenhaven/room/standard/zenhaven-room-standard-3-2.jpg?w=600&auto=format",
+      "https://saatva.imgix.net/products/saatva-latex-hybrid/lifestyle/standard/saatva-latex-hybrid-lifestyle-standard-3-2.jpg?w=600&auto=format",
     ],
     features: [
       {
@@ -214,7 +214,7 @@ export const productDetails: Record<string, ProductDetail> = {
       "Origin — первая модель с пружинным блоком 1024 пружины на м². Большее количество пружин означает более точное следование контурам тела. Натуральный латекс в верхнем слое и жёсткий войлок создают баланс между мягкостью поверхности и надёжностью опоры.",
     images: [
       "https://saatva.imgix.net/products/saatva-classic/lifestyle1-plush-soft/saatva-classic-lifestyle1-plush-soft-3-2.jpg?w=600&auto=format",
-      "https://saatva.imgix.net/products/saatva-classic/room/standard/saatva-classic-room-standard-3-2.jpg?w=600&auto=format",
+      "https://saatva.imgix.net/products/saatva-classic/room-above/standard/saatva-classic-room-above-standard-3-2.jpg?w=600&auto=format",
     ],
     features: [
       {
@@ -278,7 +278,7 @@ export const productDetails: Record<string, ProductDetail> = {
       "Latex — единственная беспружинная модель в линейке. Конструкция из десяти слоёв: натуральный латекс и латексированная кокосовая койра чередуются, создавая монолитную, плотную опору. Двусторонний: средняя жёсткость с одной стороны, твёрдая с другой.",
     images: [
       "https://saatva.imgix.net/products/saatva-contour5/room-above/standard/saatva-contour5-room-above-standard-3-2.jpg?w=600&auto=format",
-      "https://saatva.imgix.net/products/saatva-contour5/angle/standard/saatva-contour5-angle-standard-3-2.jpg?w=600&auto=format",
+      "https://saatva.imgix.net/products/saatva-latex-hybrid/angle/standard/saatva-latex-hybrid-angle-standard-3-2.jpg?w=600&auto=format",
     ],
     features: [
       {
@@ -346,7 +346,7 @@ export const productDetails: Record<string, ProductDetail> = {
     description:
       "Signature объединяет три натуральных слоя — кокос, латекс и мемори-пену — на базе из 1024 независимых пружин. Мемори-пена деликатно подстраивается под форму тела, латекс держит упругость, кокосовая основа сохраняет форму. Двусторонний: мягкая и средняя жёсткость.",
     images: [
-      "https://saatva.imgix.net/products/memory-foam-hybrid/room-corner/standard/memory-foam-hybrid-room-corner-standard-3-2.jpg?w=600&auto=format",
+      "https://saatva.imgix.net/products/memory-foam-hybrid/angle/standard/memory-foam-hybrid-angle-standard-3-2.jpg?w=600&auto=format",
       "https://saatva.imgix.net/products/memory-foam-hybrid/sweep/memory-foam-hybrid-sweep-3-2.jpg?w=600&auto=format",
     ],
     features: [
@@ -411,7 +411,7 @@ export const productDetails: Record<string, ProductDetail> = {
     description:
       "Reserve создан из бельгийского натурального латекса — материала с более высокой упругостью и долговечностью по сравнению со стандартным. В сочетании с мемори-пеной и блоком из 1024 независимых пружин это наиболее деликатная и долгосрочная модель в линейке. Мягкая посадка без ощущения погружения.",
     images: [
-      "https://saatva.imgix.net/products/zenhaven/room/standard/zenhaven-room-standard-3-2.jpg?w=600&auto=format",
+      "https://saatva.imgix.net/products/saatva-classic/lifestyle/standard/saatva-classic-lifestyle-standard-3-2.jpg?w=600&auto=format",
       "https://saatva.imgix.net/products/zenhaven/angle/standard/zenhaven-angle-standard-3-2.jpg?w=600&auto=format",
     ],
     features: [

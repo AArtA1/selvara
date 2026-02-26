@@ -5,7 +5,7 @@ import styles from "./FadeIn.module.css";
 
 interface FadeInProps {
   children: React.ReactNode;
-  direction?: "up" | "left" | "right" | "none";
+  direction?: "up" | "left" | "right" | "none" | "reveal";
   delay?: number;
   className?: string;
 }
@@ -30,7 +30,7 @@ export function FadeIn({
           observer.unobserve(el);
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.12 }
     );
 
     observer.observe(el);

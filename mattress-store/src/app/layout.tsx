@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Source_Sans_3, Jost } from "next/font/google";
+import { GrainOverlay } from "@/components/GrainOverlay/GrainOverlay";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -40,6 +41,7 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body className={`${cormorant.variable} ${sourceSans.variable} ${jost.variable}`}>
+        <GrainOverlay />
         {children}
       </body>
     </html>

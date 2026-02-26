@@ -4,7 +4,8 @@
    ═══════════════════════════════════════════════════ */
 
 .section {
-  background: var(--color-bg-warm);
+  background: var(--color-white);
+  padding-bottom: var(--space-4xl);
 }
 
 /* ── Header ── */
@@ -62,8 +63,9 @@
   display: grid;
   grid-template-columns: 2fr 1.5fr 1.5fr;
   grid-template-rows: 55vh 45vh;
-  gap: 2px;
-  background: var(--color-bg-warm);
+  gap: 8px;
+  padding: 0 40px;
+  background: var(--color-white);
 }
 
 /* ── Cells ── */
@@ -138,12 +140,18 @@
 
 .cellNum {
   font-family: var(--font-serif);
-  font-size: 0.75rem;
+  font-size: clamp(5rem, 12vw, 10rem);
   font-weight: 300;
   font-style: italic;
-  color: rgba(255, 255, 255, 0.4);
-  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.04);
+  letter-spacing: -0.02em;
   align-self: flex-start;
+  line-height: 1;
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-lg);
+  z-index: 0;
+  pointer-events: none;
 }
 
 .cellText {
@@ -221,6 +229,7 @@
   .grid {
     grid-template-columns: 1fr;
     grid-template-rows: 75vw 75vw 60vw 60vw;
+    padding: 0 24px;
   }
 
   .cell1, .cell2, .cell3, .cell4 {

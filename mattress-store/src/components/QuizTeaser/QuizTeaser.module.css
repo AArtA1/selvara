@@ -1,16 +1,61 @@
+/* ═══════════════════════════════════════════════════
+   SELVARA · Quiz Teaser — Split editorial layout
+   Image left, content right
+   ═══════════════════════════════════════════════════ */
+
 .section {
-  background: var(--color-brand-dark);
-  padding: var(--space-4xl) 0;
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  min-height: 80vh;
+  background: var(--color-bg-warm);
+  position: relative;
 }
 
-.inner {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 0 var(--space-xl);
-  text-align: center;
+/* Vertical divider between image and content */
+.section::after {
+  content: "";
+  position: absolute;
+  top: 15%;
+  bottom: 15%;
+  left: 55%;
+  width: 1px;
+  background: rgba(70, 63, 56, 0.08);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ── Image side ── */
+.imageWrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.imageWrap:hover .image {
+  transform: scale(1.03);
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    transparent 70%,
+    rgba(246, 245, 243, 0.3) 100%
+  );
+}
+
+/* ── Content side ── */
+.content {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  padding: 8% 10%;
+  max-width: 560px;
 }
 
 .eyebrow {
@@ -20,32 +65,30 @@
   font-weight: 300;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--color-gold);
-  margin-bottom: var(--space-lg);
-  opacity: 0.85;
+  color: rgba(70, 63, 56, 0.35);
+  margin-bottom: var(--space-xl);
 }
 
 .headline {
   font-family: var(--font-serif);
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2.25rem, 3.5vw, 3.5rem);
   font-weight: 300;
   font-style: italic;
-  color: var(--color-white);
-  line-height: 1.15;
-  letter-spacing: -0.01em;
+  color: var(--color-brand-dark);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   margin-bottom: var(--space-xl);
   display: flex;
   flex-direction: column;
-  opacity: 0.92;
 }
 
 .sub {
   font-family: var(--font-sans);
   font-size: 0.9375rem;
-  color: rgba(255, 255, 255, 0.45);
-  line-height: 1.65;
+  color: rgba(70, 63, 56, 0.55);
+  line-height: 1.75;
   margin-bottom: var(--space-2xl);
-  max-width: 400px;
+  max-width: 380px;
 }
 
 /* ── Button ── */
@@ -53,11 +96,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  align-self: flex-start;
   position: relative;
   overflow: hidden;
   padding: 0.9rem 3rem;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: var(--color-brand-dark);
+  border: 1px solid var(--color-brand-dark);
   color: var(--color-white);
   font-family: var(--font-nav);
   font-size: 0.6875rem;
@@ -65,12 +109,13 @@
   letter-spacing: 3px;
   text-transform: uppercase;
   text-decoration: none;
-  transition: border-color 0.3s ease, background 0.3s ease;
+  transition: background 0.4s ease, border-color 0.4s ease;
 }
 
 .btn:hover {
-  border-color: rgba(255, 255, 255, 0.7);
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--color-brand);
+  border-color: var(--color-brand);
+  color: var(--color-white);
 }
 
 .btnText {
@@ -103,4 +148,27 @@
 
 .btn:hover::after {
   transform: translateY(0);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .section {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .imageWrap {
+    aspect-ratio: 4 / 3;
+  }
+
+  .content {
+    padding: var(--space-3xl) var(--space-xl);
+    max-width: none;
+    align-items: center;
+    text-align: center;
+  }
+
+  .btn {
+    align-self: center;
+  }
 }

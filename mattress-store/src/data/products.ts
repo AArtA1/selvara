@@ -5,7 +5,7 @@ export const products: Product[] = [
     slug: "selvara-linen",
     name: "Linen",
     image:
-      "https://saatva.imgix.net/products/saatva-classic/room/standard/saatva-classic-room-standard-3-2.jpg?w=800&auto=format",
+      "https://saatva.imgix.net/products/saatva-classic/room-above/standard/saatva-classic-room-above-standard-3-2.jpg?w=800&auto=format",
     alt: "Матрас Selvara Linen в интерьере спальни",
     tagline: "Льняной войлок и кокос",
     description:
@@ -60,7 +60,7 @@ export const products: Product[] = [
     slug: "selvara-signature",
     name: "Signature",
     image:
-      "https://saatva.imgix.net/products/memory-foam-hybrid/room-corner/standard/memory-foam-hybrid-room-corner-standard-3-2.jpg?w=800&auto=format",
+      "https://saatva.imgix.net/products/memory-foam-hybrid/angle/standard/memory-foam-hybrid-angle-standard-3-2.jpg?w=800&auto=format",
     alt: "Матрас Selvara Signature в интерьере спальни",
     tagline: "Кокос, латекс и мемори-пена",
     description:
@@ -71,7 +71,7 @@ export const products: Product[] = [
     slug: "selvara-reserve",
     name: "Reserve",
     image:
-      "https://saatva.imgix.net/products/zenhaven/room/standard/zenhaven-room-standard-3-2.jpg?w=1400&auto=format",
+      "https://saatva.imgix.net/products/saatva-classic/lifestyle/standard/saatva-classic-lifestyle-standard-3-2.jpg?w=800&auto=format",
     alt: "Матрас Selvara Reserve в интерьере спальни",
     tagline: "Бельгийский латекс. Флагман.",
     description:
