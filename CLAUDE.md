@@ -4,48 +4,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ---
 
-# How to Operate
-
-You're working inside the **WAT framework** (Workflows, Agents, Tools). This architecture separates concerns so that probabilistic AI handles reasoning while deterministic code handles execution.
-
-**Layer 1: Workflows** — Markdown SOPs in `workflows/`. Each defines objective, inputs, tools, outputs, and edge cases.
-
-**Layer 2: Agent (you)** — Read the relevant workflow, run tools in sequence, handle failures, ask when unclear. Don't try to do everything directly.
-
-**Layer 3: Tools** — Python scripts in `tools/` for deterministic execution. API calls, data transforms, file ops. Credentials in `.env`.
-
-**Why it matters:** At 90% accuracy per step, five
- steps = 59% success. Offloading execution to deterministic scripts keeps you focused on orchestration.
-
-## Operating Rules
-
-**1. Look for existing tools first.** Check `tools/` before building anything new.
-
-**2. Learn and adapt when things fail.**
-- Read the full error and trace
-- Fix and retest (check with me before re-running if it uses paid API calls)
-- Document what you learned in the workflow
-
-**3. Keep workflows current.** Update when you find better methods or hit constraints. Don't create or overwrite workflows without asking unless I explicitly say to.
-
-## The Self-Improvement Loop
-
-1. Identify what broke → 2. Fix the tool → 3. Verify → 4. Update the workflow → 5. Move on
-
-## File Structure
-
-```
-workflows/      # Markdown SOPs — what to do and how
-tools/          # Python scripts — deterministic execution
-.tmp/           # Temporary files, regenerated as needed
-.env            # API keys (NEVER store secrets anywhere else)
-credentials.json, token.json  # Google OAuth (gitignored)
-```
-
-Deliverables go to cloud services. `.tmp/` is disposable.
-
----
-
 ## Project Overview
 
 E-commerce website for **SELVARA** — premium mattress brand. Built with Next.js App Router in `mattress-store/`.
@@ -61,45 +19,50 @@ npm run lint     # ESLint
 
 No test framework is currently configured.
 
-## Design Verification Loop (mandatory)
+---
 
-**IMMEDIATELY** after implementing any front-end change, run this verification loop. Do not consider the task complete until the loop passes.
+## Reference Site Inspection (mandatory)
 
-### Step 1 — Navigate to affected pages
-Use `mcp__playwright__browser_navigate` to open `http://localhost:3000/<path>` for every view affected by the change. Set viewport to desktop (1440×900) with `mcp__playwright__browser_resize`.
+When the user shares a URL as a design reference, **always** open it with `mcp__playwright__browser_navigate`, take a full-page screenshot with `mcp__playwright__browser_take_screenshot` (`fullPage: true`) saving to the `screenshots/` directory, and read the screenshot to understand how the page actually looks. Do not rely solely on HTML/text fetched via `WebFetch` — visual context (layout, spacing, typography, colors, imagery) is critical for accurate design work.
 
-### Step 2 — Take a screenshot and visually verify
-Use `mcp__playwright__browser_take_screenshot` (full page) to capture the current state. Read the screenshot with the Read tool and compare against:
-- The reference image or design mockup (if provided by the user)
-- Brand guidelines in `BRAND.md` and the Brand Guidelines section below
-- The user's specific request
+---
 
-Be precise when comparing: "heading is 32px but reference shows ~24px", "card gap is 16px but should be 24px", "color is #555 but should be #463f38".
+## Visual Development
 
-Check: spacing/padding, font size/weight/line-height, colors (exact hex), alignment, border-radius, shadows, image sizing, responsive behavior.
+### Design Principles
+- Brand guidelines in the Brand Guidelines section below and in `BRAND.md`
+- When making visual (front-end, UI/UX) changes, always refer to these files for guidance
 
-### Step 3 — Check for console errors
-Run `mcp__playwright__browser_console_messages` with level `error`. Fix any errors before proceeding.
+### Frontend Design Skill (mandatory)
 
-### Step 4 — Fix and repeat
-If anything doesn't match — fix the code, then go back to Step 1. Repeat until the result matches the reference/requirements.
+Whenever the user requests a design change, redesign, or new UI work, **always** invoke the `frontend-design` skill before implementing. This ensures distinctive, high-quality aesthetics that avoid generic AI patterns. Pass the task context (component name, brand mood, reference sites) as arguments to the skill.
 
-### Step 5 — Mobile check (if layout changed)
-Resize to mobile (375×812) with `mcp__playwright__browser_resize`, take another screenshot, verify responsive behavior. Fix and repeat if needed.
+### Quick Visual Check (mandatory after every front-end change)
 
-### Quick reference — MCP Playwright tools
+IMMEDIATELY after implementing any front-end change:
+
+1. **Identify what changed** — review the modified components/pages
+2. **Navigate to affected pages** — `mcp__playwright__browser_navigate` → `http://localhost:3000/<path>`, viewport 1440×900
+3. **Take a full-page screenshot** — save to `screenshots/` with a descriptive name
+4. **Verify visually** — compare against brand guidelines, reference, and the user's request. Be precise: exact hex colors, pixel spacing, font sizes
+5. **Check console errors** — `mcp__playwright__browser_console_messages` level `error`. Fix any before continuing
+6. **Fix and repeat** — if anything is off, fix and go back to step 2
+7. **Mobile check** — resize to 375×812, screenshot, verify responsive layout
+
 | Action | Tool |
 |--------|------|
 | Open page | `mcp__playwright__browser_navigate` |
 | Resize viewport | `mcp__playwright__browser_resize` |
-| Full-page screenshot | `mcp__playwright__browser_take_screenshot` (set `fullPage: true`) |
-| Accessibility snapshot | `mcp__playwright__browser_snapshot` |
+| Full-page screenshot | `mcp__playwright__browser_take_screenshot` (`fullPage: true`) |
 | Console errors | `mcp__playwright__browser_console_messages` |
-| Click / interact | `mcp__playwright__browser_click` |
+| DOM snapshot | `mcp__playwright__browser_snapshot` |
 
-### Legacy screenshot tool (still available)
-- `node screenshot.mjs http://localhost:3000 label` — saves to `./temporary screenshots/`
-- Useful for quick captures outside the verification loop
+### Comprehensive Design Review
+
+Invoke the `design-review` skill for thorough validation when:
+- Completing a significant UI/UX feature
+- Before finalizing any PR with visual changes
+- Needing accessibility and full responsiveness testing
 
 ---
 
@@ -202,13 +165,3 @@ No collections — flat hierarchy with three tiers (Linen/Coconut/Aero → Origi
 
 Silence. Light. Balance.
 Confident quality without ostentatious luxury.
-
----
-
-## Visual Development
-
-### Design Principles
-- Brand guidelines in the Brand Guidelines section above and in `BRAND.md`
-- When making visual (front-end, UI/UX) changes, always refer to these files for guidance
-
-This verification ensures changes meet design standards and user requirements.
