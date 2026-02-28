@@ -15,7 +15,7 @@
   border-bottom-color: transparent;
 }
 
-.header.transparent .logo,
+.header.transparent .logoText,
 .header.transparent .navLinks a,
 .header.transparent .iconLink,
 .header.transparent .langBtn,
@@ -59,7 +59,7 @@
   transition: background 0.35s ease, border-bottom-color 0.35s ease;
 }
 
-.header.transparent.scrolled .logo {
+.header.transparent.scrolled .logoText {
   color: var(--color-brand-dark);
 }
 
@@ -200,15 +200,46 @@
   /* empty spacer to balance grid */
 }
 
-.logo {
+.logoWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+  height: 2.5rem;
+  min-width: 120px;
+}
+
+.logoText {
   font-family: var(--font-serif);
   font-size: 1.75rem;
   font-weight: 700;
   color: var(--color-brand-dark);
   letter-spacing: 2px;
   text-transform: uppercase;
-  transition: color 0.35s ease;
-  text-align: center;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.logoMono {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* transparent mode — logoText white */
+.transparent .logoText {
+  color: var(--color-white);
+}
+
+/* scrolled — logoText back to brand dark */
+.transparent.scrolled .logoText {
+  color: var(--color-brand-dark);
 }
 
 .navIcons {
@@ -228,6 +259,31 @@
 
 .iconLink:hover {
   color: var(--color-brand);
+}
+
+.cartBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.cartBadge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: var(--color-gold);
+  color: var(--color-white);
+  font-family: var(--font-sans);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 /* ── Bottom row: nav links centered ── */
@@ -344,6 +400,42 @@
 
 .mobileMenu a.active {
   color: var(--color-gold);
+}
+
+/* ── Compact mode (scrolled homepage) ── */
+.compact .topRow {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.compact .navLinks {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.4s ease;
+}
+
+.compact .logoText {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.compact .logoMono {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* navLinks normal state needs transition too */
+.navLinks {
+  transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.4s ease;
+  max-height: 200px;
+}
+
+.navIcons,
+.langSwitch {
+  transition: opacity 0.3s ease;
 }
 
 @media (max-width: 768px) {

@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { ProductDetail } from "@/data/types";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useCart } from "@/contexts/CartContext";
+import { medusa } from "@/lib/medusa";
 import styles from "./ProductHero.module.css";
 
 const copy = {
@@ -12,14 +14,40 @@ const copy = {
   badge:      { ru: "Изготавливается по заказу", en: "Made to order" },
   selectSize: { ru: "Размер",              en: "Size" },
   cta:        { ru: "Заказать",            en: "Order" },
+  adding:     { ru: "Добавляем…",          en: "Adding…" },
 };
 
 export function ProductHero({ detail, price }: { detail: ProductDetail; price: string }) {
   const { lang } = useLanguage();
+  const { addItem, loading: cartLoading } = useCart();
 
   const defaultIdx = detail.sizes.findIndex((s) => s.size === "160×200");
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedSize, setSelectedSize] = useState(defaultIdx >= 0 ? defaultIdx : 0);
+  const [variantMap, setVariantMap] = useState<Record<string, string>>({});
+  const [adding, setAdding] = useState(false);
+
+  // Fetch Medusa variant IDs for this product
+  useEffect(() => {
+    const fetchVariants = async () => {
+      try {
+        const { products } = await medusa.store.product.list({
+          handle: detail.slug,
+          fields: "*variants",
+        });
+        const product = products?.[0];
+        if (!product?.variants) return;
+        const map: Record<string, string> = {};
+        for (const v of product.variants) {
+          if (v.title && v.id) map[v.title] = v.id;
+        }
+        setVariantMap(map);
+      } catch {
+        // silently fail — cart will not work but page still renders
+      }
+    };
+    fetchVariants();
+  }, [detail.slug]);
 
   const currentSize = detail.sizes[selectedSize];
   const hasMultipleImages = detail.images.length > 1;
@@ -89,6 +117,18 @@ export function ProductHero({ detail, price }: { detail: ProductDetail; price: s
             <h1 className={styles.name}>{detail.name}</h1>
             <p className={styles.tagline}>{detail.tagline}</p>
 
+            {/* Key specs */}
+            {detail.specs && detail.specs.length > 0 && (
+              <dl className={styles.specs}>
+                {detail.specs.map((s) => (
+                  <div key={s.label} className={styles.specRow}>
+                    <dt className={styles.specLabel}>{s.label}</dt>
+                    <dd className={styles.specValue}>{s.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
+
             {/* Purchase panel */}
             <div className={styles.purchasePanel}>
               <div className={styles.priceRow}>
@@ -123,8 +163,21 @@ export function ProductHero({ detail, price }: { detail: ProductDetail; price: s
               </div>
 
               {/* CTA */}
-              <button className={styles.ctaBtn}>
-                <span className={styles.ctaBtnText}>{copy.cta[lang]}</span>
+              <button
+                className={`${styles.ctaBtn} ${adding || cartLoading ? styles.ctaBtnLoading : ""}`}
+                disabled={adding || cartLoading}
+                onClick={async () => {
+                  const sizeLabel = detail.sizes[selectedSize]?.size;
+                  const variantId = sizeLabel ? variantMap[sizeLabel] : undefined;
+                  if (!variantId) return;
+                  setAdding(true);
+                  await addItem(variantId, 1);
+                  setAdding(false);
+                }}
+              >
+                <span className={styles.ctaBtnText}>
+                  {adding ? copy.adding[lang] : copy.cta[lang]}
+                </span>
               </button>
             </div>
 

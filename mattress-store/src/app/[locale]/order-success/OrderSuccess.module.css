@@ -1,0 +1,106 @@
+/* ── Order Success page ── */
+
+.page {
+  min-height: 80vh;
+  background: var(--color-bg-warm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4xl) var(--space-lg);
+}
+
+.container {
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.iconWrap {
+  margin-bottom: var(--space-sm);
+  color: var(--color-brand-dark);
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  font-weight: 400;
+  color: var(--color-brand-dark);
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+}
+
+.subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  color: var(--color-brand-dark);
+  opacity: 0.6;
+  line-height: 1.6;
+  max-width: 400px;
+}
+
+.orderNum {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  color: var(--color-brand-dark);
+  opacity: 0.5;
+  text-transform: uppercase;
+}
+
+.orderNumVal {
+  font-weight: 600;
+  opacity: 1;
+  color: var(--color-brand-dark);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  width: 100%;
+  margin-top: var(--space-sm);
+}
+
+.btnPrimary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  background: var(--color-brand-dark);
+  color: var(--color-white);
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  transition: background 0.3s ease;
+}
+
+.btnPrimary:hover {
+  background: var(--color-brand);
+}
+
+.btnSecondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  background: transparent;
+  border: 1px solid rgba(70, 63, 56, 0.2);
+  color: var(--color-brand-dark);
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.btnSecondary:hover {
+  border-color: var(--color-brand-dark);
+  background: rgba(70, 63, 56, 0.04);
+}

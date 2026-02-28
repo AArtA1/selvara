@@ -6,18 +6,42 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-E-commerce website for **SELVARA** — premium mattress brand. Built with Next.js App Router in `mattress-store/`.
+E-commerce website for **SELVARA** — premium mattress brand. Built with Next.js App Router in `mattress-store/` and Medusa.js backend in `selvara-backend/`.
 
 ## Development
 
+Both services must be running simultaneously:
+
 ```bash
-cd mattress-store
-npm run dev      # Start dev server (port 3000)
+# Terminal 1 — Medusa backend (port 9000)
+cd selvara-backend && npm run dev
+
+# Terminal 2 — Next.js frontend (port 3000)
+cd mattress-store && npm run dev
+
 npm run build    # Production build (also runs TypeScript check)
 npm run lint     # ESLint
 ```
 
 No test framework is currently configured.
+
+### Local services
+
+| Service | Port | Notes |
+|---------|------|-------|
+| Next.js frontend | 3000 | |
+| Medusa backend | 9000 | `selvara-backend/` |
+| PostgreSQL | 5432 | database: `selvara_dev` |
+| Redis | 6379 | event bus, required by Medusa |
+
+Start/check services:
+```bash
+brew services list                              # check postgres + redis status
+/opt/homebrew/opt/postgresql@16/bin/psql selvara_dev   # connect to DB
+```
+
+Medusa admin panel: `http://localhost:9000/app`
+Admin credentials: `admin@selvara.ru` / `selvara2024`
 
 ---
 
@@ -68,11 +92,24 @@ Invoke the `design-review` skill for thorough validation when:
 
 ## Architecture
 
+### Frontend (`mattress-store/`)
+
 - **Framework**: Next.js 16 (App Router, TypeScript strict mode, React 19)
 - **Styling**: CSS Modules (`.module.css` per component) + global CSS custom properties in `src/app/globals.css`
 - **Fonts**: `next/font/google` — Source Serif 4 (headings) + Source Sans 3 (body), exposed as `--font-serif` / `--font-sans`
 - **Images**: External via `saatva.imgix.net` CDN (configured in `next.config.ts`), using `next/image`
 - **Imports**: Path alias `@/*` → `./src/*`
+- **Medusa SDK**: `@medusajs/js-sdk` — initialized in `src/lib/medusa.ts`
+
+### Backend (`selvara-backend/`)
+
+- **Framework**: Medusa.js v2 — headless e-commerce backend
+- **Database**: PostgreSQL (`selvara_dev`)
+- **Cache/Events**: Redis
+- **Publishable API key**: `pk_6849f8a52269e103056439faf43935c5474bf96426738cb68a25a2d706c0d71c`
+- **Region**: Russia/RUB — `reg_01KJGGESE3CX5QZ8YXZPRPJFE3`
+- **Payment**: `pp_system_default` (manual/COD — no real payment processing yet)
+- **Seed script**: `selvara-backend/seed-selvara.mjs` — seeds all 7 products with 7 size variants each
 
 ### Routes (`src/app/`)
 
@@ -81,17 +118,44 @@ Invoke the `design-review` skill for thorough validation when:
 | `/` | Homepage: Hero, ValueProps, ProductGrid, WhySelvara, Reviews, CTA |
 | `/mattresses` | Catalog with FilterBar |
 | `/mattresses/[slug]` | PDP — uses `generateStaticParams()` for SSG |
+| `/[locale]/mattresses/[slug]` | Bilingual PDP (ru/en) |
+| `/[locale]/checkout` | Checkout form — address, contact info, order summary |
+| `/[locale]/order-success` | Post-order confirmation page |
 | `/about` | Brand story, values grid |
 | `/contact` | Contact info, help topics, FAQs |
 | `/reviews` | Reviews with filters and summary |
 | `/delivery-returns` | Delivery timeline, policies |
 
-### Data Layer (`src/data/`)
+### Data Layer
 
+**Static content** (`src/data/`) — product display, descriptions, specs:
 - `products.ts` — Product array (catalog cards)
 - `productDetails.ts` — Full product details keyed by slug (PDP pages)
 - `types.ts` — TypeScript interfaces: `Product`, `ProductDetail`, `Review`, `SizePrice`, etc.
 - `reviews.ts`, `helpTopics.ts`, `generalFaqs.ts` — Static content
+
+**Dynamic / transactional** (Medusa/PostgreSQL):
+- Carts, line items, orders — all via Medusa API
+- Prices are stored in kopecks (×100), formatted with `Intl.NumberFormat` RUB
+
+### Cart System
+
+Cart state is managed globally via `src/contexts/CartContext.tsx`:
+- `CartProvider` wraps the app in `Providers.tsx`
+- Cart ID persisted in `localStorage` (`selvara_cart_id`)
+- `CartSidebar` is rendered globally inside `Providers.tsx`
+
+**Cart flow:**
+1. PDP fetches Medusa variant IDs on mount (`fields: "*variants"`)
+2. «Заказать» → `addItem(variantId, 1)` → sidebar opens
+3. Sidebar → «Оформить заказ» → `/[locale]/checkout`
+4. Checkout: `cart.update()` → `payment.initiatePaymentSession(pp_system_default)` → `cart.complete()`
+5. Redirect to `/[locale]/order-success`
+
+**Key fields in Medusa line items:**
+- `title` — product name
+- `variant_title` — size (e.g. "160×200") — NOT `subtitle`
+- `unit_price` — in kopecks
 
 ### Component Pattern
 
@@ -103,11 +167,12 @@ Global utility classes (`.section`, `.section-warm`, `.section-title`) are defin
 
 ### Key Design Patterns
 
-- **Header** is `"use client"` — handles scroll-based transparency on homepage (transparent → solid on scroll), mobile burger menu
+- **Header** is `"use client"` — handles scroll-based transparency on homepage (transparent → solid on scroll), mobile burger menu, cart icon with badge
 - **Hero** uses `::after` pseudo-element for bottom gradient fade into next section
 - **FadeIn** wrapper component provides scroll-triggered entrance animations
 - **ProductCard** uses full-image overlay style (image fills card, text over gradient)
 - **WhySelvara** has two layouts: full-bleed duo cards (overlay style) + split image/text block
+- **Two PDP routes exist**: `/mattresses/[slug]/page.tsx` AND `/[locale]/mattresses/[slug]/page.tsx` — update both when changing PDP components
 
 ### CSS Custom Properties (key tokens)
 
