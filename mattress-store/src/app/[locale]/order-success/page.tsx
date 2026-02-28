@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import type { Lang } from "@/contexts/LanguageContext";
@@ -13,19 +14,16 @@ const copy = {
   catalog:  { ru: "Смотреть другие матрасы",                                   en: "Browse mattresses" },
 };
 
-export default function OrderSuccessPage() {
+function OrderSuccessContent() {
   const params = useParams();
   const searchParams = useSearchParams();
   const lang = (params?.locale as Lang) ?? "ru";
   const orderId = searchParams.get("id") ?? "";
-
-  // Show only last 8 chars to keep it human-readable
   const shortId = orderId ? orderId.slice(-8).toUpperCase() : null;
 
   return (
     <main className={styles.page}>
       <div className={styles.container}>
-        {/* Checkmark icon */}
         <div className={styles.iconWrap}>
           <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
             <circle cx="24" cy="24" r="23" stroke="var(--color-brand-dark)" strokeWidth="1.2" strokeOpacity="0.15" />
@@ -52,5 +50,13 @@ export default function OrderSuccessPage() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function OrderSuccessPage() {
+  return (
+    <Suspense>
+      <OrderSuccessContent />
+    </Suspense>
   );
 }
