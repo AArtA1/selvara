@@ -1,0 +1,530 @@
+/* ══════════════════════════════════════════
+   BuyingGuide — Interactive editorial section
+   Firmness scale · Size visual · Material layers · Trial timeline
+   ══════════════════════════════════════════ */
+
+.section {
+  background: var(--color-bg-warm);
+  padding: var(--space-4xl) 0 var(--space-3xl);
+}
+
+/* ── Header ── */
+.header {
+  text-align: center;
+  padding: 0 clamp(1.5rem, 4vw, 6rem) var(--space-xl);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gray);
+  margin-bottom: var(--space-lg);
+}
+
+.heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.375rem, 3vw, 2.25rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--color-brand-dark);
+}
+
+.headingRule {
+  width: 48px;
+  height: 1px;
+  background: var(--color-gold);
+  margin: var(--space-xl) auto 0;
+}
+
+/* ── Tabs ── */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  max-width: 720px;
+  margin: var(--space-xl) auto var(--space-2xl);
+  padding: 0 var(--space-lg);
+}
+
+.tab {
+  position: relative;
+  padding: 0.875rem 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-brand-dark);
+  opacity: 0.35;
+  transition: opacity 0.35s ease;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.tab::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 1.5px;
+  background: var(--color-gold);
+  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.tab:hover {
+  opacity: 0.6;
+}
+
+.tabActive {
+  opacity: 1;
+}
+
+.tabActive::after {
+  width: 100%;
+  left: 0;
+}
+
+/* ── Content container ── */
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 4vw, 4rem);
+}
+
+/* ── Shared panel styles ── */
+.panelText {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.8;
+  color: var(--color-brand-dark);
+  opacity: 0.6;
+}
+
+.panelNote {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--color-brand-dark);
+  opacity: 0.35;
+  margin-top: var(--space-2xl);
+  text-align: center;
+  font-style: italic;
+}
+
+/* ══════════════════════════════════════════
+   Tab 0 — Firmness Scale
+   ══════════════════════════════════════════ */
+
+.firmnessScale {
+  padding: var(--space-lg) 0 var(--space-2xl);
+}
+
+.firmnessTrack {
+  position: relative;
+  height: 2px;
+  background: rgba(70, 63, 56, 0.1);
+  margin: 0 2rem;
+}
+
+.firmnessThumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  box-shadow: 0 0 0 4px rgba(213, 170, 99, 0.15);
+  transition: left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.firmnessLabels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--space-lg);
+  padding: 0 0.5rem;
+}
+
+.firmnessLabel {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-brand-dark);
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+  padding: 0.5rem 1rem;
+}
+
+.firmnessLabel:hover {
+  opacity: 0.6;
+}
+
+.firmnessLabelActive {
+  opacity: 1;
+}
+
+.firmnessInfo {
+  text-align: center;
+  padding: var(--space-lg) 0;
+}
+
+.modelTags {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: var(--space-lg);
+}
+
+.modelTag {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--color-brand-dark);
+  padding: 0.375rem 1rem;
+  border: 1px solid rgba(70, 63, 56, 0.15);
+}
+
+/* ══════════════════════════════════════════
+   Tab 1 — Size Visual
+   ══════════════════════════════════════════ */
+
+.sizeVisual {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(0.375rem, 1vw, 0.75rem);
+  padding: var(--space-xl) 0;
+}
+
+.sizeBlock {
+  width: calc(var(--size-ratio) * clamp(55px, 10vw, 110px));
+  height: clamp(70px, 12vw, 110px);
+  background: rgba(70, 63, 56, 0.03);
+  border: 1px solid rgba(70, 63, 56, 0.1);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.35s ease,
+              background 0.35s ease,
+              transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  padding: 0;
+}
+
+.sizeBlock:hover {
+  border-color: rgba(70, 63, 56, 0.25);
+  transform: translateY(-2px);
+}
+
+.sizeBlockActive {
+  border-color: var(--color-gold);
+  background: rgba(213, 170, 99, 0.05);
+  transform: translateY(-4px);
+}
+
+.sizeBlockActive:hover {
+  transform: translateY(-4px);
+}
+
+.sizeCm {
+  font-family: var(--font-sans);
+  font-size: clamp(0.5625rem, 1.2vw, 0.6875rem);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--color-brand-dark);
+  opacity: 0.4;
+}
+
+.sizeBlockActive .sizeCm {
+  opacity: 0.8;
+}
+
+.sizeInfo {
+  text-align: center;
+  padding: var(--space-xl) 0 0;
+}
+
+.sizeLabel {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-brand-dark);
+  margin-bottom: 0.25rem;
+}
+
+.sizeDim {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  color: var(--color-brand-dark);
+  opacity: 0.4;
+  margin-bottom: var(--space-md);
+}
+
+/* ══════════════════════════════════════════
+   Tab 2 — Material Layers
+   ══════════════════════════════════════════ */
+
+.layerStack {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.layer {
+  overflow: hidden;
+}
+
+.layerHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.125rem 1.5rem;
+  background: var(--layer-color);
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.layerHeader:hover {
+  opacity: 0.85;
+}
+
+.layerName {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--color-brand-dark);
+}
+
+/* +/− icon via pseudo-elements */
+.layerIcon {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.layerIcon::before,
+.layerIcon::after {
+  content: "";
+  position: absolute;
+  background: var(--color-brand-dark);
+  opacity: 0.4;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.layerIcon::before {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  transform: translateY(-50%);
+}
+
+.layerIcon::after {
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 100%;
+  transform: translateX(-50%);
+}
+
+.layerExpanded .layerIcon::after {
+  transform: translateX(-50%) rotate(90deg);
+  opacity: 0;
+}
+
+.layerBody {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 1.5rem;
+  background: rgba(246, 245, 243, 0.7);
+  transition: max-height 0.3s ease-in, padding 0.3s ease-in;
+}
+
+.layerExpanded .layerBody {
+  max-height: 150px;
+  padding: 1rem 1.5rem 1.25rem;
+  transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+}
+
+.layerDetail {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  line-height: 1.75;
+  color: var(--color-brand-dark);
+  opacity: 0.6;
+}
+
+/* ══════════════════════════════════════════
+   Tab 3 — Trial Timeline
+   ══════════════════════════════════════════ */
+
+.timeline {
+  position: relative;
+  padding: var(--space-2xl) 0 var(--space-xl);
+}
+
+.timelineTrack {
+  position: absolute;
+  top: calc(var(--space-2xl) + 7px);
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(70, 63, 56, 0.1);
+}
+
+.timelineFill {
+  height: 100%;
+  background: var(--color-gold);
+  transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.timelineSteps {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.stepDot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-bg-warm);
+  border: 2px solid rgba(70, 63, 56, 0.12);
+  transition: border-color 0.35s ease,
+              background 0.35s ease,
+              box-shadow 0.35s ease;
+}
+
+.stepReached .stepDot {
+  background: var(--color-gold);
+  border-color: var(--color-gold);
+}
+
+.stepActive .stepDot {
+  box-shadow: 0 0 0 4px rgba(213, 170, 99, 0.15);
+}
+
+.stepDay {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-brand-dark);
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+}
+
+.stepActive .stepDay {
+  opacity: 1;
+}
+
+.milestoneInfo {
+  text-align: center;
+  padding: var(--space-xl) 0;
+}
+
+.milestoneTitle {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-brand-dark);
+  margin-bottom: var(--space-md);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .tab {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.625rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-3xl) 0 var(--space-2xl);
+  }
+
+  .tabs {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .tab {
+    flex: 0 0 auto;
+    padding: 0.625rem 1rem;
+    font-size: 0.625rem;
+    letter-spacing: 0.12em;
+  }
+
+  .content {
+    padding: 0 var(--space-lg);
+  }
+
+  .firmnessTrack {
+    margin: 0 1rem;
+  }
+
+  .firmnessLabel {
+    padding: 0.5rem 0.5rem;
+    font-size: 0.5625rem;
+  }
+
+  .sizeBlock {
+    height: clamp(50px, 10vw, 80px);
+  }
+
+  .layerHeader {
+    padding: 1rem 1.25rem;
+  }
+
+  .timeline {
+    padding: var(--space-xl) 0 var(--space-lg);
+  }
+
+  .timelineTrack {
+    top: calc(var(--space-xl) + 7px);
+  }
+}
