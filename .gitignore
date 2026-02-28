@@ -12,11 +12,11 @@ screenshots/
 
 *.png
 
+photos/
+
 .playwright-mcp/
 
 *-review/
-
-.claude
 
 # Virtual environments
 .venv
