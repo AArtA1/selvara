@@ -3,6 +3,7 @@
 Next.js 16 storefront for SELVARA. See root [README](../README.md) for full setup.
 
 ```bash
+
 npm install
 npm run dev    # http://localhost:3000
 npm run build  # production build + TypeScript check
