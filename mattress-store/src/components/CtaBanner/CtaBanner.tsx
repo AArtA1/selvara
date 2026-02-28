@@ -1,33 +1,28 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/Container/Container";
 import { useLanguage } from "@/contexts/LanguageContext";
 import styles from "./CtaBanner.module.css";
 
-const categories = [
-  {
-    image:
-      "https://saatva.imgix.net/products/saatva-classic/lifestyle1-plush-soft/saatva-classic-lifestyle1-plush-soft-3-2.jpg?w=400&auto=format",
-    label: "Bed Linen",
+const copy = {
+  heading: {
+    ru: "Не уверены, какой матрас выбрать?",
+    en: "Not sure which mattress to choose?",
   },
-  {
-    image:
-      "https://saatva.imgix.net/products/memory-foam-hybrid/sweep/memory-foam-hybrid-sweep-3-2.jpg?w=400&auto=format",
-    label: "Bedding",
+  subheading: {
+    ru: "Мы поможем подобрать модель под ваш стиль сна, вес и предпочтения по жёсткости.",
+    en: "We'll help you pick the right model for your sleep style, weight, and firmness preference.",
   },
-  {
-    image:
-      "https://saatva.imgix.net/products/saatva-latex-hybrid/lifestyle/standard/saatva-latex-hybrid-lifestyle-standard-3-2.jpg?w=400&auto=format",
-    label: "Mattresses",
+  cta: {
+    ru: "Все матрасы",
+    en: "All mattresses",
   },
-  {
-    image:
-      "https://saatva.imgix.net/products/zenhaven/angle/standard/zenhaven-angle-standard-3-2.jpg?w=400&auto=format",
-    label: "Toppers",
+  ctaContact: {
+    ru: "Связаться с нами",
+    en: "Contact us",
   },
-];
+};
 
 export function CtaBanner() {
   const { lang } = useLanguage();
@@ -35,25 +30,17 @@ export function CtaBanner() {
   return (
     <section className={styles.section}>
       <Container>
-        <p className={styles.headline}>
-          Discover the finest mattresses, bedding and toppers. A marriage of
-          refined materials and impeccable craftsmanship.
-        </p>
-        <div className={styles.grid}>
-          {categories.map((cat) => (
-            <Link key={cat.label} href={`/${lang}/mattresses`} className={styles.card}>
-              <div className={styles.imageWrap}>
-                <Image
-                  src={cat.image}
-                  alt={cat.label}
-                  width={400}
-                  height={500}
-                  className={styles.image}
-                />
-              </div>
-              <span className={styles.label}>{cat.label}</span>
+        <div className={styles.inner}>
+          <h2 className={styles.heading}>{copy.heading[lang]}</h2>
+          <p className={styles.subheading}>{copy.subheading[lang]}</p>
+          <div className={styles.actions}>
+            <Link href={`/${lang}/mattresses`} className={styles.btnPrimary}>
+              {copy.cta[lang]}
             </Link>
-          ))}
+            <Link href={`/${lang}/contact`} className={styles.btnSecondary}>
+              {copy.ctaContact[lang]}
+            </Link>
+          </div>
         </div>
       </Container>
     </section>

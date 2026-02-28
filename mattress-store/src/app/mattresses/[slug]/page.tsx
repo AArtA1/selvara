@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { Breadcrumb } from "@/components/Breadcrumb/Breadcrumb";
 import { ProductHero } from "@/components/ProductHero/ProductHero";
 import { FeatureGrid } from "@/components/FeatureGrid/FeatureGrid";
 import { MattressLayers } from "@/components/MattressLayers/MattressLayers";
@@ -8,6 +7,7 @@ import { SizeTable } from "@/components/SizeTable/SizeTable";
 import { Accordion } from "@/components/Accordion/Accordion";
 import { RelatedProducts } from "@/components/RelatedProducts/RelatedProducts";
 import { CtaBanner } from "@/components/CtaBanner/CtaBanner";
+import { ValueProps } from "@/components/ValueProps/ValueProps";
 import { productDetails } from "@/data/productDetails";
 import { products } from "@/data/products";
 
@@ -45,12 +45,6 @@ export default async function ProductPage({ params }: PageProps) {
 
   return (
     <>
-      <Breadcrumb
-        items={[
-          { label: "Mattresses", href: "/mattresses" },
-          { label: detail.name },
-        ]}
-      />
       <ProductHero detail={detail} price={product?.price || ""} />
       <FeatureGrid features={detail.features} images={detail.images} />
       <MattressLayers layers={detail.layers} />

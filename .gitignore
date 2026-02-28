@@ -6,6 +6,13 @@ dist/
 wheels/
 *.egg-info
 
+outdated/
+
+screenshots/
+
+*.png
+
+.playwright-mcp/
 
 *-review/
 

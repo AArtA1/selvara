@@ -52,6 +52,7 @@ export interface ProductDetail {
   tagline: string;
   description: string;
   images: string[];
+  specs?: { label: string; value: string }[];
   features: {
     icon: string;
     title: string;

@@ -1,69 +1,95 @@
+/* ══════════════════════════════════════════
+   CtaBanner — Consultation CTA
+   ══════════════════════════════════════════ */
+
 .section {
   padding: var(--space-4xl) 0;
+  background: var(--color-brand-dark);
 }
 
-.headline {
+.inner {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.heading {
   font-family: var(--font-serif);
   font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 400;
   font-style: italic;
-  line-height: 1.4;
-  text-align: center;
-  color: var(--color-brand-dark);
-  max-width: 640px;
-  margin: 0 auto var(--space-3xl);
+  line-height: 1.35;
+  color: var(--color-white);
+  margin-bottom: var(--space-lg);
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-lg);
-}
-
-.card {
-  display: block;
-}
-
-.imageWrap {
-  overflow: hidden;
-  margin-bottom: var(--space-md);
-}
-
-.image {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-.card:hover .image {
-  transform: scale(1.04);
-}
-
-.label {
-  display: block;
+.subheading {
   font-family: var(--font-sans);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 2px;
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: var(--space-2xl);
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 2.5rem;
+  background: var(--color-gold);
+  color: var(--color-brand-dark);
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.btnPrimary:hover {
+  background: #c9a058;
   color: var(--color-brand-dark);
 }
 
-@media (max-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.btnSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 2.5rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.7);
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.btnSecondary:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: var(--color-white);
 }
 
 @media (max-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-md);
+  .actions {
+    flex-direction: column;
+    align-items: center;
   }
 
-  .label {
-    font-size: 0.75rem;
+  .btnPrimary,
+  .btnSecondary {
+    width: 100%;
+    max-width: 280px;
   }
 }

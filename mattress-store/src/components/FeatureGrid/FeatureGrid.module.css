@@ -1,12 +1,39 @@
-.craftSection {
-  /* full-bleed — no extra padding, blocks stack directly */
+/* ══════════════════════════════════════════
+   FeatureGrid — Editorial intro + material blocks
+   ══════════════════════════════════════════ */
+
+.section {
+  /* no padding — blocks stack edge to edge */
 }
 
-/* ── Each editorial block ── */
+/* ── Editorial intro ── */
+.intro {
+  padding: var(--space-4xl) clamp(2rem, 8vw, 12rem);
+  text-align: center;
+  border-bottom: 1px solid rgba(70, 63, 56, 0.08);
+}
+
+.introText {
+  font-family: var(--font-serif);
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.7;
+  color: var(--color-brand-dark);
+  max-width: 720px;
+  margin: 0 auto;
+  opacity: 0.85;
+}
+
+/* ── Material blocks ── */
+.materialsGrid {
+  /* blocks stack vertically, full-bleed */
+}
+
 .block {
   display: grid;
   grid-template-columns: 55fr 45fr;
-  min-height: 560px;
+  min-height: 520px;
 }
 
 .blockReverse .imageCol {
@@ -20,6 +47,7 @@
 /* ── Image column ── */
 .imageCol {
   position: relative;
+  overflow: hidden;
 }
 
 .imageWrap {
@@ -29,6 +57,11 @@
 
 .image {
   object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.block:hover .image {
+  transform: scale(1.03);
 }
 
 /* ── Text column ── */
@@ -68,14 +101,19 @@
 
 /* ── Feature description ── */
 .featureDesc {
+  font-family: var(--font-sans);
   font-size: 0.9375rem;
   line-height: 1.85;
   color: var(--color-gray);
   max-width: 400px;
 }
 
-/* ── Mobile ── */
+/* ── Responsive ── */
 @media (max-width: 768px) {
+  .intro {
+    padding: var(--space-3xl) var(--space-lg);
+  }
+
   .block,
   .blockReverse {
     grid-template-columns: 1fr;
@@ -85,7 +123,6 @@
   .imageCol {
     position: relative;
     height: 280px;
-    min-height: unset;
   }
 
   .imageWrap {

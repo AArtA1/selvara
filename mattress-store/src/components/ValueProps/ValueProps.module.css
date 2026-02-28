@@ -1,62 +1,108 @@
+/* ══════════════════════════════════════════
+   Value Props — Editorial service block
+   Light background, generous spacing,
+   vertical dividers between columns
+   ══════════════════════════════════════════ */
+
 .wrapper {
-  background: var(--color-brand-dark);
+  background: var(--color-bg-warm);
+  padding: var(--space-4xl) clamp(1.5rem, 4vw, 6rem);
+  text-align: center;
+  border-top: 1px solid rgba(70, 63, 56, 0.08);
 }
 
-.valueProps {
+.heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.375rem, 2.5vw, 1.875rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--color-brand-dark);
+  margin-bottom: var(--space-3xl);
+  letter-spacing: 0.01em;
+}
+
+/* ── 3-column grid with vertical dividers ── */
+.grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-lg);
-  padding: var(--space-xl) var(--space-lg);
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
-  text-align: center;
 }
 
-.valueProp {
+.item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-xs);
+  padding: 0 clamp(1rem, 3vw, 3rem);
+  position: relative;
 }
 
+/* Vertical divider between columns */
+.item + .item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10%;
+  height: 80%;
+  width: 1px;
+  background: rgba(70, 63, 56, 0.1);
+}
+
+/* ── Icon ── */
 .icon {
-  width: 28px;
-  height: 28px;
+  width: 72px;
+  height: 72px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-gold);
-  opacity: 0.85;
+  color: var(--color-brand-dark);
+  opacity: 0.5;
+  margin-bottom: var(--space-xl);
 }
 
 .icon svg {
-  width: 22px;
-  height: 22px;
-  stroke-width: 1.2;
+  width: 56px;
+  height: 56px;
 }
 
+/* ── Label ── */
 .label {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: var(--color-brand-dark);
+  margin-bottom: 0.625rem;
+  letter-spacing: 0.01em;
 }
 
+/* ── Detail ── */
 .detail {
   font-family: var(--font-sans);
-  font-size: 0.7rem;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.45);
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  font-size: 0.8125rem;
+  line-height: 1.65;
+  color: var(--color-gray);
+  max-width: 260px;
 }
 
+/* ── Mobile ── */
 @media (max-width: 768px) {
-  .valueProps {
-    grid-template-columns: repeat(1, 1fr);
-    gap: var(--space-lg);
-    padding: var(--space-xl) var(--space-xl);
+  .wrapper {
+    padding: var(--space-3xl) var(--space-lg);
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+
+  .item {
+    padding: 0;
+  }
+
+  .item + .item::before {
+    top: calc(-1 * var(--space-lg));
+    left: 20%;
+    height: 1px;
+    width: 60%;
   }
 }

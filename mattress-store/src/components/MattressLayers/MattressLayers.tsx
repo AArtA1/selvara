@@ -16,7 +16,7 @@ export function MattressLayers({ layers }: { layers: MattressLayer[] }) {
         <h2 className="section-title">{sectionTitle[lang]}</h2>
         <div className={styles.layers}>
           {layers.map((layer, i) => (
-            <div key={layer.name} className={styles.layer}>
+            <div key={i} className={styles.layer}>
               <div className={styles.number}>
                 {String(i + 1).padStart(2, "0")}
               </div>

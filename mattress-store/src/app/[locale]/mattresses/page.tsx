@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { ComparisonTeaser } from "@/components/ComparisonTeaser/ComparisonTeaser";
+import { CraftSection } from "@/components/CraftSection/CraftSection";
+import { BuyingGuide } from "@/components/BuyingGuide/BuyingGuide";
 import { ValueProps } from "@/components/ValueProps/ValueProps";
-import { CtaBanner } from "@/components/CtaBanner/CtaBanner";
 import { products } from "@/data/products";
 import { MattressesCatalog } from "@/app/mattresses/MattressesCatalog";
 
@@ -13,9 +13,9 @@ export default function MattressesPage() {
   return (
     <>
       <MattressesCatalog products={products} />
-      <ComparisonTeaser />
+      <CraftSection />
+      <BuyingGuide />
       <ValueProps />
-      <CtaBanner />
     </>
   );
 }
