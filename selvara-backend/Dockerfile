@@ -9,6 +9,8 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+# Отключаем сборку admin-панели — экономит 3-5 минут
+ENV DISABLE_MEDUSA_ADMIN=true
 RUN npm run build
 
 # ── Stage 3: runner ────────────────────────────────────────
