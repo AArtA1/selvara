@@ -32,4 +32,4 @@ COPY --from=builder /app/medusa-config.js ./medusa-config.js
 
 EXPOSE 9000
 
-CMD ["sh", "-c", "./node_modules/.bin/medusa db:migrate && node --require ./.medusa/server/instrumentation.js .medusa/server/src/index.js"]
+CMD ["sh", "-c", "./node_modules/.bin/medusa db:migrate && ./node_modules/.bin/medusa start"]
