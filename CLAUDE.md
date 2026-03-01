@@ -25,6 +25,10 @@ npm run lint     # ESLint
 
 No test framework is currently configured.
 
+### Git commits
+
+**Never create git commits automatically after making code changes.** Only commit when the user explicitly asks (e.g., "сделай коммит", "commit this", "commit and push").
+
 ### Local services
 
 | Service | Port | Notes |
