@@ -28,4 +28,4 @@ COPY --from=builder /app/package.json ./package.json
 
 EXPOSE 9000
 
-CMD ["sh", "-c", "node .medusa/server/index.js migrate && node .medusa/server/index.js"]
+CMD ["sh", "-c", "./node_modules/.bin/medusa db:migrate && node .medusa/server/index.js"]
