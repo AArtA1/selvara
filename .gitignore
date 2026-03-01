@@ -22,3 +22,7 @@ screenshot.mjs
 
 # Virtual environments
 .venv
+
+# Environment files with secrets
+selvara-backend/.env
+selvara-backend/.env.prod
