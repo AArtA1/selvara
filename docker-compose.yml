@@ -40,7 +40,7 @@ services:
       redis:
         condition: service_healthy
     environment:
-      DATABASE_URL: postgres://selvara:${POSTGRES_PASSWORD:-selvara2024}@postgres:5432/selvara_dev
+      DATABASE_URL: postgres://selvara:${POSTGRES_PASSWORD:-selvara2024}@postgres:5432/selvara_dev?sslmode=disable
       REDIS_URL: redis://redis:6379
       JWT_SECRET: ${JWT_SECRET:-change-me-in-production}
       COOKIE_SECRET: ${COOKIE_SECRET:-change-me-in-production}
