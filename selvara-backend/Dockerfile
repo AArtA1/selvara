@@ -14,6 +14,9 @@ COPY . .
 # Отключаем сборку admin-панели — экономит 3-5 минут
 ENV DISABLE_MEDUSA_ADMIN=true
 RUN pnpm run build
+# Компилируем medusa-config.ts → medusa-config.js
+RUN ./node_modules/.bin/tsc --allowJs --esModuleInterop --moduleResolution node \
+    --target es2020 --module commonjs --outDir . medusa-config.ts || true
 
 # ── Stage 3: runner ────────────────────────────────────────
 FROM node:20-alpine AS runner
