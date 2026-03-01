@@ -3,7 +3,7 @@ FROM node:20-alpine AS deps
 WORKDIR /app
 RUN npm install -g pnpm
 COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile --shamefully-hoist
 
 # ── Stage 2: builder ───────────────────────────────────────
 FROM node:20-alpine AS builder
