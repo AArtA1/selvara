@@ -20,7 +20,7 @@ RUN ./node_modules/.bin/tsc --allowJs --esModuleInterop --moduleResolution node 
 FROM node:20-alpine AS runner
 WORKDIR /app
 
-ENV NODE_ENV=production
+ENV NODE_ENV=development
 
 # Copy build output and production deps
 COPY --from=builder /app/.medusa ./.medusa
