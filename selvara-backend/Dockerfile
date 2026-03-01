@@ -11,8 +11,6 @@ WORKDIR /app
 RUN npm install -g pnpm
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-# Отключаем сборку admin-панели — экономит 3-5 минут
-ENV DISABLE_MEDUSA_ADMIN=true
 RUN pnpm run build
 # Компилируем medusa-config.ts → medusa-config.js
 RUN ./node_modules/.bin/tsc --allowJs --esModuleInterop --moduleResolution node \
