@@ -14,7 +14,7 @@ COPY . .
 RUN pnpm run build
 # Компилируем medusa-config.ts → medusa-config.js
 RUN ./node_modules/.bin/tsc --allowJs --esModuleInterop --moduleResolution node \
-    --target es2020 --module commonjs --outDir . medusa-config.ts || true
+    --target es2020 --module commonjs --outDir . medusa-config.ts
 
 # ── Stage 3: runner ────────────────────────────────────────
 FROM node:20-alpine AS runner
@@ -27,7 +27,8 @@ COPY --from=builder /app/.medusa ./.medusa
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/medusa-config.js ./medusa-config.js
+COPY --from=builder /app/init.mjs ./init.mjs
 
 EXPOSE 9000
 
-CMD ["sh", "-c", "./node_modules/.bin/medusa db:migrate && ./node_modules/.bin/medusa start"]
+CMD ["sh", "-c", "./node_modules/.bin/medusa db:migrate && ./node_modules/.bin/medusa start & node init.mjs; wait"]
