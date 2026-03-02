@@ -6,6 +6,8 @@
  *   docker exec <backend-container> node init.mjs
  */
 
+import { execSync } from "node:child_process";
+
 const BASE = process.env.MEDUSA_BACKEND_URL || "http://localhost:9000";
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@selvara.ru";
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "selvara2024";
@@ -37,42 +39,35 @@ async function main() {
   });
 
   if (!authRes.ok) {
-    console.log("Admin user not found. Creating...");
+    console.log("Admin user not found. Creating via CLI...");
 
-    // Register admin user
-    const regRes = await fetch(`${BASE}/auth/user/emailpass/register`, {
+    // Use CLI to create user — it writes directly to DB,
+    // bypassing the chicken-and-egg auth problem
+    try {
+      execSync(
+        `./node_modules/.bin/medusa user --email "${ADMIN_EMAIL}" --password "${ADMIN_PASSWORD}"`,
+        { stdio: "inherit" }
+      );
+      console.log("Admin user created\n");
+    } catch (err) {
+      console.error("Failed to create admin user via CLI:", err.message);
+      process.exit(1);
+    }
+
+    // Now authenticate with the newly created user
+    const retryAuth = await fetch(`${BASE}/auth/user/emailpass`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email: ADMIN_EMAIL, password: ADMIN_PASSWORD }),
     });
 
-    if (!regRes.ok) {
-      const err = await regRes.text();
-      console.error("Failed to create admin user:", err);
-      console.error("\nRun manually on VPS:");
-      console.error(`  docker exec <backend-container> ./node_modules/.bin/medusa user --email ${ADMIN_EMAIL} --password ${ADMIN_PASSWORD}`);
+    if (!retryAuth.ok) {
+      console.error("Created user but failed to authenticate");
       process.exit(1);
     }
 
-    const regData = await regRes.json();
-    token = regData.token;
-
-    // Create the actual User entity (auth identity alone is not enough)
-    const createUserRes = await fetch(`${BASE}/admin/users`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-      body: JSON.stringify({ email: ADMIN_EMAIL }),
-    });
-
-    if (!createUserRes.ok) {
-      const err = await createUserRes.text();
-      console.error("Auth identity created but failed to create User entity:", err);
-      console.error("\nRun manually on VPS:");
-      console.error(`  docker exec <backend-container> ./node_modules/.bin/medusa user --email ${ADMIN_EMAIL} --password ${ADMIN_PASSWORD}`);
-      process.exit(1);
-    }
-
-    console.log("Admin user created\n");
+    const retryData = await retryAuth.json();
+    token = retryData.token;
   } else {
     const authData = await authRes.json();
     token = authData.token;
