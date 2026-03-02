@@ -13,8 +13,8 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN pnpm run build
 # Компилируем medusa-config.ts → medusa-config.js
-RUN ./node_modules/.bin/tsc --allowJs --esModuleInterop --moduleResolution node \
-    --target es2020 --module commonjs --outDir . medusa-config.ts
+RUN ./node_modules/.bin/tsc --allowJs --esModuleInterop --moduleResolution node16 \
+    --target es2020 --module node16 --outDir . medusa-config.ts
 
 # ── Stage 3: runner ────────────────────────────────────────
 FROM node:20-alpine AS runner
