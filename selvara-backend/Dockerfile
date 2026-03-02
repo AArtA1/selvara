@@ -26,6 +26,7 @@ COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/tsconfig.json ./tsconfig.json
 COPY --from=builder /app/medusa-config.ts ./medusa-config.ts
 COPY --from=builder /app/init.mjs ./init.mjs
+COPY --from=builder /app/seed-selvara.mjs ./seed-selvara.mjs
 
 EXPOSE 9000
 

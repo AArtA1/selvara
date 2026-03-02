@@ -3,7 +3,9 @@
  * Run: node seed-selvara.mjs
  */
 
-const BASE = "http://localhost:9000";
+const BASE = process.env.MEDUSA_BACKEND_URL || "http://localhost:9000";
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@selvara.ru";
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "selvara2024";
 
 // Parse "60 000 ₽" → 6000000 (kopecks)
 function parsePrice(str) {
@@ -116,7 +118,7 @@ async function main() {
   const authRes = await fetch(`${BASE}/auth/user/emailpass`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email: "admin@selvara.ru", password: "selvara2024" }),
+    body: JSON.stringify({ email: ADMIN_EMAIL, password: ADMIN_PASSWORD }),
   });
   const { token } = await authRes.json();
   const headers = { "Content-Type": "application/json", Authorization: `Bearer ${token}` };

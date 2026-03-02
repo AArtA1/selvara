@@ -99,6 +99,7 @@ async function main() {
   if (existingKey) {
     console.log("Publishable key already exists\n");
     printKey(existingKey.token);
+    await seedIfEmpty(headers);
     return;
   }
 
@@ -124,6 +125,25 @@ async function main() {
   }
 
   printKey(api_key.token);
+
+  // 6. Seed products if none exist
+  await seedIfEmpty(headers);
+}
+
+async function seedIfEmpty(headers) {
+  try {
+    const res = await fetch(`${BASE}/admin/products?limit=1`, { headers });
+    const data = await res.json();
+    if (data.products?.length > 0) {
+      console.log(`Products already exist (${data.count} total). Skipping seed.\n`);
+      return;
+    }
+    console.log("No products found. Seeding SELVARA products...\n");
+    execSync("node seed-selvara.mjs", { stdio: "inherit" });
+    console.log("Seeding complete.\n");
+  } catch (err) {
+    console.error("Seed check/run failed:", err.message);
+  }
 }
 
 function printKey(key) {

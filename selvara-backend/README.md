@@ -1,76 +1,106 @@
-<p align="center">
-  <a href="https://www.medusajs.com">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/59018053/229103275-b5e482bb-4601-46e6-8142-244f531cebdb.svg">
-    <source media="(prefers-color-scheme: light)" srcset="https://user-images.githubusercontent.com/59018053/229103726-e5b529a3-9b3f-4970-8a1f-c6af37f087bf.svg">
-    <img alt="Medusa logo" src="https://user-images.githubusercontent.com/59018053/229103726-e5b529a3-9b3f-4970-8a1f-c6af37f087bf.svg">
-    </picture>
-  </a>
-</p>
-<h1 align="center">
-  Medusa
-</h1>
+# SELVARA Backend
 
-<h4 align="center">
-  <a href="https://docs.medusajs.com">Documentation</a> |
-  <a href="https://www.medusajs.com">Website</a>
-</h4>
+Medusa v2 backend for the SELVARA mattress store.
 
-<p align="center">
-  Building blocks for digital commerce
-</p>
-<p align="center">
-  <a href="https://github.com/medusajs/medusa/blob/master/CONTRIBUTING.md">
-    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat" alt="PRs welcome!" />
-  </a>
-    <a href="https://www.producthunt.com/posts/medusa"><img src="https://img.shields.io/badge/Product%20Hunt-%231%20Product%20of%20the%20Day-%23DA552E" alt="Product Hunt"></a>
-  <a href="https://discord.gg/xpCwq3Kfn8">
-    <img src="https://img.shields.io/badge/chat-on%20discord-7289DA.svg" alt="Discord Chat" />
-  </a>
-  <a href="https://twitter.com/intent/follow?screen_name=medusajs">
-    <img src="https://img.shields.io/twitter/follow/medusajs.svg?label=Follow%20@medusajs" alt="Follow @medusajs" />
-  </a>
-</p>
+## Local Development
 
-## Compatibility
+Prerequisites: PostgreSQL 16, Redis 7, Node.js >= 20.
 
-This starter is compatible with versions >= 2 of `@medusajs/medusa`. 
+```bash
+# 1. Install dependencies
+pnpm install
 
-## Getting Started
+# 2. Create database
+createdb selvara_dev
 
-Visit the [Quickstart Guide](https://docs.medusajs.com/learn/installation) to set up a server.
+# 3. Run migrations
+pnpm medusa db:migrate
 
-Visit the [Docs](https://docs.medusajs.com/learn/installation#get-started) to learn more about our system requirements.
+# 4. Create admin user
+pnpm medusa user --email admin@selvara.ru --password selvara2024
 
-## What is Medusa
+# 5. Start dev server (port 9000)
+npm run dev
+```
 
-Medusa is a set of commerce modules and tools that allow you to build rich, reliable, and performant commerce applications without reinventing core commerce logic. The modules can be customized and used to build advanced ecommerce stores, marketplaces, or any product that needs foundational commerce primitives. All modules are open-source and freely available on npm.
+Admin panel: http://localhost:9000/app
 
-Learn more about [Medusa’s architecture](https://docs.medusajs.com/learn/introduction/architecture) and [commerce modules](https://docs.medusajs.com/learn/fundamentals/modules/commerce-modules) in the Docs.
+## Production (Docker)
 
-## Build with AI Agents
+### 1. Configure environment
 
-### Claude Code Plugin
+Create `.env.prod` from the template:
 
-If you use AI agents like Claude Code, check out the [medusa-dev Claude Code plugin](https://github.com/medusajs/medusa-claude-plugins).
+```bash
+cp .env.template .env.prod
+```
 
-### Other Agents
+Fill in `.env.prod`:
 
-If you use AI agents other than Claude Code, copy the [skills directory](https://github.com/medusajs/medusa-claude-plugins/tree/main/plugins/medusa-dev/skills) into your agent's relevant `skills` directory.
+```env
+POSTGRES_PASSWORD=<strong-password>
+JWT_SECRET=<random-64-char-hex>
+COOKIE_SECRET=<random-64-char-hex>
+STORE_CORS=http://<your-ip>:3000
+ADMIN_CORS=http://<your-ip>:9000
+AUTH_CORS=http://<your-ip>:9000
+ADMIN_EMAIL=your@email.com
+ADMIN_PASSWORD=<admin-password>
+```
 
-### MCP Server
+Generate secrets:
+```bash
+openssl rand -hex 32  # for JWT_SECRET
+openssl rand -hex 32  # for COOKIE_SECRET
+```
 
-You can also add the MCP server `https://docs.medusajs.com/mcp` to your AI agents to answer questions related to Medusa. The `medusa-dev` Claude Code plugin includes this MCP server by default.
+### 2. Build and start
 
-## Community & Contributions
+```bash
+docker compose --env-file .env.prod up -d --build
+```
 
-The community and core team are available in [GitHub Discussions](https://github.com/medusajs/medusa/discussions), where you can ask for support, discuss roadmap, and share ideas.
+This starts 3 services:
+- **PostgreSQL** (port 5432)
+- **Redis** (port 6379)
+- **Medusa backend** (port 9000)
 
-Join our [Discord server](https://discord.com/invite/medusajs) to meet other community members.
+On startup, the backend automatically:
+1. Runs database migrations
+2. Starts the Medusa server
+3. Runs `init.mjs` which creates the admin user and publishable API key
 
-## Other channels
+### 3. Get the publishable API key
 
-- [GitHub Issues](https://github.com/medusajs/medusa/issues)
-- [Twitter](https://twitter.com/medusajs)
-- [LinkedIn](https://www.linkedin.com/company/medusajs)
-- [Medusa Blog](https://medusajs.com/blog/)
+```bash
+docker compose --env-file .env.prod logs backend | grep PUBLISHABLE_KEY
+```
+
+Add the key to the frontend `.env`:
+```env
+NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=pk_xxxxx
+```
+
+### 4. Seed products (first time only)
+
+```bash
+# From your local machine (with backend running)
+node seed-selvara.mjs
+```
+
+### Useful commands
+
+```bash
+# View logs
+docker compose --env-file .env.prod logs -f backend
+
+# Restart
+docker compose --env-file .env.prod restart backend
+
+# Rebuild from scratch
+docker compose --env-file .env.prod down
+docker compose --env-file .env.prod up -d --build
+
+# Check service status
+docker compose --env-file .env.prod ps
+```
