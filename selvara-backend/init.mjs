@@ -126,8 +126,36 @@ async function main() {
 
   printKey(api_key.token);
 
-  // 6. Seed products if none exist
+  // 6. Ensure region exists (required for cart creation)
+  await ensureRegion(headers);
+
+  // 7. Seed products if none exist
   await seedIfEmpty(headers);
+}
+
+async function ensureRegion(headers) {
+  try {
+    const res = await fetch(`${BASE}/admin/regions`, { headers });
+    const data = await res.json();
+    if (data.regions?.length > 0) {
+      console.log(`Region already exists: ${data.regions[0].name}\n`);
+      return;
+    }
+    console.log("Creating region Russia/RUB...");
+    const createRes = await fetch(`${BASE}/admin/regions`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify({
+        name: "Russia",
+        currency_code: "rub",
+        countries: ["ru"],
+      }),
+    });
+    const { region } = await createRes.json();
+    console.log(`Region created: ${region.id}\n`);
+  } catch (err) {
+    console.error("Region setup failed:", err.message);
+  }
 }
 
 async function seedIfEmpty(headers) {
